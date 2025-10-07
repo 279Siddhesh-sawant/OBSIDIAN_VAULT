@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Active Directory/Basics/Basics.md",
+                "file": "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Basics"
+              "title": "02-Users, Machine, Security Groups and OUs"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Active Directory/Basics/Basics.md",
+                "file": "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Basics"
+              "title": "Backlinks for 02-Users, Machine, Security Groups and OUs"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Active Directory/Basics/Basics.md",
+                "file": "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Basics"
+              "title": "Outgoing links from 02-Users, Machine, Security Groups and OUs"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Active Directory/Basics/Basics.md",
+                "file": "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Basics"
+              "title": "Outline of 02-Users, Machine, Security Groups and OUs"
             }
           }
         ]
@@ -169,12 +169,13 @@
       "bases:Create new base": false
     }
   },
-  "active": "f68bfe255e8a037e",
+  "active": "e6149749d55f9ce3",
   "lastOpenFiles": [
+    "Active Directory/Basics/01-Basics.md",
+    "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
     "Active Directory/Basics/images",
     "Active Directory/Basics/images/ad_basic_diagram.png",
     "Welcome.md",
-    "Active Directory/Basics/Basics.md",
     "Active Directory/Basics",
     "Basics",
     "Active Directory"
