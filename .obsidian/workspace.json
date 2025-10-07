@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Test/tetst.md",
+                "file": "Tools/Metasploit/Commands.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "tetst"
+              "title": "Commands"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Basic_Commands/Python Virtual Environment.md",
+                "file": "Active Directory/Basics/06-Trees, Fortest and Trust.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Python Virtual Environment"
+              "title": "Backlinks for 06-Trees, Fortest and Trust"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Basic_Commands/Python Virtual Environment.md",
+                "file": "Active Directory/Basics/06-Trees, Fortest and Trust.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Python Virtual Environment"
+              "title": "Outgoing links from 06-Trees, Fortest and Trust"
             }
           },
           {
@@ -142,21 +142,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Basic_Commands/Python Virtual Environment.md",
+                "file": "Tools/Metasploit/Commands.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Python Virtual Environment"
+              "title": "Outline of Commands"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -171,37 +171,39 @@
   },
   "active": "a041205e468d4289",
   "lastOpenFiles": [
+    "Tools/Metasploit/Main_components/Components.md",
+    "Tools/Metasploit/Commands.md",
+    "Tools/Metasploit/Images/Post.png",
+    "Tools/Metasploit/Images/Payloads.png",
+    "Tools/Metasploit/Images/NOPs.png",
+    "Tools/Metasploit/Images/Exploits.png",
+    "Tools/Metasploit/Images/Evasion.png",
+    "Tools/Metasploit/Images/Encoders.png",
+    "Tools/Metasploit/Images/Auxiliary.png",
+    "Tools/Metasploit/Images",
+    "Active Directory/Basics/05-Authentication Methods.md",
+    "Tools/Metasploit/Main_components",
+    "Tools/Metasploit",
+    "Tools",
+    "Active Directory/Basics/03-Active Directory Users and Computers.md",
+    "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
     "Basic_Commands/Python Virtual Environment.md",
     "Test/tetst.md",
     "Test",
     "Git_commands/Commands.md",
     "Basic_Commands",
     "Active Directory/Basics/06-Trees, Fortest and Trust.md",
-    "Active Directory/Basics/05-Authentication Methods.md",
     "Active Directory/Basics/04-Group Policy Objects.md",
-    "Active Directory/Basics/03-Active Directory Users and Computers.md",
-    "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
     "Git_commands",
     "Active Directory/Untitled",
     "Active Directory/Basics/images/Trust_direction.png",
     "Active Directory/Basics/images/Forests.png",
     "Active Directory/Basics/images/Tree.png",
-    "Active Directory/Basics/images/Trees_Forest_Trust.png",
     "Active Directory/Basics/01-Basics.md",
     "Active Directory/Basics/Untitled.md",
-    "Active Directory/Basics/images/NetNTLM_image.png",
-    "Active Directory/Basics/images/Kerberos_authentication_3.png",
-    "Active Directory/Basics/images/Kerberos_authentication_2.png",
-    "Active Directory/Basics/images/Kerberos_authentication.png",
     "Active Directory/Basics/Untitled",
-    "Active Directory/Basics/images/Image_2.png",
-    "Active Directory/Basics/images/Image_1.png",
     "images/Users.md",
     "images",
-    "03-Active Directory Users and Computers",
-    "Active Directory/Basics/images",
-    "Welcome.md",
-    "Active Directory/Basics",
-    "Basics"
+    "Welcome.md"
   ]
 }
