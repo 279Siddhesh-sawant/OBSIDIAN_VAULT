@@ -1,6 +1,6 @@
 A Windows domain is a group of users and computers under the administration of a given business. The main idea behind a domain is to centralise the administration of common components of a Windows computer network in a single repository called Active Directory (AD). The server that runs the Active Directory services is known as a Domain Controller (DC).
 
-![[ad_basic_diagram.png]]
+![ad basics](images/ad_basic_diagram.png)
 
 
 The main advantages of having a configured Windows domain are:
