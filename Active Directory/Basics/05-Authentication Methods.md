@@ -20,7 +20,7 @@ When Kerberos is used for authentication, the following process happens:
 1. When a user wants to connect to a service on the network like a share, website or database, they will use their TGT to ask the KDC for a **Ticket Granting Service (TGS)**. TGS are tickets that allow connection only to the specific service they were created for. To request a TGS, the user will send their username and a timestamp encrypted using the Session Key, along with the TGT and a **Service Principal Name (SPN),** which indicates the service and server name we intend to access.
     
     As a result, the KDC will send us a TGS along with a **Service Session Key**, which we will need to authenticate to the service we want to access. The TGS is encrypted using a key derived from the **Service Owner Hash**. The Service Owner is the user or machine account that the service runs under. The TGS contains a copy of the Service Session Key on its encrypted contents so that the Service Owner can access it by decrypting the TGS.
-    ![kerberos_authentication_2](Basics/images/Kerberos_authentication_2.png)
+    ![](Basics/images/Kerberos_authentication_2.png)
     The TGS can then be sent to the desired service to authenticate and establish a connection. The service will use its configured account's password hash to decrypt the TGS and validate the Service Session Key.
 ![Kerberos_authentication_3](Basics/images/Kerberos_authentication_3.png)
 # NetNTLM Authentication
