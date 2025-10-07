@@ -8,7 +8,7 @@ Before diving into modules, it would be helpful to clarify a few recurring conce
 
 - **Auxiliary**
 Any supporting module, such as scanners, crawlers and fuzzers, can be found here.
-![Auxiliary](Tools/Metasploit/Images/Auxiliary.png)
+![Auxiliary](D:\Study_Material\Github_Repository\OBSIDIAN_VAULT\Tools\Metasploit\Images\Auxiliary.png)
 **Encoders**
 
 Encoders will allow you to encode the exploit and payload in the hope that a signature-based antivirus solution may miss them.

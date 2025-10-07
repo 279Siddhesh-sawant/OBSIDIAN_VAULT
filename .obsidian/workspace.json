@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tools/Metasploit/Commands.md",
+                "file": "Tools/Metasploit/Main_components/Components.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Commands"
+              "title": "Components"
             }
           }
         ]
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tools/Metasploit/Commands.md",
+                "file": "Tools/Metasploit/Main_components/Components.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Commands"
+              "title": "Outline of Components"
             }
           }
         ],
@@ -171,6 +171,7 @@
   },
   "active": "a041205e468d4289",
   "lastOpenFiles": [
+    "Tools/Metasploit/Images/Auxiliary.png",
     "Tools/Metasploit/Main_components/Components.md",
     "Tools/Metasploit/Commands.md",
     "Tools/Metasploit/Images/Post.png",
@@ -179,7 +180,6 @@
     "Tools/Metasploit/Images/Exploits.png",
     "Tools/Metasploit/Images/Evasion.png",
     "Tools/Metasploit/Images/Encoders.png",
-    "Tools/Metasploit/Images/Auxiliary.png",
     "Tools/Metasploit/Images",
     "Active Directory/Basics/05-Authentication Methods.md",
     "Tools/Metasploit/Main_components",
