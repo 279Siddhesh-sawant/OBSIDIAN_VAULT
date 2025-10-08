@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tools/Metasploit/Commands.md",
+                "file": "Tools/Metasploit/Main_components/Components.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Commands"
+              "title": "Components"
             }
           }
         ],
@@ -157,13 +157,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tools/Metasploit/Commands.md",
+                "file": "Tools/Metasploit/Main_components/Components.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Commands"
+              "title": "Outline of Components"
             }
           }
         ],
@@ -187,8 +187,8 @@
   },
   "active": "a03782a3dff577a9",
   "lastOpenFiles": [
-    "Tools/Metasploit/Main_components/Components.md",
     "Tools/Metasploit/Commands.md",
+    "Tools/Metasploit/Main_components/Components.md",
     "Tools/Metasploit/Images/Auxiliary.png",
     "Tools/Metasploit/Images/Post.png",
     "Tools/Metasploit/Images/Payloads.png",
