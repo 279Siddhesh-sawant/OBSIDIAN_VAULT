@@ -8,7 +8,7 @@ Before diving into modules, it would be helpful to clarify a few recurring conce
 
 - **Auxiliary**
 Any supporting module, such as scanners, crawlers and fuzzers, can be found here.
-![Auxiliary](D:\Study_Material\Github_Repository\OBSIDIAN_VAULT\Tools\Metasploit\Images\Auxiliary.png)
+![Auxiliary](Tools/Metasploit/Images/Auxiliary.png)
 **Encoders**
 
 Encoders will allow you to encode the exploit and payload in the hope that a signature-based antivirus solution may miss them.
@@ -54,3 +54,4 @@ Both are reverse Windows shells. The former is an inline (or single) payload, as
 
 Post modules will be useful on the final stage of the penetration testing process listed above, post-exploitation.
 ![Post](Tools/Metasploit/Images/Post.png)
+
