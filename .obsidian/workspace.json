@@ -27,7 +27,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tools/Metasploit/Metasploit_Exploitation/Commands.md",
+                "file": "Tools/Metasploit/Commands.md",
                 "mode": "source",
                 "source": false
               },
@@ -187,8 +187,8 @@
   },
   "active": "a03782a3dff577a9",
   "lastOpenFiles": [
-    "Tools/Metasploit/Commands.md",
     "Tools/Metasploit/Metasploit_Exploitation/Commands.md",
+    "Tools/Metasploit/Commands.md",
     "To_do_list/THM.md",
     "Tools/Metasploit/Metasploit_Exploitation",
     "Tools/Metasploit/Main_components/Components.md",
