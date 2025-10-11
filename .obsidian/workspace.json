@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tools/Metasploit/Commands.md",
+                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Enumeration.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Commands"
+              "title": "Enumeration"
             }
           }
         ],
@@ -185,10 +185,16 @@
       "bases:Create new base": false
     }
   },
-  "active": "a03782a3dff577a9",
+  "active": "f68bfe255e8a037e",
   "lastOpenFiles": [
-    "Tools/Metasploit/Metasploit_Exploitation/Commands.md",
+    "Privilege_Escalation/Linux_Privilege_Escalation/Basic.md",
+    "Privilege_Escalation/Linux_Privilege_Escalation/Enumeration.md",
+    "Privilege_Escalation/Shells/Labs.md",
+    "Privilege_Escalation/Linux_Privilege_Escalation",
     "Tools/Metasploit/Commands.md",
+    "Privilege_Escalation/Shells",
+    "Privilege_Escalation",
+    "Tools/Metasploit/Metasploit_Exploitation/Commands.md",
     "To_do_list/THM.md",
     "Tools/Metasploit/Metasploit_Exploitation",
     "Tools/Metasploit/Main_components/Components.md",
@@ -211,11 +217,8 @@
     "Test/tetst.md",
     "Test",
     "Git_commands/Commands.md",
-    "Basic_Commands",
     "Active Directory/Basics/06-Trees, Fortest and Trust.md",
     "Active Directory/Basics/04-Group Policy Objects.md",
-    "Git_commands",
-    "Active Directory/Untitled",
     "Active Directory/Basics/images/Trust_direction.png",
     "Active Directory/Basics/images/Forests.png",
     "Active Directory/Basics/images/Tree.png",
