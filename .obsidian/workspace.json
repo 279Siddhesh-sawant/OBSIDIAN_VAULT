@@ -27,12 +27,20 @@
             "state": {
               "type": "markdown",
               "state": {
+
                 "file": "Privilege_Escalation/Linux_Privilege_Escalation/Enumeration.md",
+
+                "file": "Tools/Metasploit/Meterpreter/Lab.md",
+ 71e3b6fd6d953944030ea4efb6d4bfe6932bf591
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
+
               "title": "Enumeration"
+
+              "title": "Lab"
+ 71e3b6fd6d953944030ea4efb6d4bfe6932bf591
             }
           }
         ],
@@ -187,6 +195,7 @@
   },
   "active": "f68bfe255e8a037e",
   "lastOpenFiles": [
+
     "Privilege_Escalation/Linux_Privilege_Escalation/Basic.md",
     "Privilege_Escalation/Linux_Privilege_Escalation/Enumeration.md",
     "Privilege_Escalation/Shells/Labs.md",
@@ -194,6 +203,11 @@
     "Tools/Metasploit/Commands.md",
     "Privilege_Escalation/Shells",
     "Privilege_Escalation",
+
+    "Tools/Metasploit/Commands.md",
+    "Tools/Metasploit/Meterpreter/Lab.md",
+    "Tools/Metasploit/Meterpreter",
+ 71e3b6fd6d953944030ea4efb6d4bfe6932bf591
     "Tools/Metasploit/Metasploit_Exploitation/Commands.md",
     "To_do_list/THM.md",
     "Tools/Metasploit/Metasploit_Exploitation",
@@ -219,6 +233,9 @@
     "Git_commands/Commands.md",
     "Active Directory/Basics/06-Trees, Fortest and Trust.md",
     "Active Directory/Basics/04-Group Policy Objects.md",
+
+    "Git_commands",
+ 71e3b6fd6d953944030ea4efb6d4bfe6932bf591
     "Active Directory/Basics/images/Trust_direction.png",
     "Active Directory/Basics/images/Forests.png",
     "Active Directory/Basics/images/Tree.png",
