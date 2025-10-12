@@ -1,64 +1,41 @@
 {
   "main": {
-    "id": "49a1849f864e3394",
+    "id": "d7e7ed6a86b81cdf",
     "type": "split",
     "children": [
       {
-        "id": "376fd7f7a5f2f64a",
+        "id": "8b8e096f4a7be8f7",
         "type": "tabs",
         "children": [
           {
-            "id": "a041205e468d4289",
+            "id": "e2ef740b8a168bd3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tools/Metasploit/Main_components/Components.md",
+                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Capabilities.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Components"
-            }
-          },
-          {
-            "id": "a03782a3dff577a9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-
-                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Enumeration.md",
-
-                "file": "Tools/Metasploit/Meterpreter/Lab.md",
- 71e3b6fd6d953944030ea4efb6d4bfe6932bf591
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-
-              "title": "Enumeration"
-
-              "title": "Lab"
- 71e3b6fd6d953944030ea4efb6d4bfe6932bf591
+              "title": "Capabilities"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "3934db1addbfa983",
+    "id": "26aeacfc04e4391c",
     "type": "split",
     "children": [
       {
-        "id": "af3b7c4a4c98ce9c",
+        "id": "be8957d950155daa",
         "type": "tabs",
         "children": [
           {
-            "id": "f68bfe255e8a037e",
+            "id": "2099a690d5fddb59",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -71,7 +48,7 @@
             }
           },
           {
-            "id": "9315772cdf6c6909",
+            "id": "2d4bcf0e13da538c",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -88,7 +65,7 @@
             }
           },
           {
-            "id": "697e836a471898a0",
+            "id": "daf57b74a2fd56dd",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -104,20 +81,20 @@
     "width": 300
   },
   "right": {
-    "id": "1c50210d39081bae",
+    "id": "50f131bf98c3d376",
     "type": "split",
     "children": [
       {
-        "id": "08438f396ffa1b4b",
+        "id": "35748c8928c7d4a8",
         "type": "tabs",
         "children": [
           {
-            "id": "4b0c2698748bacbd",
+            "id": "2a13ea67d48fb08e",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Active Directory/Basics/06-Trees, Fortest and Trust.md",
+                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 06-Trees, Fortest and Trust"
+              "title": "Backlinks for Sudo"
             }
           },
           {
-            "id": "da5913bb6323191c",
+            "id": "f92795b6f38929b9",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Active Directory/Basics/06-Trees, Fortest and Trust.md",
+                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 06-Trees, Fortest and Trust"
+              "title": "Outgoing links from Sudo"
             }
           },
           {
-            "id": "48b5a7dcbebbba21",
+            "id": "b26b4a751d27b26e",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -160,26 +137,25 @@
             }
           },
           {
-            "id": "e5da79137aa8903d",
+            "id": "3547a162a29f5218",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Tools/Metasploit/Metasploit_Exploitation/Commands.md",
+                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Commands"
+              "title": "Outline of Sudo"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 294.5,
+    "width": 300,
     "collapsed": true
   },
   "left-ribbon": {
@@ -193,55 +169,13 @@
       "bases:Create new base": false
     }
   },
-  "active": "f68bfe255e8a037e",
+  "active": "e2ef740b8a168bd3",
   "lastOpenFiles": [
-
-    "Privilege_Escalation/Linux_Privilege_Escalation/Basic.md",
-    "Privilege_Escalation/Linux_Privilege_Escalation/Enumeration.md",
-    "Privilege_Escalation/Shells/Labs.md",
-    "Privilege_Escalation/Linux_Privilege_Escalation",
-    "Tools/Metasploit/Commands.md",
-    "Privilege_Escalation/Shells",
-    "Privilege_Escalation",
-
-    "Tools/Metasploit/Commands.md",
-    "Tools/Metasploit/Meterpreter/Lab.md",
-    "Tools/Metasploit/Meterpreter",
- 71e3b6fd6d953944030ea4efb6d4bfe6932bf591
-    "Tools/Metasploit/Metasploit_Exploitation/Commands.md",
+    "Privilege_Escalation/Linux_Privilege_Escalation/SUID.md",
+    "Privilege_Escalation/Linux_Privilege_Escalation/Capabilities.md",
+    "Privilege_Escalation/Linux_Privilege_Escalation/Enumeration_&_Kernel_Exploit.md",
+    "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
     "To_do_list/THM.md",
-    "Tools/Metasploit/Metasploit_Exploitation",
-    "Tools/Metasploit/Main_components/Components.md",
-    "To_do_list",
-    "Tools/Metasploit/Main_components/Images/Auxiliary.png",
-    "Tools/Metasploit/Main_components/Images/Post.png",
-    "Tools/Metasploit/Main_components/Images/Payloads.png",
-    "Tools/Metasploit/Main_components/Images/NOPs.png",
-    "Tools/Metasploit/Main_components/Images/Exploits.png",
-    "Tools/Metasploit/Main_components/Images/Evasion.png",
-    "Tools/Metasploit/Main_components/Images/Encoders.png",
-    "Tools/Metasploit/Main_components/Images",
-    "Active Directory/Basics/05-Authentication Methods.md",
-    "Tools/Metasploit/Main_components",
-    "Tools/Metasploit",
-    "Tools",
-    "Active Directory/Basics/03-Active Directory Users and Computers.md",
-    "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
-    "Basic_Commands/Python Virtual Environment.md",
-    "Test/tetst.md",
-    "Test",
-    "Git_commands/Commands.md",
-    "Active Directory/Basics/06-Trees, Fortest and Trust.md",
-    "Active Directory/Basics/04-Group Policy Objects.md",
-
-    "Git_commands",
- 71e3b6fd6d953944030ea4efb6d4bfe6932bf591
-    "Active Directory/Basics/images/Trust_direction.png",
-    "Active Directory/Basics/images/Forests.png",
-    "Active Directory/Basics/images/Tree.png",
-    "Active Directory/Basics/01-Basics.md",
-    "Active Directory/Basics/Untitled.md",
-    "images/Users.md",
-    "Welcome.md"
+    "Untitled"
   ]
 }
