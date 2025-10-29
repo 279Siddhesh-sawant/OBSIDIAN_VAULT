@@ -8,6 +8,7 @@ Before diving into modules, it would be helpful to clarify a few recurring conce
 
 - **Auxiliary**
 Any supporting module, such as scanners, crawlers and fuzzers, can be found here.
+
 ![Auxiliary](Images/Auxiliary.png)
 **Encoders**
 
