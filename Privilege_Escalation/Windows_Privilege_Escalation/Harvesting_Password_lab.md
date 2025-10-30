@@ -1,5 +1,5 @@
 
-![](Images/service_info)
+![](service_info.md)
 
 
 ![](Images/tomghost.png)
