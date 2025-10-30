@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8b8e096f4a7be8f7",
+        "id": "1d97cfadf57d2251",
         "type": "tabs",
         "children": [
           {
-            "id": "e2ef740b8a168bd3",
+            "id": "7ea9b215604025e8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Privilege_Escalation/Windows_Privilege_Escalation/Jr Penetration Tester Path.md",
+                "file": "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Jr Penetration Tester Path"
+              "title": "Harvesting_Password_lab"
             }
           }
         ]
@@ -94,8 +94,8 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
-                "collapseAll": false,
+                "file": "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Sudo"
+              "title": "Backlinks for Harvesting_Password_lab"
             }
           },
           {
@@ -142,20 +142,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
+                "file": "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Sudo"
+              "title": "Outline of Harvesting_Password_lab"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 287.5,
     "collapsed": true
   },
   "left-ribbon": {
@@ -169,18 +170,21 @@
       "bases:Create new base": false
     }
   },
-  "active": "e2ef740b8a168bd3",
+  "active": "7ea9b215604025e8",
   "lastOpenFiles": [
+    "Privilege_Escalation/Windows_Privilege_Escalation/Images/tomghost.png",
+    "Images/tomghost.md",
     "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
-    "Privilege_Escalation/Windows_Privilege_Escalation/Images/Untitled.md",
-    "Privilege_Escalation/Windows_Privilege_Escalation/Images/service_info.md",
-    "Pasted image 20251020104639.png",
+    "Images",
     "service_info 1.png",
+    "Privilege_Escalation/Windows_Privilege_Escalation/Images/service_info.md",
+    "Privilege_Escalation/Windows_Privilege_Escalation/Jr Penetration Tester Path.md",
     "service_info.png",
+    "Privilege_Escalation/Windows_Privilege_Escalation/Images/Untitled.md",
+    "Pasted image 20251020104639.png",
     "Privilege_Escalation/Linux_Privilege_Escalation/Enumeration_&_Kernel_Exploit.md",
     "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
     "Privilege_Escalation/Linux_Privilege_Escalation/Capabilities.md",
-    "Privilege_Escalation/Windows_Privilege_Escalation/Jr Penetration Tester Path.md",
     "Tools/Metasploit/Main_components/Images/Auxiliary.png",
     "Tools/Metasploit/Main_components/Components.md",
     "Privilege_Escalation/Windows_Privilege_Escalation/Images",
