@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Privilege_Escalation/Windows_Privilege_Escalation/service_info.md",
+                "file": "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "service_info"
+              "title": "Harvesting_Password_lab"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Privilege_Escalation/Windows_Privilege_Escalation/service_info.md",
+                "file": "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for service_info"
+              "title": "Backlinks for Harvesting_Password_lab"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Privilege_Escalation/Windows_Privilege_Escalation/service_info.md",
+                "file": "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of service_info"
+              "title": "Outline of Harvesting_Password_lab"
             }
           }
         ],
@@ -172,8 +172,8 @@
   },
   "active": "7ea9b215604025e8",
   "lastOpenFiles": [
-    "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
     "Privilege_Escalation/Windows_Privilege_Escalation/service_info.md",
+    "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
     "Privilege_Escalation/Windows_Privilege_Escalation/Images/tomghost.png",
     "Images/tomghost.md",
     "Images",
