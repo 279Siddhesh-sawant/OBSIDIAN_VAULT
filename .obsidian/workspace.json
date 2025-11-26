@@ -1,14 +1,14 @@
 {
   "main": {
-    "id": "d7e7ed6a86b81cdf",
+    "id": "ef59e859e24ee094",
     "type": "split",
     "children": [
       {
-        "id": "8b8e096f4a7be8f7",
+        "id": "e90d26effbd90c1b",
         "type": "tabs",
         "children": [
           {
-            "id": "e2ef740b8a168bd3",
+            "id": "31a6068373f52619",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -22,32 +22,35 @@
             }
           },
           {
-            "id": "3d652d1edcb96d3b",
+            "id": "05f9483b67efc260",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.10.3"
+                "file": "HTB_Academy/Footprinting/Host_Based_Enumeration/MYSQL.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.10.3"
+              "icon": "lucide-file",
+              "title": "MYSQL"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "26aeacfc04e4391c",
+    "id": "9ad7361bbb609c27",
     "type": "split",
     "children": [
       {
-        "id": "be8957d950155daa",
+        "id": "37f4fdbc4a9db4b5",
         "type": "tabs",
         "children": [
           {
-            "id": "2099a690d5fddb59",
+            "id": "1e6f131cb64b0473",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -60,7 +63,7 @@
             }
           },
           {
-            "id": "2d4bcf0e13da538c",
+            "id": "29f97b1dfe8d40b3",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -77,7 +80,7 @@
             }
           },
           {
-            "id": "daf57b74a2fd56dd",
+            "id": "b91b1a5b77c1dce0",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -93,20 +96,20 @@
     "width": 300
   },
   "right": {
-    "id": "50f131bf98c3d376",
+    "id": "9733c319ab760495",
     "type": "split",
     "children": [
       {
-        "id": "35748c8928c7d4a8",
+        "id": "9c20bf6403d3f31e",
         "type": "tabs",
         "children": [
           {
-            "id": "2a13ea67d48fb08e",
+            "id": "966db010720f9800",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
+                "file": "HTB_Academy/Footprinting/Host_Based_Enumeration/DNS (lab).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,25 +119,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Sudo"
+              "title": "Backlinks for DNS (lab)"
             }
           },
           {
-            "id": "f92795b6f38929b9",
+            "id": "b97cbc5143c0be74",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
+                "file": "HTB_Academy/Footprinting/Host_Based_Enumeration/DNS (lab).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Sudo"
+              "title": "Outgoing links from DNS (lab)"
             }
           },
           {
-            "id": "b26b4a751d27b26e",
+            "id": "a2872f201f443fa7",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -149,18 +152,18 @@
             }
           },
           {
-            "id": "3547a162a29f5218",
+            "id": "62d8fad45de8a109",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
+                "file": "HTB_Academy/Footprinting/Host_Based_Enumeration/DNS (lab).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Sudo"
+              "title": "Outline of DNS (lab)"
             }
           }
         ]
@@ -181,38 +184,21 @@
       "bases:Create new base": false
     }
   },
-  "active": "e2ef740b8a168bd3",
+  "active": "05f9483b67efc260",
   "lastOpenFiles": [
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/DNS_5.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/MSSQL.md",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mssql_1.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/MYSQL.md",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_8.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_7.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_6.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_5.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_4.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_3.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_2.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mssql_4.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mssql_3.png",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/DNS (lab).md",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/DNS_4.png",
-    "Pasted image 20251020104639.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/DNS_3.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/DNS_2.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/DNS_1.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images",
-    "Privilege_Escalation/Linux_Privilege_Escalation/Enumeration_&_Kernel_Exploit.md",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration",
-    "HTB_Academy/Footprinting",
-    "HTB_Academy",
-    "Privilege_Escalation/Windows_Privilege_Escalation/Jr Penetration Tester Path.md",
-    "Privilege_Escalation/Windows_Privilege_Escalation/Images/service_info.md",
-    "Privilege_Escalation/Linux_Privilege_Escalation/Cron jobs.md",
-    "Privilege_Escalation/Linux_Privilege_Escalation/Capabilities.md",
-    "Privilege_Escalation/Windows_Privilege_Escalation/Harvesting_Password_lab.md",
-    "Privilege_Escalation/Windows_Privilege_Escalation/Images/Untitled.md",
-    "service_info 1.png",
-    "service_info.png",
-    "Privilege_Escalation/Linux_Privilege_Escalation/Sudo.md",
-    "Tools/Metasploit/Main_components/Images/Auxiliary.png",
-    "Tools/Metasploit/Main_components/Components.md",
-    "Privilege_Escalation/Windows_Privilege_Escalation/Images",
-    "Privilege_Escalation/Linux_Privilege_Escalation/$PATH.md",
-    "Privilege_Escalation/Windows_Privilege_Escalation",
-    "Privilege_Escalation/Linux_Privilege_Escalation/Common_Linux_Privesc.md",
-    "Privilege_Escalation/Linux_Privilege_Escalation/SUID.md",
-    "Privilege_Escalation/Common_Linux_Privesc.md",
-    "Privilege_Escalation/Linux_Privilege_Escalation/Capstone_challenge.md",
-    "To_do_list/THM.md"
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/FTP.md"
   ]
 }
