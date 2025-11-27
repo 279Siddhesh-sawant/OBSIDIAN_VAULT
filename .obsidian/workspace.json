@@ -25,14 +25,12 @@
             "id": "05f9483b67efc260",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "HTB_Academy/Footprinting/Host_Based_Enumeration/MYSQL.md",
-                "mode": "source",
-                "source": false
+                "file": "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_6.png"
               },
-              "icon": "lucide-file",
-              "title": "MYSQL"
+              "icon": "lucide-image",
+              "title": "smb_6"
             }
           }
         ],
@@ -186,19 +184,20 @@
   },
   "active": "05f9483b67efc260",
   "lastOpenFiles": [
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/MSSQL.md",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mssql_1.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/MYSQL.md",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_8.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_7.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_6.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_5.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_4.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_3.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mysql_2.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mssql_4.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/mssql_3.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/DNS (lab).md",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/FTP.md"
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/MYSQL (Lab).md",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/MSSQL (Lab).md",
+    "Pasted image 20251020104639.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/FTP (Lab).md",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/SMB (Lab).md",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_7.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_6.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_5.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_4.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_3.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_2.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_1.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/ftp_3.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/ftp_2.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/DNS (lab).md"
   ]
 }
