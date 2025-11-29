@@ -25,12 +25,14 @@
             "id": "05f9483b67efc260",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_6.png"
+                "file": "Machines/Tryhackme/Linux/Thompson.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "smb_6"
+              "icon": "lucide-file",
+              "title": "Thompson"
             }
           }
         ],
@@ -184,20 +186,26 @@
   },
   "active": "05f9483b67efc260",
   "lastOpenFiles": [
+    "Pasted image 20251129130710.png",
+    "Pasted image 20251129133550.png",
+    "Pasted image 20251129133559.png",
+    "Pasted image 20251129135705.png",
+    "Pasted image 20251129135713.png",
+    "Pasted image 20251129135725.png",
+    "Machines/Tryhackme/Linux/Images/thompson_14.png",
+    "Machines/Tryhackme/Linux/Images/thompson_13.png",
+    "Machines/Tryhackme/Linux/Images/thompson_12.png",
+    "Machines/Tryhackme/Linux/Images/thompson_11.png",
+    "Machines/Tryhackme/Linux/Images/thompson_10.png",
+    "Machines/Tryhackme/Linux/Thompson.md",
+    "Machines/Tryhackme/Linux/Images",
+    "Machines/Tryhackme/Linux",
+    "Machines/Tryhackme",
+    "Machines",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/MYSQL (Lab).md",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/MSSQL (Lab).md",
-    "Pasted image 20251020104639.png",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/FTP (Lab).md",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/SMB (Lab).md",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_7.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_6.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_5.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_4.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_3.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_2.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/smb_1.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/ftp_3.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/ftp_2.png",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/DNS (lab).md"
   ]
 }
