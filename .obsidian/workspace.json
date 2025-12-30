@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB_Academy/File_Transfer/Windows/Lab.md",
+                "file": "HTB_Academy/Attacking_Common_Services/FTP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lab"
+              "title": "FTP"
             }
           }
         ],
@@ -186,31 +186,34 @@
   },
   "active": "05f9483b67efc260",
   "lastOpenFiles": [
+    "HTB_Academy/Attacking_Common_Services/Images/ftp_4.png",
+    "HTB_Academy/Attacking_Common_Services/FTP.md",
+    "HTB_Academy/Attacking_Common_Services/Images/ftp_3.png",
+    "HTB_Academy/Attacking_Common_Services/Images/ftp_2.png",
+    "HTB_Academy/Attacking_Common_Services/Images/ftp_1.png",
+    "Pasted image 20251129150809.png",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/MYSQL (Lab).md",
+    "HTB_Academy/Attacking_Common_Services/Images",
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/FTP (Lab).md",
+    "HTB_Academy/Attacking_Common_Services",
+    "HTB_Academy/File_Transfer/Windows/Lab.md",
     "HTB_Academy/File_Transfer/Windows/Images/6.png",
     "HTB_Academy/File_Transfer/Windows/Images/5.png",
     "HTB_Academy/File_Transfer/Windows/Images/4.png",
-    "Pasted image 20251129150809.png",
-    "HTB_Academy/File_Transfer/Windows/Lab.md",
     "HTB_Academy/File_Transfer/Windows/Images/3.png",
     "HTB_Academy/File_Transfer/Windows/Images/2.png",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/DNS (lab).md",
-    "HTB_Academy/File_Transfer/Windows/Images/1.png",
     "HTB_Academy/File_Transfer/Windows/Images",
     "Machines/Tryhackme/Linux/Kenobi.md",
     "HTB_Academy/File_Transfer/Windows",
     "HTB_Academy/File_Transfer",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/NFS (Lab).md",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/nfs_3.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/nfs_4.png",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/Images/nfs_2.png",
     "Machines/Tryhackme/Linux/Thompson.md",
     "Machines/Tryhackme/Linux/Images",
     "Machines/Tryhackme/Linux",
     "Machines/Tryhackme",
     "Machines",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/MYSQL (Lab).md",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/MSSQL (Lab).md",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/FTP (Lab).md",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/SMB (Lab).md"
   ]
 }
