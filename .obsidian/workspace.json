@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB_Academy/Shells & Payloads/Windows_Shells.md",
+                "file": "HTB_Academy/Shells & Payloads/Web_Shells.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Windows_Shells"
+              "title": "Web_Shells"
             }
           }
         ],
@@ -186,18 +186,27 @@
   },
   "active": "05f9483b67efc260",
   "lastOpenFiles": [
-    "HTB_Academy/Shells & Payloads/Payloads.md",
-    "HTB_Academy/Shells & Payloads/Images/Windows_9.png",
+    "Pasted image 20260105165433.png",
+    "Pasted image 20260105165429.png",
+    "HTB_Academy/Shells & Payloads/Images/shells_12.png",
+    "HTB_Academy/Shells & Payloads/Images/shells_11.png",
+    "HTB_Academy/Shells & Payloads/Images/shells_10.png",
+    "HTB_Academy/Shells & Payloads/Images/shells_9.png",
+    "HTB_Academy/Shells & Payloads/Images/shells_8.png",
+    "HTB_Academy/Shells & Payloads/Images/shells_7.png",
+    "Pasted image 20260105165253.png",
     "Pasted image 20251129150809.png",
-    "HTB_Academy/Shells & Payloads/Images/Windows_8.png",
-    "HTB_Academy/Shells & Payloads/Images/Windows_7.png",
-    "HTB_Academy/Shells & Payloads/Images/Windows_6.png",
     "Pasted image 20251129135725.png",
-    "HTB_Academy/Shells & Payloads/Images/Windows_5.png",
-    "HTB_Academy/Shells & Payloads/Images/Windows_4.png",
-    "HTB_Academy/Shells & Payloads/Images/Windows_3.png",
-    "Pasted image 20251129135713.png",
+    "HTB_Academy/Shells & Payloads/Web_Shells.md",
+    "HTB_Academy/Shells & Payloads/Spawning Interactive Shells.md",
+    "HTB_Academy/Shells & Payloads/Linux_Shells.md",
     "HTB_Academy/Shells & Payloads/Windows_Shells.md",
+    "HTB_Academy/Shells & Payloads/Payloads.md",
+    "Active Directory/Basics/05-Authentication Methods.md",
+    "Active Directory/Basics/06-Trees, Fortest and Trust.md",
+    "Active Directory/Basics/03-Active Directory Users and Computers.md",
+    "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
+    "Active Directory/Basics/01-Basics.md",
     "HTB_Academy/Shells & Payloads/Images",
     "HTB_Academy/Attacking_Common_Services/SMB.md",
     "HTB_Academy/Attacking_Common_Services/RDP.md",
