@@ -25,14 +25,12 @@
             "id": "05f9483b67efc260",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "HTB_Academy/Shells & Payloads/Web_Shells.md",
-                "mode": "source",
-                "source": false
+                "file": "HTB_Academy/Password_Attacks/Images/dictionary_attack.png"
               },
-              "icon": "lucide-file",
-              "title": "Web_Shells"
+              "icon": "lucide-image",
+              "title": "dictionary_attack"
             }
           }
         ],
@@ -186,24 +184,29 @@
   },
   "active": "05f9483b67efc260",
   "lastOpenFiles": [
-    "Pasted image 20260105165433.png",
+    "HTB_Academy/Password_Attacks/Images/hash_generation.png",
+    "HTB_Academy/Password_Attacks/Introduction to John The Ripper.md",
+    "HTB_Academy/Password_Attacks/Images/jtr_4.png",
     "Pasted image 20260105165429.png",
-    "HTB_Academy/Shells & Payloads/Images/shells_12.png",
-    "HTB_Academy/Shells & Payloads/Images/shells_11.png",
-    "HTB_Academy/Shells & Payloads/Images/shells_10.png",
-    "HTB_Academy/Shells & Payloads/Images/shells_9.png",
-    "HTB_Academy/Shells & Payloads/Images/shells_8.png",
-    "HTB_Academy/Shells & Payloads/Images/shells_7.png",
+    "Pasted image 20260105165433.png",
+    "Pasted image 20260106162255.png",
+    "Pasted image 20260106162321.png",
+    "HTB_Academy/Password_Attacks/Images/jtr_3.png",
     "Pasted image 20260105165253.png",
-    "Pasted image 20251129150809.png",
-    "Pasted image 20251129135725.png",
-    "HTB_Academy/Shells & Payloads/Web_Shells.md",
+    "Pasted image 20260105165250.png",
+    "HTB_Academy/Password_Attacks/Images/jtr_2.png",
+    "HTB_Academy/Password_Attacks/Images/jtr_1.png",
+    "HTB_Academy/Password_Attacks/Introduction to Password Cracking.md",
+    "HTB_Academy/Password_Attacks/Images",
     "HTB_Academy/Shells & Payloads/Spawning Interactive Shells.md",
-    "HTB_Academy/Shells & Payloads/Linux_Shells.md",
-    "HTB_Academy/Shells & Payloads/Windows_Shells.md",
+    "HTB_Academy/Password_Attacks",
     "HTB_Academy/Shells & Payloads/Payloads.md",
+    "HTB_Academy/Shells & Payloads/Web_Shells.md",
+    "HTB_Academy/Shells & Payloads/Windows_Shells.md",
+    "HTB_Academy/Shells & Payloads/Linux_Shells.md",
     "Active Directory/Basics/05-Authentication Methods.md",
     "Active Directory/Basics/06-Trees, Fortest and Trust.md",
+    "Tools/Metasploit/Main_components/Components.md",
     "Active Directory/Basics/03-Active Directory Users and Computers.md",
     "Active Directory/Basics/02-Users, Machine, Security Groups and OUs.md",
     "Active Directory/Basics/01-Basics.md",
@@ -213,7 +216,6 @@
     "HTB_Academy/Attacking_Common_Services/FTP.md",
     "HTB_Academy/File_Transfer/Windows/Lab.md",
     "Tools/Metasploit/Metasploit_Exploitation/Commands.md",
-    "Tools/Metasploit/Main_components/Components.md",
     "HTB_Academy/Shells & Payloads",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/SMB (Lab).md",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/MYSQL (Lab).md",
@@ -227,9 +229,6 @@
     "HTB_Academy/File_Transfer",
     "HTB_Academy/Footprinting/Host_Based_Enumeration/NFS (Lab).md",
     "Machines/Tryhackme/Linux/Thompson.md",
-    "Machines/Tryhackme/Linux/Images",
-    "Machines/Tryhackme/Linux",
-    "Machines/Tryhackme",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/MSSQL (Lab).md"
+    "Machines/Tryhackme/Linux/Images"
   ]
 }
