@@ -25,12 +25,14 @@
             "id": "05f9483b67efc260",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "HTB_Academy/Password_Attacks/Images/dictionary_attack.png"
+                "file": "HTB_Academy/Password_Attacks/Network_Services.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "dictionary_attack"
+              "icon": "lucide-file",
+              "title": "Network_Services"
             }
           }
         ],
@@ -184,19 +186,20 @@
   },
   "active": "05f9483b67efc260",
   "lastOpenFiles": [
-    "HTB_Academy/Password_Attacks/Images/hash_generation.png",
-    "HTB_Academy/Password_Attacks/Introduction to John The Ripper.md",
-    "HTB_Academy/Password_Attacks/Images/jtr_4.png",
-    "Pasted image 20260105165429.png",
-    "Pasted image 20260105165433.png",
-    "Pasted image 20260106162255.png",
-    "Pasted image 20260106162321.png",
-    "HTB_Academy/Password_Attacks/Images/jtr_3.png",
-    "Pasted image 20260105165253.png",
-    "Pasted image 20260105165250.png",
-    "HTB_Academy/Password_Attacks/Images/jtr_2.png",
-    "HTB_Academy/Password_Attacks/Images/jtr_1.png",
+    "HTB_Academy/Password_Attacks/Images/rdp1.png",
+    "HTB_Academy/Password_Attacks/Network_Services.md",
+    "HTB_Academy/Password_Attacks/Images/smb3.png",
+    "HTB_Academy/Password_Attacks/Images/smb2.png",
+    "HTB_Academy/Password_Attacks/Images/smb1.png",
+    "HTB_Academy/Password_Attacks/Images/ssh3.png",
+    "HTB_Academy/Password_Attacks/Images/ssh2.png",
+    "HTB_Academy/Password_Attacks/Images/ssh1.png",
+    "HTB_Academy/Password_Attacks/Images/winrm_4.png",
+    "HTB_Academy/Password_Attacks/Images/winrm_3.png",
+    "HTB_Academy/Password_Attacks/Images/winrm_2.png",
     "HTB_Academy/Password_Attacks/Introduction to Password Cracking.md",
+    "HTB_Academy/Password_Attacks/Network_Services",
+    "HTB_Academy/Password_Attacks/Introduction to John The Ripper.md",
     "HTB_Academy/Password_Attacks/Images",
     "HTB_Academy/Shells & Payloads/Spawning Interactive Shells.md",
     "HTB_Academy/Password_Attacks",
@@ -227,8 +230,6 @@
     "Machines/Tryhackme/Linux/Kenobi.md",
     "HTB_Academy/File_Transfer/Windows",
     "HTB_Academy/File_Transfer",
-    "HTB_Academy/Footprinting/Host_Based_Enumeration/NFS (Lab).md",
-    "Machines/Tryhackme/Linux/Thompson.md",
-    "Machines/Tryhackme/Linux/Images"
+    "HTB_Academy/Footprinting/Host_Based_Enumeration/NFS (Lab).md"
   ]
 }
