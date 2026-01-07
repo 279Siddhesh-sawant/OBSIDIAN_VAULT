@@ -24,13 +24,13 @@ While several lists of known default credentials are available online, there are
 pip3 install defaultcreds-cheat-sheet
 ```
 Once installed, we can use the `creds` command to search for known default credentials associated with a specific product or vendor.
-![[defaults_1.png]]
+![](Images/defaults_1.png)
 
 In addition to publicly available lists and tools, default credentials can often be found in product documentation, which typically outlines the steps required to set up a service. While some devices and applications prompt the user to set a password during installation, others use a default—often weak—password.
 
 Let's imagine we have identified certain applications in use on a customer's network. After researching the default credentials online, we can combine them into a new list, formatted as `username:password`, and reuse the previously mentioned `hydra` command to attempt access.
 
 Beyond applications, default credentials are also commonly associated with routers. One such list is available [here](https://www.softwaretestinghelp.com/default-router-username-and-password-list/). While it is less likely that router credentials remain unchanged (since these devices are critical to network security), oversights do occur. Routers used in internal testing environments, for example, may be left with default settings and can be exploited to gain further access.
-![[defaults_2.png]]
+![](Images/defaults_2.png)
 
 

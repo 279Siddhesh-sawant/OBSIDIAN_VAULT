@@ -13,7 +13,7 @@ Many different extensions correspond to encrypted files—a useful reference lis
 for ext in $(echo ".xls .xls* .xltx .od* .doc .doc* .pdf .pot .pot* .pp*");do echo -e "\nFile extension: " $ext; find / -name *$ext 2>/dev/null | grep -v "lib\|fonts\|share\|core" ;done
 ```
 
-![[cpf_1.png]]
+![](Images/cpf_1.png)
 
 ## Hunting for SSH keys
 
@@ -24,19 +24,19 @@ grep -rnE '^\-{5}BEGIN [A-Z0-9]+ PRIVATE KEY\-{5}$' /* 2>/dev/null
 ```
 
 Some SSH keys are encrypted with a passphrase. With older PEM formats, it was possible to tell if an SSH key is encrypted based on the header, which contains the encryption method in use. Modern SSH keys, however, appear the same whether encrypted or not.
-![[cpf_2.png]]
+![](Images/cpf_2.png)
 
 One way to tell whether an SSH key is encrypted or not, is to try reading the key with `ssh-keygen`
-![[cpf_3.png]]
+![](Images/cpf_3.png)
 
 As shown below, attempting to read a password-protected SSH key will prompt the user for a passphrase:
-![[cpf_4.png]]
+![](Images/cpf_4.png)
 
 
 ### Q.1 Download the attached ZIP archive (cracking-protected-files.zip), and crack the file within. What is the password?
-![[cpf_5.png]]
+![](Images/cpf_5.png)
 
-![[cpf_6.png]]
+![](Images/cpf_6.png)
 
-![[cpf_7.png]]
+![](Images/cpf_7.png)
 
