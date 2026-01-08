@@ -96,3 +96,14 @@ We can use Hashcat to crack the NT Hash. In this example, we only found one NT h
 
 
 
+### Q.2 Apply the concepts taught in this section to obtain the password to the Vendor user account on the target. Submit the clear-text password as the answer. (Format: Case sensitive)
+
+RDP to 10.129.202.149 (ACADEMY-PWATTACKS-LSASS), with user "htb-student" and password "HTB_@cademy_stdnt!" 
+![[lsass10.png]]
+
+![[lsass11.png]]
+
+![[lsass12.png]]
+![[lsass13.png]]
+![[lsass14.png]]
+
