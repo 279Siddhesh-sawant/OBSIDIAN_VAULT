@@ -2,7 +2,7 @@
 
 As stated in the previous section, we can pull the domain password policy in several ways, depending on how the domain is configured and whether or not we have valid domain credentials. With valid domain credentials, the password policy can also be obtained remotely using tools such as [CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec) or `rpcclient`.
 
-![](IMages/ERPP1.png)
+![](Images/ERPP1.png)
 
 ## Enumerating the Password Policy - from Linux - SMB NULL Sessions
 
@@ -16,28 +16,28 @@ Once connected, we can issue an RPC command such as `querydominfo` to obtain inf
 
 #### Using rpcclient
 
-![](IMages/ERPP2.png)
+![](Images/ERPP2.png)
 We can also obtain the password policy. We can see that the password policy is relatively weak, allowing a minimum password of 8 characters.
 
 #### Obtaining the Password Policy using rpcclient
-![](IMages/ERPP3.png)
+![](Images/ERPP3.png)
 
 Let's try this using [enum4linux](https://labs.portcullis.co.uk/tools/enum4linux). `enum4linux` is a tool built around the [Samba suite of tools](https://www.samba.org/samba/docs/current/man-html/samba.7.html) `nmblookup`, `net`, `rpcclient` and `smbclient` to use for enumeration of windows hosts and domains. It can be found pre-installed on many different penetration testing distros, including Parrot Security Linux. Below we have an example output displaying information that can be provided by `enum4linux`. Here are some common enumeration tools and the ports they use:
 
-![](IMages/ERPP4.png)
+![](Images/ERPP4.png)
 #### Using enum4linux
-![](IMages/ERPP5.png)
+![](Images/ERPP5.png)
 
 The tool [enum4linux-ng](https://github.com/cddmp/enum4linux-ng) is a rewrite of `enum4linux` in Python, but has additional features such as the ability to export data as YAML or JSON files which can later be used to process the data further or feed it to other tools. It also supports colored output, among other features
 
 #### Using enum4linux-ng
 
-![](IMages/ERPP6.png)
+![](Images/ERPP6.png)
 
 Enum4linux-ng provided us with a bit clearer output and handy JSON and YAML output using the `-oA` flag.
 
 #### Displaying the contents of ilfreight.json
-![](IMages/ERPP7.png)
+![](Images/ERPP7.png)
 
 ## Enumerating Null Session - from Windows
 
@@ -45,9 +45,9 @@ It is less common to do this type of null session attack from Windows, but we co
 
 #### Establish a null session from windows
 
-![](IMages/ERPP8.png)
+![](Images/ERPP8.png)
 
-![](IMages/ERPP9.png)
+![](Images/ERPP9.png)
 
 ## Enumerating the Password Policy - from Linux - LDAP Anonymous Bind
 
@@ -56,7 +56,7 @@ It is less common to do this type of null session attack from Windows, but we co
 With an LDAP anonymous bind, we can use LDAP-specific enumeration tools such as `windapsearch.py`, `ldapsearch`, `ad-ldapdomaindump.py`, etc., to pull the password policy. With [ldapsearch](https://linux.die.net/man/1/ldapsearch), it can be a bit cumbersome but doable. One example command to get the password policy is as follows:
 
 #### Using ldapsearch
-![](IMages/ERPP10.png)
+![](Images/ERPP10.png)
 Note: In newer versions of `ldapsearch`, the `-h` parameter was deprecated in favor for `-H`.
 
 Here we can see the minimum password length of 8, lockout threshold of 5, and password complexity is set (`pwdProperties` set to `1`).
@@ -70,7 +70,7 @@ If we can authenticate to the domain from a Windows host, we can use built-in Wi
 Using built-in commands is helpful if we land on a Windows system and cannot transfer tools to it, or we are positioned on a Windows system by the client, but have no way of getting tools onto it. One example using the built-in net.exe binary is:
 
 #### Using net.exe
-![](IMages/ERPP11.png)
+![](Images/ERPP11.png)
 Here we can glean the following information:
 
 - Passwords never expire (Maximum password age set to Unlimited)
@@ -84,7 +84,7 @@ PowerView is also quite handy for this:
 
 #### Using PowerView
 
-![](IMages/ERPP12.png)
+![](Images/ERPP12.png)
 PowerView gave us the same output as our `net accounts` command, just in a different format but also revealed that password complexity is enabled (`PasswordComplexity=1`).
 
 As with Linux, we have many tools at our disposal to retrieve the password policy while on a Windows system, whether it is our attack system or a system provided by the client. PowerView/SharpView are always good bets, as are CrackMapExec, SharpMapExec, and others. The choice of tools depends on the goal of the assessment, stealth considerations, any anti-virus or EDR in place, and other potential restrictions on the target host. Let's cover a few examples.
@@ -102,7 +102,7 @@ We've now pulled the password policy in numerous ways. Let's go through the poli
 - Password complexity is enabled, meaning that a user must choose a password with 3/4 of the following: an uppercase letter, lowercase letter, number, special character (`Password1` or `Welcome1` would satisfy the "complexity" requirement here, but are still clearly weak passwords).
 
 The default password policy when a new domain is created is as follows, and there have been plenty of organizations that never changed this policy:
-![](IMages/ERPP13.png)
+![](Images/ERPP13.png)
 ## Next Steps
 
 Now that we have the password policy in hand, we need to create a target user list to perform our password spraying attack. Remember that sometimes we will not be able to obtain the password policy if we are performing external password spraying (or if we are on an internal assessment and cannot retrieve the policy using any of the methods shown here). In these cases, we `MUST` exercise extreme caution not to lock out accounts. We can always ask our client for their password policy if the goal is as comprehensive an assessment as possible. If asking for the policy does not fit the expectations of the assessment or the client does not want to provide it, we should run one, max two, password spraying attempts (regardless of whether we are internal or external) and wait over an hour between attempts if we indeed decide to attempt two. While most organizations will have a lockout threshold of 5 bad password attempts, a lockout duration of 30 minutes and accounts will automatically unlock, we cannot always count on this being normal. I have seen plenty of organizations with a lockout threshold of 3, requiring an admin to intervene and unlock accounts manually.
