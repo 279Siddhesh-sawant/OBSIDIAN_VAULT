@@ -9,7 +9,7 @@ One of the first things we can do is run a subnet host discovery scan. This will
 Just like **ping**, **fping** uses Internet Control Message Protocol (ICMP) requests to determine if a host is live or not. However, with **fping**, we can specify any number of targets, including a subnet, making it more versatile than the **ping** command. Instead of sending a packet to one target until it replies or times out, **fping** will move to the next target after each request.
 
 We can run the following command to discover live hosts in our target network:
-![](Images/1.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/1.png)
 - `-a`: shows systems that are alive.
 - `-g`: generates a target list from a supplied IP netmask.
 - `-q`: quiet mode, doesn't show per-probe results or ICMP error messages.
@@ -24,7 +24,7 @@ We can also use Nmap in ping scan mode (`-sn`) to probe the entire subnet:
 ## Port Scanning
 
 Once we've discovered live hosts, we must identify which one is the Domain Controller (DC) to determine which critical AD-related services are being used and can be exploited. These are some common Active Directory ports and protocols:
-![](Images/2.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/2.png)
 
 We can run a service version scan with these specific ports to help identify the DC:
 

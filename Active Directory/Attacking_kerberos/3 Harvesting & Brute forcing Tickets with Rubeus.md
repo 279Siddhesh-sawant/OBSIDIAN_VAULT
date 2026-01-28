@@ -23,7 +23,7 @@ Rubeus.exe harvest /intervals:30
 ```
 ![](Active%20Directory/Attacking_kerberos/Images/2.png)
 
-![[7.png]]
+![[Active Directory/AD_Basic_Enumeration/Images/7.png]]
 
 ### Brute-Forcing / Password-Spraying w/ Rubeus -
 

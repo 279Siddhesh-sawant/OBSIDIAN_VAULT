@@ -113,10 +113,10 @@ At this stage, we don’t have valid credentials. Let’s check the exposed SMB 
 
 `smbclient` is a command-line tool that allows interaction with SMB shares and is part of the Samba suite. It is similar to an FTP client. You can use it to list, upload, download, and browse files on a remote SMB server. In the terminal below, we try to list the shares via the `-L` option, with no password, hence the `-N` option. We can see some interesting shares below running `smbclient -L //TARGET_IP -N`.
 
-![](Images/3.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/3.png)
 Another tool is `smbmap`, a reconnaissance tool that enumerates SMB shares across a host. It can be used to display read and write permissions for each share. It’s instrumental for quickly identifying accessible or misconfigured shares without manually connecting to each one. Below is an example of running `smbmap -H TARGET_IP`. Note that `smbmap` is located in `/root/Desktop/Tools/Miscellaneous/smbmap` on the AttackBox.
 
-![](Images/4.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/4.png)
 
 Running either of the above commands, we can notice that there are three non-standard shares that catch our attention: `AnonShare`, `SharedFiles` and `UserBackups`.
 
@@ -125,9 +125,9 @@ It is worth noting that you can also discover which shares grant access using Nm
 ## Accessing SMB Shares
 
 Now that we have listed the shares, let’s attempt to access the ones that allow anonymous access. We might discover any interesting files that might help us gain access. We will target all the shares that showed `READ` access among their permissions when we ran `smbmap`. To use `smbclient` to connect to a share, you can use `smbclient //TARGET_IP/SHARE_NAME -N`. After connecting, we listed the files by issuing `ls` as shown below. Once you find the filename, you can download it using `get file_name`. In the terminal above, we did a `get Mouse_and_Malware.txt` to download the file to the AttackBox.
-![](Images/5.png)
-![](Images/6.png)
-![](Images/7.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/5.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/6.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/7.png)
 
 Since we don’t have login credentials, we are trying to access the various shares without a password, i.e., with the `-N` option. However, if you have a username and password to access the SMB share, you can easily specify them with `--user=USERNAME --password=PASSWORD` or `-U 'username%password'`. Note that for domain accounts, you need to specify the domain using `-W`.
 

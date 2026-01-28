@@ -1,4 +1,4 @@
-﻿Kerbrute is a popular enumeration tool used to brute-force and enumerate valid active-directory users by abusing the Kerberos pre-authentication.
+Kerbrute is a popular enumeration tool used to brute-force and enumerate valid active-directory users by abusing the Kerberos pre-authentication.
 
 For more information on enumeration using Kerbrute check out the Attacktive Directory room by Sq00ky - [https://tryhackme.com/room/attacktivedirectory](https://tryhackme.com/room/attacktivedirectory)[](https://tryhackme.com/room/attacktivedirectory)
 

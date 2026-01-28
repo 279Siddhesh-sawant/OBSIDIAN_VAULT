@@ -22,13 +22,13 @@ We can use rpcclient via a null session to query the DC for the password policy:
 
 And then we can run the `getdompwinfo` command:
 
-![](Images/11.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/11.png)
 
 **CrackMapExec**
 
 **CrackMapExec** is a well-known network service exploitation tool that we will use throughout this module. It allows us to perform enumeration, command execution, and post-exploitation attacks in Windows environments. It supports various network protocols, such as SMB, LDAP, RDP, and SSH. If anonymous access is permitted, we can retrieve the password policy without credentials with the following command:
 
-![](Images/12.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/12.png)
 
 ## Performing Password Spraying Attacks
 
@@ -56,4 +56,4 @@ Let's imagine that through some OSINT, we discovered that this company was in a 
 - `Pa55word1`
 
 We can use **CrackMapExec** to run our password spraying attack against the WRK computer:
-![](Images/13.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/13.png)

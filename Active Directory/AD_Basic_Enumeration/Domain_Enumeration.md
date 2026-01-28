@@ -32,7 +32,7 @@ We can run the following command to get as much information as possible from the
 - `-A`: Performs all available enumeration functions (users, groups, shares, password policy, RID cycling, OS information and NetBIOS information).
 - `-oA`: Writes output to YAML and JSON files.
 
-![](Images/9.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/9.png)
 
 
 ## RPC Enumeration (Null Sessions)
@@ -48,7 +48,7 @@ We can run the following command to verify null session access with:
 
 If successful, we can enumerate users with: `enumdomusers`
 
-![](Images/8.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/8.png)
 You can run **help** in the rpcclient shell to view the list of available commands. With the right permissions, we can enumerate the domain thoroughly through RPC.
 
 ## RID Cycling
@@ -64,7 +64,7 @@ If `enumdomusers` is restricted, we can manually try querying each individual us
 for i in $(seq 500 2000); do echo "queryuser $i" |rpcclient -U "" -N 10.211.11.10 2>/dev/null | grep -i "User Name"; done
 ```
 
-![](Images/10.png)
+![](Active%20Directory/AD_Basic_Enumeration/Images/10.png)
 
 
 - `for i in $(seq 500 2000)`: We first run a for loop to iterate through a range of possible RIDs to identify valid user accounts.
