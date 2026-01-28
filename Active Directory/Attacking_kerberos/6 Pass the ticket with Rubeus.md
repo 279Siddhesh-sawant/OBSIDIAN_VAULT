@@ -18,13 +18,13 @@ You will need to run the command prompt as an administrator: use the same creden
 
 3.) `privilege::debug` - Ensure this outputs [output '20' OK] if it does not that means you do not have the administrator privileges to properly run mimikatz
 
-![](Images/11.png)
+![](Active%20Directory/Attacking_kerberos/Images/11.png)
 
 4.) `sekurlsa::tickets /export` - this will export all of the .kirbi tickets into the directory that you are currently in
 
 At this step you can also use the base 64 encoded tickets from Rubeus that we harvested earlier
 
-![](Images/12.png)
+![](Active%20Directory/Attacking_kerberos/Images/12.png)
 
 When looking for which ticket to impersonate I would recommend looking for an administrator ticket from the krbtgt just like the one outlined in red above.
 
@@ -34,7 +34,7 @@ Now that we have our ticket ready we can now perform a pass the ticket attack to
 
 1.) `kerberos::ptt <ticket>` - run this command inside of mimikatz with the ticket that you harvested from earlier. It will cache and impersonate the given ticket
 
-![](Images/13.png)
+![](Active%20Directory/Attacking_kerberos/Images/13.png)
 
 2.) `klist` - Here were just verifying that we successfully impersonated the ticket by listing our cached tickets.
 
