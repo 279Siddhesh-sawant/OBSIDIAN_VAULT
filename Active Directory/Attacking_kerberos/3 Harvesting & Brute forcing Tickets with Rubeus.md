@@ -21,7 +21,7 @@ Harvesting gathers tickets that are being transferred to the KDC and saves them 
 ```cmd
 Rubeus.exe harvest /intervals:30
 ```
-![](Images/2.png)
+![](Active%20Directory/Attacking_kerberos/Images/2.png)
 
 ![[7.png]]
 
@@ -44,4 +44,4 @@ Rubeus.exe brute /password:Password1 /noticket
 ```
 
 
-![](Images/8.png)
+![](Active%20Directory/Attacking_kerberos/Images/8.png)

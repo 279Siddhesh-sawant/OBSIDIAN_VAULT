@@ -17,7 +17,7 @@ During pre-authentication, the users hash will be used to encrypt a timestamp th
 
 2.) `Rubeus.exe asreproast` - This will run the AS-REP roast command looking for vulnerable users and then dump found vulnerable user hashes.
 
-![](Images/10.png)
+![](Active%20Directory/Attacking_kerberos/Images/10.png)
 
 ### Crack those Hashes w/ hashcat - 
 

@@ -30,7 +30,7 @@ To understand how Kerberos authentication works you first need to understand w
 
 - Service Portion: User Details, Session Key, Encrypts the ticket with the service account NTLM hash.
 - User Portion: Validity Timestamp, Session Key, Encrypts with the TGT session key.
-![](Images/1.png)
+![](Active%20Directory/Attacking_kerberos/Images/1.png)
 
 AS-REQ - 1.) The client requests an Authentication Ticket or Ticket Granting Ticket (TGT).
 
