@@ -19,7 +19,7 @@ A golden ticket attack works by dumping the ticket-granting ticket of any user o
 2.) `privilege::debug` - ensure this outputs [privilege '20' ok]
 
 ﻿3.) `lsadump::lsa /inject /name:krbtgt` - This will dump the hash as well as the security identifier needed to create a Golden Ticket. To create a silver ticket you need to change the /name: to dump the hash of either a domain admin account or a service account such as the SQLService account.
-![](Images/16.png)
+![](Active%20Directory/Attacking_kerberos/Images/16.png)
 
 **Create a Golden/Silver Ticket -** 
 
@@ -27,14 +27,14 @@ A golden ticket attack works by dumping the ticket-granting ticket of any user o
 
 I'll show you a demo of creating a golden ticket it is up to you to create a silver ticket.
 
-![](Images/17.png)
+![](Active%20Directory/Attacking_kerberos/Images/17.png)
 
 **Use the Golden/Silver Ticket to access other machines -**
 
 ﻿1.) `misc::cmd` - this will open a new elevated command prompt with the given ticket in mimikatz.
-![](Images/18.png)
+![](Active%20Directory/Attacking_kerberos/Images/18.png)
 
 2.) Access machines that you want, what you can access will depend on the privileges of the user that you decided to take the ticket from however if you took the ticket from krbtgt you have access to the ENTIRE network hence the name golden ticket; however, silver tickets only have access to those that the user has access to if it is a domain admin it can almost access the entire network however it is slightly less elevated from a golden ticket.
 
-![](Images/19.png)
+![](Active%20Directory/Attacking_kerberos/Images/19.png)
 

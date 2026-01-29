@@ -40,11 +40,11 @@ Now that we have our ticket ready we can now perform a pass the ticket attack to
 
 We will not be using mimikatz for the rest of the attack.
 
-![](Images/14.png)
+![](Active%20Directory/Attacking_kerberos/Images/14.png)
 
 3.) You now have impersonated the ticket giving you the same rights as the TGT you're impersonating. To verify this we can look at the admin share.
 
-![](Images/15.png)
+![](Active%20Directory/Attacking_kerberos/Images/15.png)
 
 Note that this is only a POC to understand how to pass the ticket and gain domain admin the way that you approach passing the ticket may be different based on what kind of engagement you're in so do not take this as a definitive guide of how to run this attack.
 

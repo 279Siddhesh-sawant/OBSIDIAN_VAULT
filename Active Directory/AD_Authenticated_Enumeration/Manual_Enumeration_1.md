@@ -66,6 +66,3 @@ It should be noted that using net user will query the computer for local account
 ![](Images/8.png)
 From here, getting more information about any user account would be easy using net user <username> /domain. This command will return the full name, account status (active or inactive), information about the password, group memberships, and last logon time. The output gives you a good idea about the target account permissions and whether they are being used. An example is shown in the terminal below:
 
-## Domain Groups
-
-Now that you have listed the domain user accounts and have more information about any account you choose, it is time to list all domain groups. The domain groups can be displayed using net group /domain:
