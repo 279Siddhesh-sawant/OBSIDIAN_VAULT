@@ -16,13 +16,13 @@ The skeleton key works by abusing the AS-REQ encrypted timestamps as I said abov
 
 2.) `privilege::debug` - This should be a standard for running mimikatz as mimikatz needs local administrator access
 
-![](Images/20.png)
+![](Active%20Directory/Attacking_kerberos/Images/20.png)
 
 Installing the Skeleton Key w/ mimikatz -
 
 1.) `misc::skeleton` - Yes! that's it but don't underestimate this small command it is very powerful
 
-![](Images/21.png)
+![](Active%20Directory/Attacking_kerberos/Images/21.png)
 
 **Accessing the forest -** 
 
