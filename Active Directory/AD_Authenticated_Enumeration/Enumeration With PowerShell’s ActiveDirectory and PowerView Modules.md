@@ -19,16 +19,14 @@ You can get all users by running `Get-ADUser -Filter *` and watching PowerShell 
 Get-ADUser -Filter *
 ```
 
-![[25.png]]
-![[28.png]]
-
+![](Images/25.png)
+![](Images/26.png)
+![](Images/28.png)
 ```PS
 Get-ADUser -Identity Administrator -Properties LastLogonDate,MemberOf,Title,Description,PwdLastSet
 ```
 
-
-![[27.png]]
-![[29.png]]
+![](Images/29.png)
 ```PS
 Get-ADUser -Filter "Name -like '*admin*'"
 ```
@@ -37,10 +35,10 @@ Get-ADGroup -Filter * | Select Name
 ```
 
 
-![[30.png]]
+![](Images/30.png)
 
-![[31.png]]
-![[32.png]]
+![](Images/31.png)
+![](Images/32.png)
 
 ```PS
 Get-ADGroupMember -Identity "Remote Management Users"
@@ -53,40 +51,40 @@ Get-ADDefaultDomainPasswordPolicy
 ```
 
 	
-![[33.png]]
-![[34.png]]
-![[35.png]]
+![](Images/33.png)
+![](Images/34.png)
+![](Images/35.png)
 You can check the various commands available via the official https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2025-ps 
 
 
-![[36.png]]
+![](Images/36.png)
 
-![[37.png]]
-![[38.png]]
-![[39.png]]
+![](Images/37.png)
+![](Images/38.png)
+![](Images/39.png)
 
 Since the list is long, you might want to filter the output based on username. For example, to display usernames with admin inside them, we can specify `*admin*`
 ```PS
 Get-DomainUser *admin*
 ```
 
-![[40.png]]
+![](Images/40.png)
 
-![[41.png]]
+![](Images/41.png)
 ```PS
 Get-DomainGroup "*Admin*"
 ```
 
 
-![[42.png]]
+![](Images/42.png)
 
-![[43.png]]
+![](Images/43.png)
 
-![[44.png]]
-![[45.png]]
+![](Images/44.png)
+![](Images/45.png)
 ### How many groups did `Get-DomainGroup "*admin*"` return?
 ```PS
 Get-DomainGroup "*Admin*" | Select-object "sameaccountname"
 ```
 
-![[46.png]]
+![](Images/46.png)
