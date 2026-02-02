@@ -1,7 +1,7 @@
 ### Domain Groups
 
 Now that you have listed the domain user accounts and have more information about any account you choose, it is time to list all domain groups. The domain groups can be displayed using **`net group /domain`**:
-![](Images/9.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/9.png)
 
 The command above outputs every domain group; however, we omitted several lines to keep the output tidy. Some of the most interesting domain groups are:
 
@@ -18,10 +18,10 @@ You can use the same syntax to list the members of any user group as well. For e
 
 If you want to check the local groups, you can list all the local groups using `net localgroup`. The terminal below shows an example output.
 
-![](Images/10.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/10.png)
 
 Furthermore, if you want to know the members of a specific local group, such as `Administrators`, you need to issue `net localgroup Administrators`. In the example output below, we can see that the `Domain Admins` belong to the local `Administrators` group, which is what you would expect.
-![](Images/11.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/11.png)
 
 So far, we have listed the domain users and groups and managed to fetch information about any notable account. As mentioned, `net` can be used from the Command Prompt and the PowerShell window. For something exclusive to PowerShell, we will cover the ActiveDirectory module and PowerView in a later task.
 
@@ -32,7 +32,7 @@ Let’s return to our analogy of suddenly finding yourself in a dark office. One
 In computer system terms, we want to find out the users who logged on to a machine, for example, via Remote Desktop (RDP); moreover, some users might have open sessions, but the session is locked. In addition, there might be service accounts running scheduled tasks. All of this information gives us a better idea about the system we are in.
 
 You can run `query user`, or `quser` for short, to list users logged on to a machine. The terminal below shows an example output.
-![](Images/12.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/12.png)
 
 
 You can learn that the administrator is logged in over RDP while another user is logged in on the physical console.
@@ -43,7 +43,7 @@ There are other useful commands to gather information about what’s happening o
 
 - `tasklist` displays a list of currently running processes. You can use `tasklist /V` for verbose task information.
 - `net session` lists the SMB sessions between the computer and other computers on the network. It requires administrator privileges to run.
-![](Images/13.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/13.png)
 
 Now that we have learned who else is on the system, we can find users who have logged into the system at least once by checking the `C:\Users\` directory for individual users’ folders; every user that has logged on at least once has their home directory created.
 
@@ -54,7 +54,7 @@ Not all accounts are for human users; many are service accounts. Service account
 ### Search Using WMIC
 
 We can use WMIC to gather information about Windows services, including the account for each service. If you run `wmic service get`, you will get plenty of information about each service; each service’s information is shown in one very long row. You might want to display specific rows, such as the service name and the associated account, using `wmic service get Name,StartName` as shown below. Please note that we need administrator privileges to run it.
-![](Images/14.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/14.png)
 The `StartName` is the account under which the service runs. The standard accounts are: `LocalSystem`, `NT AUTHORITY\LocalService`, `NT AUTHORITY\NetworkService`, and `NT SERVICE\SomeServiceName` for those running as virtual service accounts. Occasionally, you might find a service with a domain account, `DomainName\username`. Such domain accounts are worth investigating as they might be reused elsewhere, or their password may not match the expected password complexity.
 
 If you are using PowerShell, an equivalent of the `wmic service get Name,StartName` command is `Get-WmiObject Win32_Service | select Name, StartName`. The output should be similar to the one above. Similarly, this requires administrator privileges.

@@ -16,7 +16,7 @@ Connecting over SSH is shown in the terminal below:
 
 We just landed on a MS Windows Command Prompt. If your terminal shows tryhackme\asrepuser1, that’s the domain and username you are logged on with; WRK is the hostname. Now, go ahead and run:
 
-![](Images/4.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/4.png)
 This command will output the current user’s username and domain, if applicable. In other words, if you see a domain name before the slash, you know that you are on a domain account, for example, DomainName\DomainUser. On the other hand, if you see a computer name, this would indicate a local user account, such as ComputerName\LocalUser.
 
 To learn about the account’s groups and privileges, we can use whoami /all. This command will output a detailed page containing the account’s Security Identifier (SID), group memberships, and account privileges.
@@ -47,7 +47,7 @@ As the name implies, hostname prints the computer’s hostname. In many cases, t
 On the other hand, systeminfo displays a wealth of computer information from the OS version to the installed hotfixes and passes through the domain or workgroup information. This information can be pretty valuable for penetration testers. Hint: You can filter the output using systeminfo | findstr /B "OS" to learn the OS name and version, while systeminfo | findstr /B "Domain" will return the name of the domain if it is part of an Active Directory.
 
 Finally, we should not forget the information that can be discovered in environment variables. Just run set, and you will be presented with a non-trivial list of variables showing various information from the user’s home directory to the user's domain. You should note that the USERDOMAIN is set to the computer name unless the computer is joined to a domain. If you are on a PowerShell prompt, use Get-ChildItem Env: or simply dir env: instead of set.
-![](Images/5.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/5.png)
 
 ## Enumerating Users and Groups with NET commands (CMD)
 
@@ -55,14 +55,14 @@ So far, you know who you are on the host and who is (or isn’t) part of a parti
 
 NET is a suite of commands for viewing and managing networked resources, and they run on the good old command prompt. Being present on every MS Windows system makes mastering them extremely useful and wise. There is a high chance that using NET will spare you from setting up new tools to gather information about the users, computers, groups, and other domain information. Even advanced adversaries use these for reconnaissance because they blend in with regular admin activity. Running NET HELP shows you all the available commands.
 
-![](Images/6.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/6.png)
 
 Domain Users
 
 First, try listing all the users in the domain using net user /domain. An example output is shown below. The list of users is long, so we only show the first two lines.
 
 It should be noted that using net user will query the computer for local accounts and list them, while net user /domain will query the domain controller for a list of domain user accounts. Because the latter will list every user account in the Active Directory, this can take quite a long time, depending on the company’s size. Furthermore, the list can help discover interesting targets such as BackupAdmin.
-![](Images/7.png)
-![](Images/8.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/7.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/8.png)
 From here, getting more information about any user account would be easy using net user <username> /domain. This command will return the full name, account status (active or inactive), information about the password, group memberships, and last logon time. The output gives you a good idea about the target account permissions and whether they are being used. An example is shown in the terminal below:
 

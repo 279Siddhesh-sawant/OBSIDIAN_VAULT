@@ -27,7 +27,7 @@ Example Command:
 GetNPUsers.py tryhackme.loc/ -dc-ip 10.211.12.10 -usersfile users.txt -format hashcat -outputfile hashes.txt -no-pass
 ```
 This command enumerates usernames listed in users.txt and collects AS-REP hashes for vulnerable accounts, saving them in hashes.txt for offline cracking.
-![](Images/1.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/1.png)
 
 **Phase 2: Exploitation – Cracking Password Hashes and Accessing the Network**
 
@@ -48,10 +48,10 @@ Here’s what this command does:
 
 Let’s run hashcat against the dumped hashes.txt file. We will use rockyou.txt, which can be found at /usr/share/wordlists/rockyou.txt. The command will take a couple of minutes to crack the password. The terminal output below shows that the password has been cracked. To keep the fun in the exercise, we have replaced the cracked password with [PASSWORD REDACTED] in the output below:
 
-![](Images/2.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/2.png)
 
 ```sh
 hashcat -m 18200 hashes.txt /usr/share/wordlist/rockyou.txt
 ```
 
-![](Images/3.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/3.png)
