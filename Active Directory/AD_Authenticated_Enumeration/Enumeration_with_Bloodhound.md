@@ -169,7 +169,7 @@ In brief, BloodHound-CE is an essential tool for penetration testers. It visuali
 ![](Images/22.png)
 
 ### According to the "All Domain Admins" query, how many users are part of the Domain Admins group?
-![](Images/23.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/23.png)
 
 ### What is the type of relationship (edge) between the DRGONZ0 account and the DOMAIN ADMINS group?
 ![](Images/24.png)

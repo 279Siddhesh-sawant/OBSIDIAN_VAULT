@@ -19,7 +19,7 @@ You can get all users by running `Get-ADUser -Filter *` and watching PowerShell 
 Get-ADUser -Filter *
 ```
 
-![](Images/25.png)
+![](Active%20Directory/AD_Authenticated_Enumeration/Images/25.png)
 ![](Images/26.png)
 ![](Images/28.png)
 ```PS

@@ -40,7 +40,7 @@ In addition to the PATH, set can also give up other helpful information such as 
 ```cmd
 set
 ```
-![](Images/8.png)
+![](HTB_Academy/Privilege_Escalation/Windows/Getting%20the%20lay%20off%20the%20land/Images/8.png)
 
 ### View Detailed Configuration Information
 
@@ -57,7 +57,7 @@ If systeminfo doesn't display hotfixes, they may be queriable with WMI using the
 ```cmd
 wmic qfe
 ```
-![](Images/11.png)
+![](HTB_Academy/Privilege_Escalation/Windows/Getting%20the%20lay%20off%20the%20land/Images/11.png)
 We can do this with PowerShell as well using the Get-Hotfix cmdlet.
 ```PS
 Get-HotFix | ft -AutoSize
