@@ -240,3 +240,12 @@ Here are the permissions related to /bin/bash binary before performing the **wi
 As you can see, it has no SUID bit set.
 
 Let’s execute the instructions listed above :
+![](Images/skynet38.png)
+To check if our attack succeeded, we can simply check if the SUID was set to /bin/bash binary :
+
+![](Images/skynet39.png)
+As you can see, it works.
+
+Now, we can simply obtain a privileged shell by executing the following command : `/bin/bash -p`
+
+![](Images/skynet40.png)
