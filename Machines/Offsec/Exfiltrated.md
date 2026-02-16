@@ -38,15 +38,15 @@ Nmap done: 1 IP address (1 host up) scanned in 14.13 seconds
 ```
 
 Visited web server on port 80.
-![[Pasted image 20260216213612.png]]
-![[Exfiltrated1.png]]
+
+![](Images/Exfiltrated1.png)
 In the page source, we found that application is using Subrion 4.2.
-![[Exfiltrated2.png]]
+![](Images/Exfiltrated2.png)
 Here, we also did directory brute forcing and visiting on some of those directories like /login, /profile, /panel we found out the same subrion CMS version.
 Later we searched for public exploits.
-![[Exfiltrated3.png]]
+![](Images/Exfiltrated3.png)
 We downloaded and run Arbitary file upload exploit.
-![[Exfiltrated4.png]]
-![[Exfiltrated5.png]]
+![](Images/Exfiltrated4.png)
+![](Images/Exfiltrated5.png)
 We faced login failed response. So we tried default creds `admin : admin` and got success.
-![[Exfiltrated6.png]]
+![](Images/Exfiltrated6.png)
