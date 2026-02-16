@@ -90,3 +90,20 @@ Highly probable exploits suggested by LinPEAS:
 We downloaded the dirty cow 2 exploit from exploitdb and named it exploit.c.
 
 The script provided instructions on how to compile, run, and gain root privilege access.
+
+Download the exploit through exploit-db.
+![](Images/zenphoto13.png)
+Renamed it.
+![](Images/zenphoto14.png)
+Transfer it to the target server.
+![](Images/zenphoto15.png)
+Follow the instructions provided in the script.
+![](Images/zenphoto16.png)
+![](Images/zenphoto17.png)
+![](Images/zenphoto18.png)
+Login to ssh using creds we generated `firefart : 123`
+```sh
+ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa firefart@192.168.169.41
+```
+
+![](Images/zenphoto19.png)
