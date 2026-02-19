@@ -1,5 +1,5 @@
 ```sh
-python -c 'import pty; pty.spawn("/bin/bash")'
+python3 -c 'import pty; pty.spawn("/bin/bash")'
 
 Then, ctrl+z
 stty raw -echo; fg  #press enter
