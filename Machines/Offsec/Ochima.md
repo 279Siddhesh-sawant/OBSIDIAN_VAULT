@@ -1,4 +1,4 @@
-Nmap scan
+Nmap scan.
 ```sh
 nmap -p- --min-rate 5000 -T4 -Pn 192.168.137.32
 Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-20 14:59 IST
