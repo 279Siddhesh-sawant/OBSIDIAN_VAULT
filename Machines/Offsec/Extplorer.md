@@ -32,6 +32,9 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 108.11 seconds
 ```
 By dir brute forcing, we found /filemanager.
+![](Images/Extplorer19.png)
+![](Images/Extplorer20.png)
+
 Go to the path URL/filemanager would see a simple login screen, after testing with the weak password combination **“admin:admin”.** We are able to get into the filemanager web service.
 ![](Images/Extplorer1.png)
 We tried default creds `admin : admin`
