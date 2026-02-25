@@ -56,3 +56,54 @@ And we got the shell.
 ![](Images/Rubydome7.png)
 We captured the local flag.
 ![](Images/Rubydome8.png)
+### Privilege Escalation
+Checked sudo commands.
+![](Images/Rubydome11.png)
+Searched for ruby based shell and found one on GTFobins.
+![](Images/Rubydome12.png)
+### What each part does:
+
+|Part|Meaning|
+|---|---|
+|`ruby`|start Ruby interpreter|
+|`-e`|execute inline Ruby code|
+|`'exec "/bin/sh"'`|Ruby code to run|
+You are already running:
+
+`sudo ruby /home/andrew/app/app.rb`
+
+This means:
+
+✔ Ruby interpreter is already running  
+✔ It is executing Ruby code inside the script  
+✔ You only need to supply **Ruby code**, not a Ruby command
+
+## Correct approach inside Ruby script
+
+You insert **Ruby code**, not shell syntax:
+
+`exec "/bin/sh"`
+
+### Why this works
+
+- `exec` is a Ruby method
+    
+- it replaces the current process
+    
+- spawns `/bin/sh`
+    
+- since script runs with sudo → shell is root
+So we add ruby script into that app.
+![](Images/Rubydome13.png)
+And simply run the command.
+![](Images/Rubydome14.png)
+
+## 🆚 Alternative Ruby shell methods
+
+These also work:
+
+`system("/bin/sh")`
+
+`spawn("/bin/sh")`
+
+`/bin/sh`
