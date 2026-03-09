@@ -122,5 +122,47 @@ When we tried to check sudo permissions we failed.
 When I did this box, I noticed through the TeamCity admin portal that marcot accidentally gave us an id_rsa.
 ![](Images/Scrutiny16.png)
 You can also find it through running **git log** on /srv/git/freelancers/marcot.git. But it’s obviously easier to download through the site, so just use creds you made through the exploit and do that.
-
+Copy the key and make a file named id_rsa.
+![](Images/Scrutiny17.png)
+![](Images/Scrutiny18.png)
 When trying to run it locally, you see that you need a password for the id_rsa key.
+You can find this by using ssh2john to generate a hash, then cracking said hash.
+![](Images/Scrutiny19.png)
+You’ll very quickly find out that the password is “**cheer**”.
+
+And it took me way too long to find out that the password for marcot is “cheer” as well.
+
+![](Images/Scrutiny20.png)
+We checked for sudo permissions.
+![](Images/Scrutiny21.png)
+Now we can read some of these files in /var/www/mail.
+
+**Just a tip: If you see port 25 or SMTP on the target, always look through /var/mail/ and /var/spool/mail.**
+
+“cat /var/mail/” will do the trick. Can grep for password.
+![](Images/Scrutiny22.png)
+It’s important to read the email. **Matthew’s not just giving away his password, he’s saying that he left Marco something on his (Matthew’s) account. Also, who’s Dach? With some basic enumeration (/etc/passwd, namely), you can see that Dach corresponds to briand’s account.**
+
+So we can use that password to log in as Matthew.
+![](Images/Scrutiny23.png)
+
+![](Images/Scrutiny24.png)
+
+We logged in with matthew credentials
+`matthewa : IdealismEngineAshen476`
+Once again we checked for sudo permissions but no luck.
+![](Images/Scrutiny25.png)
+After enumerating for a bit, then taking a step back, I realized that matthew probably hid the secret for marco in his home directory.
+![](Images/Scrutiny26.png)
+This guy’s easily missable. Never forget dir -a. Even then, I almost missed it.
+![](Images/Scrutiny27.png)
+`briand : `
+There you go, we now have briand’s (Dach’s) password.
+
+Another “su” command, and we’re in.
+![](Images/Scrutiny28.png)
+Again we checked for sudo permissions.
+![](Images/Scrutiny29.png)
+![](Images/Scrutiny31.png)
+Just use “sudo” to run what “sudo -l” gives us, then once in the pager, run “!sh”.
+![](Images/Scrutiny30.png)
