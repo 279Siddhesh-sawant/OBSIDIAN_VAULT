@@ -4,3 +4,5 @@ ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa firefart@
 ```
 
 ![](Images/SSH_Login_Error.png)
+
+sudo python3 -m pip install -r requirements.txt --break-system-packages

