@@ -37,31 +37,31 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 10.29 seconds
 ```
 Visiting web server on port 80.
-![](Astronaut1.png)
+![](Images/Astronaut1.png)
 Clicking on grav-admin we redirected to below page.
-![](Astronaut2.png)
+![](Images/Astronaut2.png)
 Executed dirsearch. Found /admin dir but nothing interesting as default creds didn't work.
 Simultaneously, we will search for known vulnerabilities related to **Grav** using **searchsploit**:
-![](Astronaut3.png)
+![](Images/Astronaut3.png)
 I will proceed with testing the exploit for the higher version, **Arbitrary YAML Write/Update (Unauthenticated)**, as there is a reasonable chance it may still be effective. Additionally,  we noticed YAML on web page also.
-![](Astronaut4.png)
+![](Images/Astronaut4.png)
 
 Downloaded the exploit. And did necessary changes. 
-![](Astronaut5.png)
-![](Astronaut6.png)
+![](Images/Astronaut5.png)
+![](Images/Astronaut6.png)
 Started nc and run the exploit. Wait for 10-15 seconds after running the exploit to achieve the shell.
-![](Astronaut7.png)
-![](Astronaut8.png)
+![](Images/Astronaut7.png)
+![](Images/Astronaut8.png)
 
 We looked into home directory for flag, but permission denied.
-![](Astronaut9.png)
+![](Images/Astronaut9.png)
 We searched for SUID bit set binary and found php binary.
 ```sh
 find / -perm -u=s -type f 2>/dev/null
 ```
-![](Astronaut10.png)
-![](Astronaut11.png)
+![](Images/Astronaut10.png)
+![](Images/Astronaut11.png)
 
-![](Astronaut12.png)
+![](Images/Astronaut12.png)
 We run the above command with php7.4 version as it was the same on server and found the flag.
-![](Astronaut13.png)
+![](Images/Astronaut13.png)
