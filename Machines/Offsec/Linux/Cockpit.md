@@ -60,42 +60,42 @@ Nmap done: 1 IP address (1 host up) scanned in 37.53 seconds
 ```
 
 Visiting web server on port 80.
-![](Cockpit1.png)
+![](Images/Cockpit1.png)
 Visiting web server on port 9090. We got login page. Default `admin : admin` creds didn't work.
-![](Cockpit2.png)
+![](Images/Cockpit2.png)
 
 From here I ran feroxbuster tool on port 80 and found a login page, indicating a potential starting point for further investigation.
-![](Cockpit3.png)
-![](Cockpit4.png)
+![](Images/Cockpit3.png)
+![](Images/Cockpit4.png)
 From there, I searched Google to see if there were any publicly available exploits for Blaze, but didn’t find anything noteworthy. So, I began focusing on SQL injection (SQLi) as default creds weren't working. But, we got invalid password error means user admin exist.
-![](Cockpit5.png)
-![](Cockpit8.png)
-![](Cockpit9.png)
+![](Images/Cockpit5.png)
+![](Images/Cockpit8.png)
+![](Images/Cockpit9.png)
 We performed password brute forcing using hydra.
 ```sh
 hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.168.224.10 http-post-form "/login.php:username=^USER^&password=^PASS^:Invalid password"
 ```
-![](Cockpit6.png)
+![](Images/Cockpit6.png)
 `admin : sleepy`
-![](Cockpit7.png)
+![](Images/Cockpit7.png)
 This means our previous sql injection worked. Next, we want to try if we can bypass the authentication. I try adding single quote ‘ to the username. It return MySQL error. 
 Great, we might be able to bypass the auth. We google “mysql login bypass seclist”, get the payload and try to enter in username.
-![](Cockpit10.png)
+![](Images/Cockpit10.png)
 Once logged into the application, I discovered usernames and passwords that were encoded in base64 format.
-![](Cockpit11.png)
-![](Cockpit12.png)
-![](Cockpit13.png)
+![](Images/Cockpit11.png)
+![](Images/Cockpit12.png)
+![](Images/Cockpit13.png)
 
 ```
 james : canttouchhhthiss@455152
 cameron : thisscanttbetouchedd@455152
 ```
 With the decoded credentials, I attempted to access the server via SSH, but encountered issues as the server required private keys for authentication, which I did not have.
-![](Cockpit14.png)
+![](Images/Cockpit14.png)
 From here, I attempted to access the Zeus web server running on port 9090 and successfully logged into the application. (James credentials)
-![](Cockpit15.png)
+![](Images/Cockpit15.png)
 
-![](Cockpit16.png)
+![](Images/Cockpit16.png)
 Note that we are still technically in a, albeit advanced, web shell as evidenced by the presence of the URL bar. I don’t believe this would count in the OSCP exam as it is Not and I [quote](https://help.offsec.com/hc/en-us/articles/360040165632-OSCP-Exam-Guide):
 
 “The valid way to provide the contents of the proof files is in an interactive shell on the target machine with the `type` or `cat` command from **their original location**.
@@ -104,31 +104,31 @@ Note that we are still technically in a, albeit advanced, web shell as evidenced
 
 So let’s look to connect with a SSH key. We find something intriguing under Accounts → james:
 
-![](Cockpit17.png)
+![](Images/Cockpit17.png)
 Seems pretty straightforward. Let’s copy our key there. We can make a new one. Nmap already told us what type of keys the SSH server accepts.
-![](Cockpit18.png)
+![](Images/Cockpit18.png)
 
 I’m going to make an ECDSA key where -t is the Type and -f is the filename.
 ```sh
 ssh-keygen -t ECDSA -f james_ecdsa
 ```
-![](Cockpit19.png)
+![](Images/Cockpit19.png)
 They appear in my local directory and I display the .pub file as this is what we need to copy into the Ubuntu Server Management console.
-![](Cockpit20.png)
+![](Images/Cockpit20.png)
 
-![](Cockpit21.png)
+![](Images/Cockpit21.png)
 Now we are able login with the other half of the key via ssh using -i to include the freshly minted key.
-![](Cockpit22.png)
-![](Cockpit23.png)
+![](Images/Cockpit22.png)
+![](Images/Cockpit23.png)
 
 ### Method 2 (For taking shell of normal user i.e. james )
-![](Cockpit28.png)
-![](Cockpit29.png)
+![](Images/Cockpit28.png)
+![](Images/Cockpit29.png)
 
 That sweet sweet shell, SSH has full TTY ability so tab auto-completion and text editors work for us. What are our current privileges?
-![](Cockpit24.png)
+![](Images/Cockpit24.png)
 Oh good, we can run a very powerful binary without even a password. I imagine the administrator wanted to give James the ability to backup the server but was hasty in the set up. GTFOBins educates us to the folly.
-![](Cockpit25.png)
+![](Images/Cockpit25.png)
 ## Privilege Escalation Using `tar`
 
 The `sudo -l` command shows that user **james** can run the following command as root **without a password**:  
@@ -199,7 +199,7 @@ chmod +x payload.sh
 touch -- '--checkpoint=1'
 touch -- '--checkpoint-action=exec=sh payload.sh'
 ```
-![](Cockpit26.png)
-![](Cockpit27.png)
+![](Images/Cockpit26.png)
+![](Images/Cockpit27.png)
 ### Method 2 for privesc
 https://medium.com/@basha5969/cockpit-proving-grounds-practice-44edfb3ee5dc

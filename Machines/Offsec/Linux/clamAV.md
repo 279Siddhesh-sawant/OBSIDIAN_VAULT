@@ -70,7 +70,7 @@ SNMP is running on Port 199. `snmp-check` reveals some running processes on th
 snmp-check 192.168.124.42
 ```
 
-![](clamAV1.png)
+![](Images/clamAV1.png)
 
 We can see a process running called: `clamav-milter`
 
@@ -80,13 +80,13 @@ We can also see the process sendmail-mta is running and “accepting connections
 
 There are exploits associated with clamav but in this case we can see one that’s associated with `clamav-milter` & `Sendmail`. Sendmail, from our nmap enum is running on Port 25 @ `version 8.13.4`.
 
-![](clamAV2.png)
+![](Images/clamAV2.png)
 Use the command searchsploit -m to transfer the script to your current directory.
 ```sh
 searchsploit -m 4761.pl
 ```
 
-![](clamAV3.png)
+![](Images/clamAV3.png)
 Then the perl script.
 The perl script exploit:
 
@@ -97,16 +97,16 @@ The perl script exploit:
 5. The `inetd` daemon session is restarted which will activate the backdoor, and the SMTP session thereafter is closed.
 
 The script, according to its exploit page description, suggests that a backdoor is created on port 31337. It is important to know this when running an exploit script for an RCE because you’re either connecting back to a listening port on your own machine, or in this case, you’re opening a connection on a certain port remotely on the target machine.
-![](clamAV4.png)
+![](Images/clamAV4.png)
 Execute the perl scipt
 ```sh
 perl 4761.pl 192.168.124.42
 ```
 
-![](clamAV5.png)
+![](Images/clamAV5.png)
 Run the nc on opened port i.e 31337 (As this is a bind shell we are opening port on target machine using exploit )
 ```sh
 nc -nv 192.168.124.42 31337
 ```
 
-![](clamAV6.png)
+![](Images/clamAV6.png)

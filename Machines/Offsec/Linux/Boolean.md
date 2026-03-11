@@ -76,44 +76,44 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 18.80 seconds
 ```
 Visiting ports 80 and 33017.
-![](Boolean1.png)
+![](Images/Boolean1.png)
 The web server on port 80 has two pages, login and register:
-![](Boolean2.png)
-![](Boolean3.png)
+![](Images/Boolean2.png)
+![](Images/Boolean3.png)
 Additionally, Wappalyzer tells me it’s running Ruby on Rails:
-![](Boolean4.png)
+![](Images/Boolean4.png)
 I’m met with the following message after registering an account:
-![](Boolean5.png)
+![](Images/Boolean5.png)
 Signing into my newly registered account prompts me to confirm my account via the confirmation link sent to the email I registered with:
-![](Boolean6.png)
+![](Images/Boolean6.png)
 I seem to have no other functionality on the website without registering my account. I even tried entering my real email address to see if an actual email gets sent but never received anything.
 
 However, there is an option to edit the email address for my account:
-![](Boolean7.png)
+![](Images/Boolean7.png)
 Capturing the POST request in Burp Suite, I find the web application classifies my account as unconfirmed:
-![](Boolean8.png)
+![](Images/Boolean8.png)
 I need to trick or force the web application into thinking my account has been confirmed. Knowing that the web framework for the web app is Ruby on Rails, I started searching for exploits and came across the following:
 https://guides.rubyonrails.org/v2.3.11/security.html?source=post_page-----2609d211e473---------------------------------------#mass-assignment Without any precautions Model.new(params[:model]) allows attackers to set any database column’s value.
 
 This sounds like exactly what I need and it’s extremely easy to exploit. I’ll capture the POST request of the email address change in BurpSuite again, and add the following string to the end of my request body:
 `&user[confirmed]=1`
 This will _ideally_ set the value of the ‘confirmed’ field from false to true:
-![](Boolean9.png)
+![](Images/Boolean9.png)
 The HTTP response indicates that it was successful, and I now have access to the full web application (just after refreshing the web page), which is just a custom file manager:
-![](Boolean10.png)
+![](Images/Boolean10.png)
 I uploaded a PHP webshell but wasn’t able to figure out where it was being stored on the host to execute it:
-![](Boolean11.png)
+![](Images/Boolean11.png)
 However, when capturing the GET request to download the file in BurpSuite I find something interesting with the URI:
-![](Boolean12.png)
-![](Boolean13.png)
+![](Images/Boolean12.png)
+![](Images/Boolean13.png)
 There’s an empty parameter called **‘cwd’**, which likely stands for current working directory (similar to UNIX print working directory ‘pwd’ command).
 My first thought seeing this is path traversal:
 We added direcctory trversal (../../) and remove the file parameter.
-![](Boolean14.png)
+![](Images/Boolean14.png)
 This works and I climbed up the directory tree to the /etc/ directory to download the /etc/passwd file:
 We added file parameter equals to passwd and hit /etc/passwd file get downloaded.
-![](Boolean15.png)
-![](Boolean16.png)
+![](Images/Boolean15.png)
+![](Images/Boolean16.png)
 With just 2 real users on the box, remi and root, and knowing that SSH is running from my Nmap output, I’ll try to generate and upload an SSH public key to remi’s home directory.
 
 First, I’ll generate an SSH public/private key pair, ensure proper permission on the private key, then rename the public key file to ‘authorized_keys’:
@@ -144,39 +144,39 @@ Just press **Enter** twice for pentesting labs.
 | `mv`              | Move or rename a file                       |
 | `remi.pub`        | Public key generated earlier                |
 | `authorized_keys` | File SSH checks for allowed keys            |
-![](Boolean17.png)
+![](Images/Boolean17.png)
 
 Next, I’ll directory traverse into remi’s hidden .ssh directory and upload the public key:
-![](Boolean18.png)
-![](Boolean19.png)
-![](Boolean20.png)
+![](Images/Boolean18.png)
+![](Images/Boolean19.png)
+![](Images/Boolean20.png)
 `authorized_keys` uploaded.
-![](Boolean21.png)
+![](Images/Boolean21.png)
 Finally, I should be able to SSH directly into the box as remi, passing the private key file for authentication:
 ```sh
 ssh -i remi remi@192.168.165.231
 # 1st remi is private key which we generated
 ```
 
-![](Boolean22.png)
+![](Images/Boolean22.png)
 Captured the local flag.
-![](Boolean23.png)
+![](Images/Boolean23.png)
 ### Privilege Escalation
 First, I’ll check if remi created any command aliases:
 `alias`
-![](Boolean24.png)
+![](Images/Boolean24.png)
 The alias ‘root’ uses the SSH private key located in /home/remi/.ssh/keys directory to SSH into the box locally as root.
 
 Easy enough, I’ll just run the ‘root’ command to PrivEsc:
-![](Boolean25.png)
+![](Images/Boolean25.png)
 Unfortunately, I get an error about too many authentication failures. Googling this error message leads me to the following:
 https://serverfault.com/questions/36291/how-to-recover-from-too-many-authentication-failures-for-user-root?source=post_page-----2609d211e473---------------------------------------
 Apparently this error is common when the directory containing the private key file has too many other unrelated private key files.
 
 I confirmed this is the issue by identifying that the ‘keys’ directory contains a total of 4 private keys:
-![](Boolean26.png)
+![](Images/Boolean26.png)
 According to the forum post, this can be fixed with the following string:
-![](Boolean27.png)
+![](Images/Boolean27.png)
 
 `-o IdentitiesOnly=yes`
 
@@ -184,6 +184,6 @@ So my whole command ends up being the following, allowing me to SSH as the root 
 
 `root -o IdentitiesOnly=yes`
 
-![](Boolean28.png)
+![](Images/Boolean28.png)
 Captured the root flag.
-![](Boolean29.png)
+![](Images/Boolean29.png)

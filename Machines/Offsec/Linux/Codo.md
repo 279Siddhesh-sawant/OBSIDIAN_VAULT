@@ -41,36 +41,36 @@ Nmap done: 1 IP address (1 host up) scanned in 13.74 seconds
 ```
 
 Visiting web server port 80.
-![](Codo1.png)
+![](Images/Codo1.png)
 Logged in using default creds `admin : admin`
-![](Codo2.png)
+![](Images/Codo2.png)
 
 Directory brute forcing.
-![](Codo4.png)
+![](Images/Codo4.png)
 Found /admin page. Logged in with default creds `admin : admin`
-![](Codo3.png)
+![](Images/Codo3.png)
 From the admin console, we can see the version of Codoforun running is 5.1.105. A quick search in exploit DB shows us that there is a exploit available for this.
-![](Codo5.png)
+![](Images/Codo5.png)
 Lets run the exploit. Exploit didn't work but we found a way to exploit path so we'll do it manually.
-![](Codo6.png)
+![](Images/Codo6.png)
 Follow the below steps.
-![](Codo7.png)
+![](Images/Codo7.png)
 I’ve added PHP to the list of allowed file types just to be certain.
-![](Codo8.png)
+![](Images/Codo8.png)
 Upload our reverse php shell in below mentioned browse option and save it.
-![](Codo9.png)
+![](Images/Codo9.png)
 Now, hit the below URL. This path was discovered from our failed exploit.
-![](Codo10.png)
+![](Images/Codo10.png)
 We got the shell.
-![](Codo11.png)
+![](Images/Codo11.png)
 
 ## Privilege Escalation
 After running linpeas, we found below.
-![](Codo12.png)
+![](Images/Codo12.png)
 **Another method,**
-![](Codo13.png)
+![](Images/Codo13.png)
 Tried logging in with user `codo and offsec` but we failed. So, we tried logging in with user `root` and we were successful.
-![](Codo14.png)
-![](Codo15.png)
+![](Images/Codo14.png)
+![](Images/Codo15.png)
 
 

