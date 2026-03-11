@@ -43,32 +43,32 @@ Nmap done: 1 IP address (1 host up) scanned in 50.91 seconds
 ```
 
 Visiting web server on all http ports. (17445, 30455, 50080)
-![](Hawat1.png)
-![](Hawat2.png)
-![](Hawat3.png)
+![](Images/Hawat1.png)
+![](Images/Hawat2.png)
+![](Images/Hawat3.png)
 
 ### Brute forcing
 Dir : /images, /4, /cloud
-![](Hawat4.png)
+![](Images/Hawat4.png)
 
 Dir: /4
-![](Hawat5.png)
+![](Images/Hawat5.png)
 
 We found this page at directory /cloud
-![](Hawat6.png)
+![](Images/Hawat6.png)
 Tried default creds `admin : admin`. It’s a Nextcloud application. I attempted to log in with `admin:admin`, and we successfully gained access. Despite my Google search, I couldn’t find an exploit for Nextcloud.
-![](Hawat7.png)
+![](Images/Hawat7.png)
 
 There’s an `issuetracker.zip` file, which we could assume contains the source code of the issue tracker site. Let’s attempt to download and analyze it. It appears to be a Java Spring application. Shortly after reviewing the source code, specifically inside `IssueController.java`, I quickly identified an SQL Injection vulnerability.
-![](Hawat8.png)
+![](Images/Hawat8.png)
 
-![](Hawat9.png)
-![](Hawat10.png)
-![](Hawat11.png)
-![](Hawat12.png)
-![](Hawat13.png)
+![](Images/Hawat9.png)
+![](Images/Hawat10.png)
+![](Images/Hawat11.png)
+![](Images/Hawat12.png)
+![](Images/Hawat13.png)
 At the same time, we found that there is a path “/issue/checkByPriority” is running a SQL query that is vulnerable.
-![](Hawat14.png)
+![](Images/Hawat14.png)
 While the username and password could be useful after initial access, we want something else.
 That’s a SQL injection vulnerability. The Priority parameter is vulnerable to SQLi.
 

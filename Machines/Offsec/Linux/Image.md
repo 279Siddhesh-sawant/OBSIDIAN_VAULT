@@ -37,27 +37,27 @@ Nmap done: 1 IP address (1 host up) scanned in 11.58 seconds
 ```
 
 Visiting web server on port 80.
-![](Image2.png)
+![](Images/Image2.png)
 When we upload valid png file, we discovered the version.
-![](Image1.png)
+![](Images/Image1.png)
 We searched for public exploits and found below.
 https://github.com/SudoIndividual/CVE-2023-34152
-![](Image3.png)
-![](Image4.png)
+![](Images/Image3.png)
+![](Images/Image4.png)
 Uploading the created png file file to application. Before uploading nc started.
-![](Image5.png)
+![](Images/Image5.png)
 We got the shell.
-![](Image6.png)
+![](Images/Image6.png)
 Local flag.
-![](Image7.png)
+![](Images/Image7.png)
 
 ### Privilege Escalation
 Tried sudo permission but no luck.
-![](Image8.png)
+![](Images/Image8.png)
 Checked for SUID binary and found below.
-![](Image9.png)
+![](Images/Image9.png)
 Searched on GTFobins.
-![](Image10.png)
+![](Images/Image10.png)
 
 Found root flag.
-![](Image11.png)
+![](Images/Image11.png)

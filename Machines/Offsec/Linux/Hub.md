@@ -63,33 +63,33 @@ Nmap done: 1 IP address (1 host up) scanned in 30.74 seconds
 ```
 
 Visiting web server on port 8082.
-![](Hub1.png)
-![](Hub2.png)
+![](Images/Hub1.png)
+![](Images/Hub2.png)
 It appears that Port 8082 is hosting a recently set up FuguHub appliance, which means we need to establish our own admin account. Instant admin access lol.
 Searched for public exploits and found one.
-![](Hub3.png)
+![](Images/Hub3.png)
 It doesn’t match the version.
 ### CVE-2023–24078 manually step by step
 https://medium.com/@nr_4x4/offsec-proving-grounds-hub-writeup-linux-lab-cve-2023-24078-in-detail-5619c914a84f
 Go to “Private Page”:
-![](Hub4.png)
+![](Images/Hub4.png)
 Create New Page:
-![](Hub5.png)
-![](Hub6.png)
+![](Images/Hub5.png)
+![](Images/Hub6.png)
 Open /test : 
-![](Hub7.png)
+![](Images/Hub7.png)
 Edit Page (Click on “file symbol”):
-![](Hub8.png)
+![](Images/Hub8.png)
 Page editor opens:
-![](Hub9.png)
+![](Images/Hub9.png)
 Click on “Expert”:
-![](Hub10.png)
-![](Hub11.png)
+![](Images/Hub10.png)
+![](Images/Hub11.png)
 Searched for LSP reverse shell and found below 
 https://github.com/the-emmons/lsp-reverse-shell/blob/main/rev.lsp
-![](Hub12.png)
+![](Images/Hub12.png)
 Enable LSP and enter the ReverseShell
-![](Hub13.png)
+![](Images/Hub13.png)
 Payload used :
 ```sh
 <div style="margin-left:auto;margin-right: auto;width: 350px;">
@@ -107,8 +107,8 @@ Payload used :
 
 </div>
 ```
-![](Hub14.png)
+![](Images/Hub14.png)
 !!! Start the listener on Kali before clicking Save !!!
 Got the shell.
-![](Hub15.png)
-![](Hub16.png)
+![](Images/Hub15.png)
+![](Images/Hub16.png)

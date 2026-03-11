@@ -32,20 +32,20 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 108.11 seconds
 ```
 By dir brute forcing, we found /filemanager.
-![](Extplorer19.png)
-![](Extplorer20.png)
+![](Images/Extplorer19.png)
+![](Images/Extplorer20.png)
 
 Go to the path URL/filemanager would see a simple login screen, after testing with the weak password combination **“admin:admin”.** We are able to get into the filemanager web service.
-![](Extplorer1.png)
+![](Images/Extplorer1.png)
 We tried default creds `admin : admin`
 
-![](Extplorer2.png)
+![](Images/Extplorer2.png)
 In the administration page, we could see that there are two users in this application admin and dora. Both of the users are having the home directory as /var/www/html, this indicating all the files uploaded to the path would be published on the HTTP/80 port as website. This could be our entry point to the server.
-![](Extplorer3.png)
+![](Images/Extplorer3.png)
 **At this stage, we conducted some basic research to understand where the application stores its user credentials**
-![](Extplorer5.png)
+![](Images/Extplorer5.png)
 **I navigated to that location and found the stored credentials.**
-![](Extplorer4.png)
+![](Images/Extplorer4.png)
 ```
 admin : 21232f297a57a5a743894a0e4a801fc3
 dora : $2a$08$zyiNvVoP/UuSMgO2rKDtLuox.vYj.3hZPVYq3i4oG3/CtgET7CjjS
@@ -53,37 +53,37 @@ dora : $2a$08$zyiNvVoP/UuSMgO2rKDtLuox.vYj.3hZPVYq3i4oG3/CtgET7CjjS
 
 ### Cracking the hash
 **We found two users: admin and dora. The admin credentials were stored as an MD5 hash. For dora, we need to crack the password hash, so we will use John the Ripper**
-![](Extplorer6.png)
+![](Images/Extplorer6.png)
 `dora : doraemon`
 We attempted SSH access with Dora’s credentials, but SSH login was not available for this user. Next, we shifted to the web application and found a file upload column.
-![](Extplorer7.png)
+![](Images/Extplorer7.png)
 We found that the application accepts PHP files, so we uploaded a PHP reverse shell to gain a reverse connection.
-![](Extplorer8.png)
+![](Images/Extplorer8.png)
 We modified the uploaded PHP file and successfully received a reverse shell connection.
-![](Extplorer9.png)
+![](Images/Extplorer9.png)
 Note : Do not open file through double clicking the shell file as it wont give you shell. Open it by pasting the file name in URl.
-![](Extplorer10.png)
+![](Images/Extplorer10.png)
 
 We got the shell.
-![](Extplorer11.png)
+![](Images/Extplorer11.png)
 We found a local.txt file but did not have permission to read it. Using previously obtained credentials, we were able to access and read local.txt
-![](Extplorer12.png)
+![](Images/Extplorer12.png)
 
 ### Privilege Escalation — user with disk group
 
 In the linpeas result, the disk group of the user dora is highlighted in the result which indicating this is a high potential privilege escalation point.
-![](Extplorer13.png)
-![](Extplorer14.png)
+![](Images/Extplorer13.png)
+![](Images/Extplorer14.png)
 Googling the Disk user, there is a page published on Hacktricks about privilege escalation using disk group.
 https://www.hackingarticles.in/disk-group-privilege-escalation/
-![](Extplorer15.png)
+![](Images/Extplorer15.png)
 reading the shadow file using debugfs for cracking the password
-![](Extplorer16.png)
+![](Images/Extplorer16.png)
 ```
 root:$6$AIWcIr8PEVxEWgv1$3mFpTQAc9Kzp4BGUQ2sPYYFE/dygqhDiv2Yw.XcU.Q8n1YO05.a/4.D/x4ojQAkPnv/v7Qrw7Ici7.hs0sZiC.:19453:0:99999:7:::
 ```
 Cracking the password using john.
-![](Extplorer17.png)
+![](Images/Extplorer17.png)
 `root : explorer`
 Now switch the user to root in shell only.
-![](Extplorer18.png)
+![](Images/Extplorer18.png)
