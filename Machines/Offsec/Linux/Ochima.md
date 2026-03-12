@@ -35,33 +35,33 @@ Nmap done: 1 IP address (1 host up) scanned in 14.87 seconds
 ```
 
 Visiting web server on port 80.
-![](Ochima1.png)
+![](Images/Ochima1.png)
 We performed dir brute forcing but found nothing interesting.
-![](Ochima2.png)
+![](Images/Ochima2.png)
 We visited another web server on port 8338.
-![](Ochima3.png)
-![](Ochima4.png)
+![](Images/Ochima3.png)
+![](Images/Ochima4.png)
 We tried sqli login bypass payloads but it didn't work. We noticed that maltrail is present there. So we searched using searchsploit but didn't find anything. So we googled maltrail and found the exploit.
-![](Ochima5.png)
-![](Ochima6.png)
-![](Ochima7.png)
-![](Ochima8.png)
+![](Images/Ochima5.png)
+![](Images/Ochima6.png)
+![](Images/Ochima7.png)
+![](Images/Ochima8.png)
 Downloaded the exploit and run it.
-![](Ochima9.png)
+![](Images/Ochima9.png)
 After running the exploit, we got the shell.
-![](Ochima10.png)
-![](Ochima11.png)
+![](Images/Ochima10.png)
+![](Images/Ochima11.png)
 
 ### Privilege Escalation
 We checked sudo command and SUID permission but nothing interesting was there. So we checked writable files using below command.
 ```sh
 find / -writable -type f 2>/dev/null
 ```
-![](Ochima12.png)
-![](Ochima13.png)
+![](Images/Ochima12.png)
+![](Images/Ochima13.png)
 Another way to confirm this is using linpeas, we did that also.
-![](Ochima14.png)
-![](Ochima15.png)
+![](Images/Ochima14.png)
+![](Images/Ochima15.png)
 According to the above image, the root owns it besides we are able to modify it. I tried a couple of basic reverse shells but neither of them worked. The following was an intelligent one:
 
 - First we give a suid bit to /bin/bash binary and encoded with base64.
@@ -74,9 +74,9 @@ ls -la /bin/bash
 /bin/bash -p
 ```
 
-![](Ochima16.png)
+![](Images/Ochima16.png)
 Giving the suid mode to /bin/bash will give us the root shell by running it with -p flag:
-![](Ochima17.png)
+![](Images/Ochima17.png)
 
 ### In this scenario we can use other payloads also
 ```sh

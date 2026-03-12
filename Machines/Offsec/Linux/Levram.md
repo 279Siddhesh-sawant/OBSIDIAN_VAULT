@@ -33,33 +33,33 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 10.25 seconds
 ```
 Visited web server on port 8000.
-![](Levram1.png)
+![](Images/Levram1.png)
 Using default creds `admin : admin` , we were able to login.
-![](Levram2.png)
+![](Images/Levram2.png)
 
 Search for public exploits.
-![](Levram3.png)
+![](Images/Levram3.png)
 Run the exploit. But, it gave error. 
-![](Levram4.png)
+![](Images/Levram4.png)
 I checked Chatgpt, and it seems that the problem is that there is no porjects created on the platform. So i went there and create test project
-![](Levram5.png)
+![](Images/Levram5.png)
 Run the exploit again and you'll receive the shell.
-![](Levram6.png)
+![](Images/Levram6.png)
 We captured the local flag.
-![](Levram7.png)
+![](Images/Levram7.png)
 ### Privileges Escalation
 Sudo permission and SUID. We found nothing.
-![](Levram8.png)
+![](Images/Levram8.png)
 Searching for **Linux capabilities** assigned to files and we found one.
 ```sh
 getcap -r / 2>/dev/null
 ```
 
-![](Levram9.png)
+![](Images/Levram9.png)
 I follow this and the root flag.
 https://www.hackingarticles.in/linux-privilege-escalation-using-capabilities/
 ```python
 python3 -c 'import os; os.setuid(0); os.system("/bin/bash")'
 ```
 
-![](Levram10.png)
+![](Images/Levram10.png)

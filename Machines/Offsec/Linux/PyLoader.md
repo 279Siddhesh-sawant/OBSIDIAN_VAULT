@@ -36,12 +36,12 @@ Nmap done: 1 IP address (1 host up) scanned in 40.84 seconds
 ```
 
 Visiting web server on port 9666.
-![](PyLoader1.png)
+![](Images/PyLoader1.png)
 
 Tried default creds `admin : admin` but they didn't work. So, searched for public exploits and found one.
-![](PyLoader2.png)
+![](Images/PyLoader2.png)
 
 But that also didn't work. So, searched for exploit on github and found one.
 https://github.com/JacobEbben/CVE-2023-0297/blob/main/exploit.py
-![](PyLoader3.png)
-![](PyLoader4.png)
+![](Images/PyLoader3.png)
+![](Images/PyLoader4.png)

@@ -34,29 +34,29 @@ Nmap done: 1 IP address (1 host up) scanned in 11.12 seconds
 ```
 
 Visiting web server on port 80.
-![](Plum1.png)
+![](Images/Plum1.png)
 
 At the bottom of the page we have administration link.
-![](Plum2.png)
-![](Plum3.png)
+![](Images/Plum2.png)
+![](Images/Plum3.png)
 Logged in to the application using default creds `admin : admin`
-![](Plum4.png)
+![](Images/Plum4.png)
 Click on static page option and then edit.
-![](Plum5.png)
+![](Images/Plum5.png)
 Added php reverse shell to static page content.
-![](Plum6.png)
+![](Images/Plum6.png)
 Click on "save this page" and then "view page static 1 on site".
-![](Plum7.png)
+![](Images/Plum7.png)
 We'll receive the shell on netcat.
-![](Plum8.png)
+![](Images/Plum8.png)
 `find / -name local.txt -type f 2>/dev/null`
 
-![](Plum9.png)
+![](Images/Plum9.png)
 
 ### Privilege Escalation
 We tried searching root flag using `find` but found nothing.
-![](Plum10.png)
+![](Images/Plum10.png)
 We found a mail in a `/var/mail` directory where root password mentioned.
-![](Plum11.png)
+![](Images/Plum11.png)
 `root:6s8kaZZNaZZYBMfh2YEW`
-![](Plum12.png)
+![](Images/Plum12.png)

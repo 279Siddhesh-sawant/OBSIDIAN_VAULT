@@ -39,22 +39,22 @@ Nmap done: 1 IP address (1 host up) scanned in 15.21 seconds
 ```
 
 Visiting web server on port 80.
-![](Jordak1.png)
+![](Images/Jordak1.png)
 Clicking on maunal we found login page.
-![](Jordak2.png)
+![](Images/Jordak2.png)
 We search for public exploits but we didnt found anything on exploit-db. But, luckily we found RCE exploit on github.
 https://github.com/samipmainali/Jorani-Reverse-Shell-v1.0.0/blob/main/Jorani_V1.0.0_exploit.py
-![](Jordak3.png)
+![](Images/Jordak3.png)
 We run the exploit and we got shell.
-![](Jordak4.png)
+![](Images/Jordak4.png)
 Local flag
-![](Jordak5.png)
+![](Images/Jordak5.png)
 ### Privilege Escalation
 We can notice all users can run below command as root.
-![](Jordak6.png)
+![](Images/Jordak6.png)
 We searched for `env` on GTFobins.
-![](Jordak7.png)
+![](Images/Jordak7.png)
 We run the command and got root shell.
-![](Jordak8.png)
+![](Images/Jordak8.png)
 
 

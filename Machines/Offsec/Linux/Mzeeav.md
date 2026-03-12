@@ -37,16 +37,16 @@ Nmap done: 1 IP address (1 host up) scanned in 17.00 seconds
 ```
 
 Visiting web server on port 80.
-![](Mzeeav1.png)
+![](Images/Mzeeav1.png)
 
 Directory brute forcing.
-![](Mzeeav2.png)
-![](Mzeeav3.png)
-![](Mzeeav4.png)
+![](Images/Mzeeav2.png)
+![](Images/Mzeeav3.png)
+![](Images/Mzeeav4.png)
 I downloaded and extracted them on my working directory :
-![](Mzeeav5.png)
+![](Images/Mzeeav5.png)
 If we cat the upload.php :
-![](Mzeeav6.png)
+![](Images/Mzeeav6.png)
 
 This PHP code allows users to upload files to a server, but it only accepts **PE (Portable Executable)** files. Executable files on Windows (e.g., `.exe`, `.dll`) are in PE format, and every PE file is identified by the **"MZ"** characters at the beginning. In hexadecimal (hex) format, "MZ" appears as **4D5A**.
 
@@ -142,23 +142,23 @@ This PHP code allows only PE files to be uploaded to the server. Here’s how it
 Now, it’s time to design your file to bypass this check :
 
 From the revshells.com, I copied PentestMonkey’s PHP Reverse Shell as revshell.php and added the “MZ” bytes at the beginning of the code.
-![](Mzeeav7.png)
+![](Images/Mzeeav7.png)
 Then upload it :
-![](Mzeeav8.png)
-![](Mzeeav9.png)
+![](Images/Mzeeav8.png)
+![](Images/Mzeeav9.png)
 Start the nc and visit the uploaded path **/upload** directory :
-![](Mzeeav10.png)
-![](Mzeeav11.png)
+![](Images/Mzeeav10.png)
+![](Images/Mzeeav11.png)
 Found the local flag.
-![](Mzeeav12.png)
+![](Images/Mzeeav12.png)
 
 ### Privilege Escalation
 Ran linpeas.
-![](Mzeeav13.png)
+![](Images/Mzeeav13.png)
  I found a strange suid bit :
-![](Mzeeav15.png)
+![](Images/Mzeeav15.png)
 Let’s check its version to find out if there is a potential exploit :
-![](Mzeeav16.png)
+![](Images/Mzeeav16.png)
 This output shows that when you run the `./fileS` command, it actually runs the GNU `find` command. So, there might be something in the `fileS` file that calls the `find` command.
 
 **What’s Happening?**
@@ -171,8 +171,8 @@ This output shows that when you run the `./fileS` command, it actually runs th
 - The `fileS` file might be a symlink to the `find` command or could be a script that calls the `find` command.
 
 So, this file is caling for the find command. It’s a suid bit and if we check the GTFOBins :
-![](Mzeeav17.png)
+![](Images/Mzeeav17.png)
 We can leverage this by :
-![](Mzeeav18.png)
+![](Images/Mzeeav18.png)
 
 

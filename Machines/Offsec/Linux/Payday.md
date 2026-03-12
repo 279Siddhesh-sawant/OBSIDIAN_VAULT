@@ -129,31 +129,31 @@ Nmap done: 1 IP address (1 host up) scanned in 22.38 seconds
 ```
 
 Visited web server on port 80. Tried login using default creds but didn't work.
-![](payday1.png)
+![](Images/payday1.png)
 
 Directory brute forcing. we found /admin page.
-![](payday2.png)
+![](Images/payday2.png)
 Visiting /admin page. We tried default creds admin : admin. We were successful to login.
-![](payday3.png)
-![](payday4.png)
+![](Images/payday3.png)
+![](Images/payday4.png)
 
 Searched for public exploits on CS Cart. As we are logged in now, we looked for "authenticated RCE".
-![](payday5.png)
-![](payday6.png)
+![](Images/payday5.png)
+![](Images/payday6.png)
 According to the exploit, a `.php` shell can be uploaded as a `.phtml` file via a file manager at the `/skins` directory of the web application.
 After some further browsing I find another upload section in the **Template Editor**. Here, a specific path at `/skins` is specified so I create my PHP reverse shell and upload the file as a `.phtml` — knowing I will be able to browse to my reverse shell script at the URL:
 
-![](payday7.png)
+![](Images/payday7.png)
 Copied the shell. Changed IP and port. Renamed it with .phtml extension as mentioned in exploit.
-![](payday8.png)
+![](Images/payday8.png)
 Uploaded the shell to template editor.
-![](payday9.png)
+![](Images/payday9.png)
 Started nc.
-![](payday10.png)
+![](Images/payday10.png)
 Visiting the uploaded file.
-![](payday11.png)
+![](Images/payday11.png)
 Got the shell.
-![](payday12.png)
+![](Images/payday12.png)
 Stabilizing shell.
 ```sh
 python -c 'import pty; pty.spawn("/bin/bash")'
@@ -169,22 +169,22 @@ stty rows 24 columns 80
 ```
 
 We got the local flag.
-![](payday13.png)
-![](payday14.png)
+![](Images/payday13.png)
+![](Images/payday14.png)
 Logging in as patrick via SSH was troublesome at first because my SSH client was not allowing me to connect at first due to weak encryption protocols offered by the target. I decided to ignore this for some reason and spent 3 hours stuck in a rabbit hole as www-data on a web shell trying to escalate privileges and find any exploits and it just didn’t work which was absolutely infuriating. That’s a lesson learned.
 
 I fixed that with the following ssh command.
 
 **Patrick’s password is : patrick**. I couldn’t believe it. Is this how the OSCP exam boxes are going to be – a guessing game of fairly predictable passwords?
 
-![](payday15.png)
+![](Images/payday15.png)
 ```sh
 ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa patrick@192.168.124.39
 ```
-![](payday16.png)
+![](Images/payday16.png)
 
 ### Privilege Escalation
 
-![](payday17.png)
+![](Images/payday17.png)
 When is show (ALL) ALL means consider it as /bin/bash. So that user can run /bin/bash as root..
-![](payday18.png)
+![](Images/payday18.png)

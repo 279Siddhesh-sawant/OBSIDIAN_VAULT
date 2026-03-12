@@ -39,4 +39,4 @@ Nmap done: 1 IP address (1 host up) scanned in 14.37 seconds
 ```
 
 Visiting web server on port 80.
-![](Workaholic1.png)
+![](Images/Workaholic1.png)

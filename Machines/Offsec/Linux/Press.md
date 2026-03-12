@@ -38,42 +38,42 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 16.73 seconds
 ```
 Visiting web server on port 80. Nothing was interesting.
-![](Press1.png)
+![](Images/Press1.png)
 Open the browser and browse to the machine 8089 port and found the login page of FlatPress.
-![](Press2.png)
+![](Images/Press2.png)
 Try to login using simple password and success with the **admin:password**
-	![](Press3.png)
+	![](Images/Press3.png)
 	In the console, there is a “Uploader” that looks interesting.
-![](Press4.png)
+![](Images/Press4.png)
 Uploaded reverse shell.
-![](Press5.png)
+![](Images/Press5.png)
 We got error.
-![](Press6.png)
+![](Images/Press6.png)
 So we created simple .jpg file upload it to the application to check whether it takes image file or not.
-![](Press7.png)
-![](Press8.png)
+![](Images/Press7.png)
+![](Images/Press8.png)
 And it is uploaded successfully.
-![](Press9.png)
+![](Images/Press9.png)
 So we decided to upload php reverse shell with magic byte.
 `GIF89;`
-![](Press10.png)
+![](Images/Press10.png)
 File uploaded successfully.
-![](Press11.png)
+![](Images/Press11.png)
 After opening the file in different tab.
-![](Press12.png)
+![](Images/Press12.png)
 We got the shell.
-![](Press13.png)
+![](Images/Press13.png)
 After running linpeas, we found below.
-![](Press14.png)
+![](Images/Press14.png)
 We open the file.
-![](Press15.png)
+![](Images/Press15.png)
 On Gtfobins we found below.
-![](Press18.png)
-![](Press16.png)
-![](Press17.png)
+![](Images/Press18.png)
+![](Images/Press16.png)
+![](Images/Press17.png)
 
 We got the shell. We tried using different commands but only this one worked.
 ```sh
 sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/sh
 ```
-![](Press19.png)
+![](Images/Press19.png)

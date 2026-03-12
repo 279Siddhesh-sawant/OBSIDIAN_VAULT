@@ -35,32 +35,32 @@ Nmap done: 1 IP address (1 host up) scanned in 11.35 seconds
 ```
 
 Visiting web server on port 3000.
-![](Rubydome1.png)
+![](Images/Rubydome1.png)
 I noticed that the application accepts URLs of target HTML pages. To check for an SSRF vulnerability, I hosted a Python web server and provided its URL to the RubyDome application. When I sent the URL, I received an interaction from the target server, confirming the vulnerability.
-![](Rubydome4.png)
-![](Rubydome5.png)
+![](Images/Rubydome4.png)
+![](Images/Rubydome5.png)
 **Another way to get shell**
 We can generate the payload.
-![](Rubydome9.png)
+![](Images/Rubydome9.png)
 Then, hit the application blank URL and capture it in burp suite and change the URL with payload and send. Before this start the nc.
-![](Rubydome10.png)
+![](Images/Rubydome10.png)
 ### Method 1 Continue
 I also observed that the application displayed an error revealing sensitive information. From this error, I discovered that the application is using the `pdfkit` library.
 RubyDome HTML to PDF: Upon googling it, I quickly found numerous exploits.
-![](Rubydome2.png)
+![](Images/Rubydome2.png)
 We download the exploit from exploit-db and ran it.
-![](Rubydome3.png)
+![](Images/Rubydome3.png)
 We generated payload using exploit.
-![](Rubydome6.png)
+![](Images/Rubydome6.png)
 And we got the shell.
-![](Rubydome7.png)
+![](Images/Rubydome7.png)
 We captured the local flag.
-![](Rubydome8.png)
+![](Images/Rubydome8.png)
 ### Privilege Escalation
 Checked sudo commands.
-![](Rubydome11.png)
+![](Images/Rubydome11.png)
 Searched for ruby based shell and found one on GTFobins.
-![](Rubydome12.png)
+![](Images/Rubydome12.png)
 ### What each part does:
 
 |Part|Meaning|
@@ -94,9 +94,9 @@ You insert **Ruby code**, not shell syntax:
     
 - since script runs with sudo → shell is root
 So we add ruby script into that app.
-![](Rubydome13.png)
+![](Images/Rubydome13.png)
 And simply run the command.
-![](Rubydome14.png)
+![](Images/Rubydome14.png)
 
 ## 🆚 Alternative Ruby shell methods
 

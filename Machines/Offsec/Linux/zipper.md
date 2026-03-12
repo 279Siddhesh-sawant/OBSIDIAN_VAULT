@@ -37,11 +37,11 @@ Nmap done: 1 IP address (1 host up) scanned in 12.91 seconds
 ```
 
 Visiting web server on port 80.
-![](Zipper1.png)
+![](Images/Zipper1.png)
 Hm… It seems like this is a zip* exploitation. If only we could see the code. It’s definitely not Zipslip since it didn’t unzip the zip for us.
 
 There’s a search feature, but it’s just dummy. Oh, when you press the home button, a GET parameter appears.
-![](Zipper2.png)
+![](Images/Zipper2.png)
 Let’s try LFI. We can extract the source using the PHP base64 wrapper. It seems like it’s appending ‘.php’ to the file.
 https://github.com/RoqueNight/LFI---RCE-Cheat-Sheet?source=post_page-----54487957aab9---------------------------------------
-![](Zipper3.png)
+![](Images/Zipper3.png)

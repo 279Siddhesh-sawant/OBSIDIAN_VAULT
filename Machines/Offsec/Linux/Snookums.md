@@ -91,52 +91,52 @@ Nmap done: 1 IP address (1 host up) scanned in 56.72 seconds
 https://medium.com/@ardian.danny/oscp-practice-series-34-proving-grounds-snookums-34fc8fbb144c
 https://www.exploit-db.com/exploits/48424
 Anonymous login is allowed. Seems like we can’t interact with the FTP server. I tried exiting passive mode and stuff, but it’s still stuck.
-![](snookums1.png)
+![](Images/snookums1.png)
 SMB got nothing interesting.
-![](snookums2.png)
+![](Images/snookums2.png)
 Let’s check the web now..
-![](snookums3.png)
+![](Images/snookums3.png)
 OH, so this is actually a known software. I thought it was custom software.  
 Let’s search for exploits. We know the version is `v0.8`. There’s only an exploit for version 0.7, so I decided to try it. It’s an RFI vulnerability. The ExploitDB link didn’t really explain where the vulnerable path is. So I searched for another exploit. 
 https://www.exploit-db.com/exploits/48424
-![](snookums4.png)
+![](Images/snookums4.png)
 Here, we can see the vulnerable path is on `/image.php?img` or `/image.php?i`. Let’s try.
-![](snookums5.png)
+![](Images/snookums5.png)
 From here we got to know there is a user named michael. So we can upload php reverse shell.
-![](snookums6.png)
+![](Images/snookums6.png)
 I hosted a server to load the `php-reverse-shell`.
 
-![](snookums7.png)
-![](snookums25.png)
-![](snookums8.png)
-![](snookums9.png)
+![](Images/snookums7.png)
+![](Images/snookums25.png)
+![](Images/snookums8.png)
+![](Images/snookums9.png)
 We got the shell.
-![](snookums10.png)
+![](Images/snookums10.png)
 **The server only allows traffic on the open port. Like the server allows inbound and outbound traffic on the ports they have opened.**
 Stabilizing the shell.
 Confirming the existence of user michael.
-![](snookums11.png)
+![](Images/snookums11.png)
 We know there’s mysql, so let’s look for db config and check the db.
-![](snookums12.png)
-![](snookums13.png)
+![](Images/snookums12.png)
+![](Images/snookums13.png)
 Accessing mysql database.
 ```sh
 mysql -h 127.0.0.1 -u root -pMalapropDoffUtilize1337
 ``` 
 
-![](snookums14.png)
+![](Images/snookums14.png)
 ```sh
 SHOW databases;
 ```
 
-![](snookums15.png)
+![](Images/snookums15.png)
 ```sh
 USE SimplePHPGal;
 SHOW tables;
 select * from users;
 ```
 
-![](snookums16.png)
+![](Images/snookums16.png)
 Nice we got michael’s creds..
 josh:VFc5aWFXeHBlbVZJYVhOelUyVmxaSFJwYldVM05EYz0=  
 michael:U0c5amExTjVaRzVsZVVObGNuUnBabmt4TWpNPQ==  
@@ -148,20 +148,20 @@ josh:MobilizeHissSeedtime747
 michael:HockSydneyCertify123  
 serena:OverallCrestLean000
 
-![](snookums17.png)
+![](Images/snookums17.png)
 
 Login to the ssh using michael's creds.
-![](snookums18.png)
+![](Images/snookums18.png)
 Getting the linpeas on remote server. Run it.
-![](snookums19.png)
+![](Images/snookums19.png)
 Linpeas discovered that we own `/etc/passwd`. We can use this to our own advantage.
-![](snookums20.png)
-![](snookums21.png)
+![](Images/snookums20.png)
+![](Images/snookums21.png)
 So, we will add user to /etc/passwd with root privileges.
 ```sh
 openssl passwd Test@1234
 ```
-![](snookums22.png)
+![](Images/snookums22.png)
 This command generates a **hashed (encrypted) version** of the password `Test@1234`.
 Adding user to /etc/passwd
 ```sh
@@ -169,9 +169,9 @@ echo 'offsec:$1$czryjQXf$Jf0i2gGY9ANzmuEHnQjm51:0:0:root:/root:/bin/bash' >> /et
 ```
 This command **adds a new user entry**(offsec) to the system’s `/etc/passwd` file.
 
-![](snookums23.png)
-![](snookums24.png)
-### In this scenario, previously when we got the shell for michael at that time also we the took local flag but we missed that screenshot.
+![](Images/snookums23.png)
+![](Images/snookums24.png)
+### In this scenario, previously when we got the shell for michael at that time also we took the local flag but we missed that screenshot.
 
 
 
