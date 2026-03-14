@@ -45,7 +45,8 @@ Nmap done: 1 IP address (1 host up) scanned in 20.88 seconds
 ```
 
 After browsing the website on port 80, I tried the possible passwords on the admin login page, but it was not successful. Also we searched for exploits available on google but didn't find anything.
-![[Pasted image 20260216122232.png]]
+![[Pasted image 20260314094951.png]]
+![[Pasted image 20260314095005.png]]
 
 Later, I obtained the following information on port 8000.
 ![[Pasted image 20260216122354.png]]

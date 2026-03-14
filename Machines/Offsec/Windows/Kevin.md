@@ -130,4 +130,3 @@ Explanation:
 | `-e`                           | Encoder                      |
 | `-f c`                         | Output format                |
 
-![[Pasted image 20260312214518.png]]
