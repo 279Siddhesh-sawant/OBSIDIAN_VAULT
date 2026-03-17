@@ -107,4 +107,12 @@ python -m http.server 80
 ```
 Upload your revise resume. We see evidence the first command executed as shown by the retrieval of powercat from our machine
 ![](Images/Craft25.png)
+Before uploading newly created .odt file download powercat.ps1 in the same folder where we starting python server. Both .ps1 and .odt file must be in same folder.
+https://github.com/besimorhino/powercat/blob/master/powercat.ps1
+![](Images/Craft26.png)
 
+![](Images/Craft28.png)
+Then we check our listener.
+![](Images/Craft29.png)
+Captured local flag.
+![](Images/Craft30.png)
