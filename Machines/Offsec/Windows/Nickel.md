@@ -74,3 +74,131 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 275.32 seconds
 ```
 
+Visiting web server on port 8089.
+
+![](Images/Nickel1.png)
+
+Clicking on each of this options take time to load and for some reasons it is not even coming up, so i decided to view source code and discovered that another IP was been called on the endpoints, instead of our present target IP.
+
+![](Images/Nickel2.png)
+
+ Decided to change it to our own IP in which port 33333/HTTP is currently opened also, The two endpoints hence `/list-running-procs` has the message “**Not Implemented**”.
+
+![](Images/Nickel3.png)
+
+Seems like the above message means we have to use the `POST` request instead of `GET`, you can use `burpsuite` for this or `curl` using the `-X` parameter. However i will be using `burpsuite`
+
+Even after changing the request method, we got nothing.
+
+![](Images/Nickel4.png)
+
+So we tried another endpoint.
+
+![](Images/Nickel5.png)
+
+Captured the request in burp suite and changed the request method. I found hardcoded SSH credentials in response after changing request to `POST`.
+
+![](Images/Nickel6.png)
+
+From cyberchef we got know that crdes were base64 encoded.
+
+![](Images/Nickel7.png)
+
+![](Images/Nickel8.png)
+
+So we found following creds: `ariah : NowiseSloopTheory139`
+
+Then we can now login via SSH with the credentials we have at hand `ariah:NowiseSloopTheory139`
+
+![](Images/Nickel9.png)
+
+Captured local flag.
+
+![](Images/Nickel10.png)
+
+### C:\ Enumeration
+
+This is very crucial step to always check for files and directories in C:\ drive. Let’s check for ftp.
+
+![](Images/Nickel11.png)
+
+Navigating to `C:\ftp` i found a PDF file called `Infrastructure.pdf`. Then decided to transfer the file using the `scp` utility.
+
+![](Images/Nickel12.png)
+
+```sh
+scp ariah@192.168.240.99:C:/ftp/Infrastructure.pdf .
+```
+
+![](Images/Nickel13.png)
+
+However this file is password encrypted so we have to decrypt it first.
+
+![](Images/Nickel14.png)
+
+we can crack this using `JtR`
+
+![](Images/Nickel15.png)
+
+Opening the PDF and checking the content we have several endpoints.
+
+![](Images/Nickel16.png)
+
+Checking the endpoints locally, the `http://nickel/` endpoint looks interesting the most, so i checked it first and the body contains a message saying “`dev-api`”
+![](Images/Nickel17.png)
+
+We got the above error saying port 80 is not exposed externally.
+
+Checked `netstat -ano` and found that port 80 is opened on localhost.
+
+![](Images/Nickel18.png)
+
+So we tried bot the endpoints found in pdf.
+
+![](Images/Nickel19.png)
+
+Here, we can do local port forwarding to access the above endpoints in our browser.
+
+![](Images/Nickel20.png)
+
+![](Images/Nickel21.png)
+
+![](Images/Nickel22.png)
+
+ Adding the “`dev-api`” as a parameter to the legit URL i have this error like a normal CMD error, Meaning it executes whatever commands we add there. (we found dev-api after hitting 1st endpoint)
+
+![](Images/Nickel23.png)
+
+![](Images/Nickel24.png)
+
+Decided to do this with the command `whoami`, and we have a response in return as the user administrator.
+
+![](Images/Nickel25.png)
+
+```cmd
+curl http://127.0.0.1/?net%20user%20administrator%20password
+```
+
+
+![](Images/Nickel27.png)
+We can then change the administrator password and login as the administrator user with `psexec.py`
+
+`curl http://127.0.0.1/?net%20user%20administrator%20password`
+
+Decoded:
+
+`net user administrator password`
+
+👉 What this does:
+
+Changes password of `Administrator` user to `password`
+
+![](Images/Nickel26.png)
+
+This can be achieved by methods:
+
+https://sec-fortress.github.io/posts/pg/posts/Nickel.html
+
+https://medium.com/@huntersherlock11/proving-ground-walkthrough-nickel-ff4c8dff99a0
+
+
