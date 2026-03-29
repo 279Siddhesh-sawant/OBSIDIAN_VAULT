@@ -355,3 +355,7 @@ After waiting a few moments post-reboot, I checked the listener — and successf
 Captured both flags.
 
 ![](Images/Hepet23.png)
+
+Reference link : 
+
+https://banua.medium.com/proving-grounds-hepet-oscp-prep-2025-practice-17-3bdc3ad86495
