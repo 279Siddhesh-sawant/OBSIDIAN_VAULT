@@ -339,5 +339,9 @@ Looking around, we find that the only other users on the machine are Administrat
 
 ![](Images/Nagoya19.png)
 
+Now that we’ve found MSSQL running, lets transfer chisel over and set up a tunnel for it.
 
+First we download chisel from below link.
+
+https://github.com/jpillora/chisel/releases/tag/v1.11.5
 
