@@ -383,3 +383,59 @@ john hazel_hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
 
 Now that we have Hazel’s password, we can move forward with the path BloodHound showed us. Since Hazel has ForceChangePassword permissions over molly.smith, we can use **rpcclient** to reset and change the password, you can read about it in this [post](https://malicious.link/posts/2017/reset-ad-user-password-with-linux/#:~:text=In%20order%20to%20change%20a,Numbers%20Dynamic%20DNS%20Update%20Module), but I’ll stick with bloodyAD to keep things simple.
 
+`hazel.green : haze1988`
+
+![](Images/Hokkaido32.png)
+
+now password of molly.smith is set to ‘Password123!’  
+Now Login to molly.smith account using RDP and capture the local flag.
+
+![](Images/Hokkaido33.png)
+
+### Privilege Escalation
+
+open cmd as administrator and give molly.smith’’s username and password then run.
+
+![](Images/Hokkaido34.png)
+
+We’re in as molly.smith. Even though SeBackupPrivilege and SeRestorePrivilege show as disabled, being in [**Server Operators**](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups#server-operators) still gives us the ability to stop and start services, back up and restore files, and mess with the system state. That means we can copy the SAM and SYSTEM hives and extract the local admin hash offline but instead I’m going to add a user using registry and also make molly domain admin.
+
+![](Images/Hokkaido35.png)
+
+![](Images/Hokkaido36.png)
+
+We can see the We have SeBackupPrivilege so lets copy sam and system file to temp folder.
+```cmd
+reg save hklm\sam C:\Users\molly.smith\Desktop\sam
+
+reg save hklm\system C:\Users\molly.smith\Desktop\system
+```
+
+
+![](Images/Hokkaido38.png)
+
+the copy both file to attacker machine andrun impacker-secretdump tool. 
+**Here, I generate the sam and syetm hives by logging in through remina and then copied to local system by logging in through xfreerdp.**
+
+```sh
+/usr/bin/impacket-secretsdump -sam sam -system system local
+```
+
+![](Images/Hokkaido39.png)
+
+now evil-winrm to the machine using administrator account:
+
+```sh
+evil-winrm -i 192.168.173.40 -U administrator -H 'd752482897d54e239376fddb2a2109e4'
+```
+
+![](Images/Hokkaido40.png)
+
+![](Images/Hokkaido41.png)
+
+Reference link :
+https://medium.com/@sakyb7/proving-grounds-hokkaido-tjnull-oscp-prep-ca34df1e6491
+
+https://medium.com/@NullEsc/proving-grounds-hokkaido-5f52017de938
+
+
